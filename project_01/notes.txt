@@ -1,0 +1,17 @@
+google search for time brought back this 
+
+https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=1358137508000
+
+http://stackoverflow.com/questions/14679524/rubyonrails-how-to-make-rake-task-to-parse-twitter-json
+
+https://github.com/ChosunOne/Tweet_Analysis/blob/master/debug.json
+
+https://github.com/ChosunOne/Tweet_Analysis
+
+https://gist.github.com/pvieytes/978125
+
+
+
+how to find proper nouns
+
+http://stackoverflow.com/questions/17669952/finding-proper-nouns-using-nltk-wordnet
