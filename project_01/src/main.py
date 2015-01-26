@@ -9,25 +9,58 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
+
+ignore_list = ['will', 'ferrel', 'kristin', 'wigg', 'golden', 'globes', 'goldenglobes', '#goldenglobes']
+
 def main():
+    # CONSIDER IGNORING WILL FERREL AND KRISTIN WIGG, THEY BECAME A TRENDING TOPIC DURING THE PERFORMANCE
+    # will ferrel and kristin wigg became a trending topic on google and yahoo during the performance as an idea for hosts for the following year
+    # ALSO IGNORE Golden, Globes, GoldenGlobes, #GoldenGlobes
+
+
+
     #print urllib.urlopen("http://en.wikipedia.org/wiki/70th_Golden_Globe_Awards").read()
     tweets = read_in_tweets()
     #[truth_data, performer_movie] = get_academy_info()
-    pos_hosts = get_hosts(tweets)
-    print(pos_hosts[0], pos_hosts[1])
+    #pos_hosts = get_hosts(tweets)
+    #print(pos_hosts[0], pos_hosts[1])
+    noms = get_nominees(tweets)
+    print(noms)
 
 def get_hosts(tweets):
     d = defaultdict(int)
     for idx in range(0,len(tweets)):
         if findWholeWord('host')(tweets[idx][0]):
-            tagged_tweet = pos_tag(tweets[idx][0].split())
+            tagged_tweet = pos_tag(tweets[idx][0].lower().split())
             proper_nouns = [pn for pn,pos in tagged_tweet if pos == 'NNP']
             for pnoun in proper_nouns:
                 d[pnoun] += 1
-    # will ferrel and kristin wigg became a trending topic on google and yahoo during the performance as an idea for hosts for the following year
+    for key in ignore_list:
+        if key in d.keys():
+            del d[key]
     pos_hosts = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
     return pos_hosts
 
+def get_nominees(tweets):
+    d = defaultdict(int)
+    for idx in range(0,len(tweets)):
+        if 'best' in tweets[idx][0] and 'drama' in tweets[idx][0] and 'actor' in tweets[idx][0]:
+        #if findWholeWord('nominee')(tweets[idx][0]):
+            #print(tweets[idx][0])
+            tagged_tweet = pos_tag(tweets[idx][0].split())
+            proper_nouns = [pn.lower() for pn,pos in tagged_tweet if pos == 'NNP']
+            for pnoun in proper_nouns:
+                d[pnoun] += 1
+    for key in ignore_list:
+        if key in d.keys():
+            del d[key]
+    noms = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
+    return noms
+
+# find winner of each award
+# find name of presenters
+# for each award, find the nominees
+# one thing that we come up with that would be exciting
 
 def read_in_tweets():
     tweet_file = open('../data/goldenglobes.json','r')
