@@ -10,52 +10,46 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
+'''
+Notes for our group...
 
+ - The first approach that I tried does not work well with 'nominees' because it doesn't seem like people tweet about that too much
+ - Does anyone know how to make GUI's with Python?
+ - Does anyone have experience scraping web-pages?
+
+Some ideas...
+1. Right now, we only look for single proper nouns, it may be good to look at pairs of them (try and get full names)
+2. Print out a visual of a timeline of the event (the 2013 data is about 4hrs of data) and print popularity of people at given time
+points, maybe try and analyze if people's names show up as they are presenting or if the have just won or lost an award?
+3. Use ideas from Named Entity Recognition  (http://en.wikipedia.org/wiki/Named-entity_recognition)
+4. Use Golden Globes wiki page as a resource that we can scrape (http://en.wikipedia.org/wiki/70th_Golden_Globe_Awards)
+5. Maybe use other preprocessing techniques (stem words, remove punctuation, etc...)
+
+'''
+
+'''
+The 'ignore_list' is a list of words and names to ignore when analyzing the twitter data,
+of note, will ferrell and kristen wiig became a trending topic on google and yahoo during the 2013 golden globes
+as suggestions of hosts for the following years golden globes.
+'''
 ignore_list = ['will', 'ferrell', 'kristen', 'wiig', 'golden', 'globes', 'goldenglobes', '#goldenglobes', 'oscars']
-# will ferrell and kristen wiig became a trending topic during the performance on google and yahoo
 
 
-# find winner of each award
-# find name of presenters
-# for each award, find the nominees
-# one thing that we come up with that would be exciting
-
+''' main function '''
 def main():
-    # I NEED TO REMOVE ALL PUNCTUATION AS WELL
-
     #print urllib.urlopen("http://en.wikipedia.org/wiki/70th_Golden_Globe_Awards").read()
-    tweets = read_in_tweets()
-    #[truth_data, performer_movie] = get_academy_info()
-    #pos_hosts = get_hosts(tweets)
-    #print(pos_hosts)
-    #noms = get_noms(tweets)
-    #print(noms)
-    #users_sorted = get_user_tweet_counts(tweets)
-    #print(users_sorted[0:25])
-    times = get_user_tweet_time(tweets)
-    print(times[0], times[-1])
+    tweet_file = open('../data/goldenglobes.json','r')
+    # the below file doesn't work because it takes up too much memory to read in
+    #tweet_file = open('/home/alex/Documents/School/Q2/NLP/data2105/goldenglobes2015.json','r')
+    tweets = read_in_tweets(tweet_file)
+    res = get_hosts(tweets)
+    print(res[0:25])
 
-def get_user_tweet_counts(tweets):
-    d = defaultdict(int)
-    for idx in range(0,len(tweets)):
-        d[tweets[idx][4]] += 1
-    users_sorted = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
-    return users_sorted
-
-
-def get_user_tweet_time(tweets):
-    times = []
-    for idx in range(0,len(tweets)):
-        val1 = str(tweets[idx][1])
-        val = val1[0:-3]
-        times.append(datetime.datetime.fromtimestamp(int(val)).strftime('%Y-%m-%d %H:%M:%S'))
-    return times
-
+''' Read in all twitter data and sort data by co-appearance with host tags'''
 def get_hosts(tweets):
     d = defaultdict(int)
     for idx in range(0,len(tweets)):
         if findWholeWord('host')(tweets[idx][0]):
-            print(tweets[idx])
             tagged_tweet = pos_tag(tweets[idx][0].split())
             proper_nouns = [pn.lower() for pn,pos in tagged_tweet if pos == 'NNP']
             for pnoun in proper_nouns:
@@ -66,12 +60,11 @@ def get_hosts(tweets):
     pos_hosts = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
     return pos_hosts
 
-def get_best_drama_actor_movie(tweets):
+''' Read in all twitter data and sort data by co-appearance with best drama actor tags'''
+def get_best_drama_actor(tweets):
     d = defaultdict(int)
     for idx in range(0,len(tweets)):
         if 'best' in tweets[idx][0] and 'drama' in tweets[idx][0] and 'actor' in tweets[idx][0]:
-        #if findWholeWord('nominee')(tweets[idx][0]):
-            #print(tweets[idx][0])
             tagged_tweet = pos_tag(tweets[idx][0].split())
             proper_nouns = [pn.lower() for pn,pos in tagged_tweet if pos == 'NNP']
             for pnoun in proper_nouns:
@@ -79,15 +72,14 @@ def get_best_drama_actor_movie(tweets):
     for key in ignore_list:
         if key in d.keys():
             del d[key]
-    noms = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
-    return noms
+    sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
+    return sorted_vals
 
-def get_noms(tweets):
+''' Read in all twitter data and sort data by co-appearance with best comedy or musical actor tags'''
+def get_best_musical_or_comedy_actor(tweets):
     d = defaultdict(int)
     for idx in range(0,len(tweets)):
-        if 'nom' in tweets[idx][0] or 'nominee' in tweets[idx][0]:
-        #if findWholeWord('nominee')(tweets[idx][0]):
-            #print(tweets[idx][0])
+        if 'best' in tweets[idx][0] and 'actor' in tweets[idx][0] and ('com' in tweets[idx][0] or 'mus' in tweets[idx][0]):
             tagged_tweet = pos_tag(tweets[idx][0].split())
             proper_nouns = [pn.lower() for pn,pos in tagged_tweet if pos == 'NNP']
             for pnoun in proper_nouns:
@@ -95,15 +87,52 @@ def get_noms(tweets):
     for key in ignore_list:
         if key in d.keys():
             del d[key]
-    noms = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
-    return noms
+    sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
+    return sorted_vals
 
-def read_in_tweets():
-    tweet_file = open('../data/goldenglobes.json','r')
-    #tweet_file = open('/home/alex/Documents/School/Q2/NLP/data2105/goldenglobes2015.json','r')
+''' Read in all twitter data and sort data by co-appearance with best drama movie'''
+def get_best_drama_movie(tweets):
+    d = defaultdict(int)
+    for idx in range(0,len(tweets)):
+        if 'best' in tweets[idx][0] and 'drama' in tweets[idx][0] and 'motion' in tweets[idx][0] and 'picture' in tweets[idx][0]:
+            tagged_tweet = pos_tag(tweets[idx][0].split())
+            proper_nouns = [pn.lower() for pn,pos in tagged_tweet if pos == 'NNP']
+            for pnoun in proper_nouns:
+                d[pnoun] += 1
+    for key in ignore_list:
+        if key in d.keys():
+            del d[key]
+    sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
+    return sorted_vals
+
+''' Read in all twitter data and sort by number of tweets per user '''
+def get_user_tweet_counts(tweets):
+    d = defaultdict(int)
+    for idx in range(0,len(tweets)):
+        d[tweets[idx][4]] += 1
+    users_sorted = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
+    return users_sorted
+
+''' Read in all twitter data and print out tweets by a particular user, may not be too helpful '''
+def get_gg(tweets):
+    d = defaultdict(int)
+    for idx in range(0,len(tweets)):
+        if tweets[idx][4] == 'TVGuide':
+            print tweets[idx]
+
+''' Read in all twitter data and create a human readable time stamp for each tweet '''
+def get_user_tweet_time(tweets):
+    times = []
+    for idx in range(0,len(tweets)):
+        val1 = str(tweets[idx][1])
+        val = val1[0:-3]
+        times.append(datetime.datetime.fromtimestamp(int(val)).strftime('%Y-%m-%d %H:%M:%S'))
+    return times
+
+''' Read in all the twitter data and save in python array '''
+def read_in_tweets(tweet_file):
     tweets_orig = [json.loads(line) for line in tweet_file]
     tweets = []
-
     for idx in range(0,len(tweets_orig)):
         tweet = tweets_orig[idx]
         row = (
@@ -116,12 +145,13 @@ def read_in_tweets():
         )
         values = [(value.encode('utf8') if hasattr(value, 'encode') else value) for value in row]
         tweets.append(values)
-
     return tweets
 
+''' Regular expression to check if full word is in sentence, not just is the word is a substring of the full sentence '''
 def findWholeWord(w):
     return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search
 
+''' Hand coded 2015 data, the first value in each array is the winner '''
 def get_academy_info():
     truth_data = {}
     performer_movie = {}
@@ -238,7 +268,6 @@ def get_academy_info():
     performer_movie['colin hanks'] = 'fargo'
 
     return [truth_data, performer_movie]
-
 
 if __name__ == "__main__":
     main()
