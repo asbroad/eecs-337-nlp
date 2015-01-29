@@ -4,35 +4,60 @@ import urllib
 import re
 from nltk.tag import pos_tag
 from collections import defaultdict
+import datetime
 # json file is in utf-8 format
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
 
-ignore_list = ['will', 'ferrel', 'kristin', 'wigg', 'golden', 'globes', 'goldenglobes', '#goldenglobes']
+ignore_list = ['will', 'ferrell', 'kristen', 'wiig', 'golden', 'globes', 'goldenglobes', '#goldenglobes', 'oscars']
+# will ferrell and kristen wiig became a trending topic during the performance on google and yahoo
+
+
+# find winner of each award
+# find name of presenters
+# for each award, find the nominees
+# one thing that we come up with that would be exciting
 
 def main():
-    # CONSIDER IGNORING WILL FERREL AND KRISTIN WIGG, THEY BECAME A TRENDING TOPIC DURING THE PERFORMANCE
-    # will ferrel and kristin wigg became a trending topic on google and yahoo during the performance as an idea for hosts for the following year
-    # ALSO IGNORE Golden, Globes, GoldenGlobes, #GoldenGlobes
-
-
+    # I NEED TO REMOVE ALL PUNCTUATION AS WELL
 
     #print urllib.urlopen("http://en.wikipedia.org/wiki/70th_Golden_Globe_Awards").read()
     tweets = read_in_tweets()
     #[truth_data, performer_movie] = get_academy_info()
     #pos_hosts = get_hosts(tweets)
-    #print(pos_hosts[0], pos_hosts[1])
-    noms = get_nominees(tweets)
-    print(noms)
+    #print(pos_hosts)
+    #noms = get_noms(tweets)
+    #print(noms)
+    #users_sorted = get_user_tweet_counts(tweets)
+    #print(users_sorted[0:25])
+    times = get_user_tweet_time(tweets)
+    print(times[0], times[-1])
+
+def get_user_tweet_counts(tweets):
+    d = defaultdict(int)
+    for idx in range(0,len(tweets)):
+        d[tweets[idx][4]] += 1
+    users_sorted = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
+    return users_sorted
+
+
+def get_user_tweet_time(tweets):
+    times = []
+    for idx in range(0,len(tweets)):
+        val1 = str(tweets[idx][1])
+        val = val1[0:-3]
+        times.append(datetime.datetime.fromtimestamp(int(val)).strftime('%Y-%m-%d %H:%M:%S'))
+    return times
 
 def get_hosts(tweets):
     d = defaultdict(int)
     for idx in range(0,len(tweets)):
         if findWholeWord('host')(tweets[idx][0]):
-            tagged_tweet = pos_tag(tweets[idx][0].lower().split())
-            proper_nouns = [pn for pn,pos in tagged_tweet if pos == 'NNP']
+            print(tweets[idx])
+            tagged_tweet = pos_tag(tweets[idx][0].split())
+            proper_nouns = [pn.lower() for pn,pos in tagged_tweet if pos == 'NNP']
             for pnoun in proper_nouns:
                 d[pnoun] += 1
     for key in ignore_list:
@@ -41,7 +66,7 @@ def get_hosts(tweets):
     pos_hosts = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
     return pos_hosts
 
-def get_nominees(tweets):
+def get_best_drama_actor_movie(tweets):
     d = defaultdict(int)
     for idx in range(0,len(tweets)):
         if 'best' in tweets[idx][0] and 'drama' in tweets[idx][0] and 'actor' in tweets[idx][0]:
@@ -57,13 +82,25 @@ def get_nominees(tweets):
     noms = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
     return noms
 
-# find winner of each award
-# find name of presenters
-# for each award, find the nominees
-# one thing that we come up with that would be exciting
+def get_noms(tweets):
+    d = defaultdict(int)
+    for idx in range(0,len(tweets)):
+        if 'nom' in tweets[idx][0] or 'nominee' in tweets[idx][0]:
+        #if findWholeWord('nominee')(tweets[idx][0]):
+            #print(tweets[idx][0])
+            tagged_tweet = pos_tag(tweets[idx][0].split())
+            proper_nouns = [pn.lower() for pn,pos in tagged_tweet if pos == 'NNP']
+            for pnoun in proper_nouns:
+                d[pnoun] += 1
+    for key in ignore_list:
+        if key in d.keys():
+            del d[key]
+    noms = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
+    return noms
 
 def read_in_tweets():
     tweet_file = open('../data/goldenglobes.json','r')
+    #tweet_file = open('/home/alex/Documents/School/Q2/NLP/data2105/goldenglobes2015.json','r')
     tweets_orig = [json.loads(line) for line in tweet_file]
     tweets = []
 
