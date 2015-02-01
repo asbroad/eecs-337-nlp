@@ -45,6 +45,41 @@ def main():
     res = get_hosts(tweets)
     print(res[0:25])
 
+
+
+
+def bigramNameFind(tweets):
+
+    print(tweets[0][0])
+
+    tokenizer = RegexpTokenizer(r'\w+')
+
+    d = defaultdict(int)
+    for idx in range(0, len(tweets)):
+        if findWholeWord('host')(tweets[idx][0]):
+            bigramsList = list(nltk.bigrams(tokenizer.tokenize(tweets[idx][0])))
+            #add filter for bigrams that use only proper nouns
+
+
+            for j in range(0, len(bigramsList)):
+                token = bigramsList[j][0]+" "+bigramsList[j][1]
+                #print(token)
+                d[token] += 1
+
+    #print(d.keys())
+
+    for key in ignore_list:
+        for dKey in d.keys():
+            if key in dKey:
+                
+                #print(dKey)
+                del d[dKey]
+
+
+    sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
+    return sorted_vals
+    
+
 ''' Read in all twitter data and sort data by co-appearance with host tags'''
 def get_hosts(tweets):
     d = defaultdict(int)
