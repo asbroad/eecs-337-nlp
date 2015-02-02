@@ -46,11 +46,12 @@ def main():
     #tweets = read_in_tweets(tweet_file)
     #res = get_best_drama_actor(tweets)
     #print(res[0:25])
-    movie_response = parse_wikipedia_movies()
+    xml_file = '70th_Golden_Globe_Awards.xml'
+    movie_response = parse_wikipedia_movies(xml_file)
     for itm in movie_response:
         print(itm)
 
-    tv_response = parse_wikipedia_tv()
+    tv_response = parse_wikipedia_tv(xml_file)
     for itm in tv_response:
         print(itm)
 
@@ -194,8 +195,8 @@ def findWholeWord(w):
     return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search
 
 ''' Parse wikipedia for movies '''
-def parse_wikipedia_movies():
-    tree = ET.parse('70th_Golden_Globe_Awards.xml')
+def parse_wikipedia_movies(xml_file):
+    tree = ET.parse(xml_file)
     root = tree.getroot()
     body = tree.find('body')
     content_div = body.findall('div')[2]
@@ -420,8 +421,8 @@ def parse_wikipedia_movies():
     ]
 
 ''' Parse wikipedia for tv '''
-def parse_wikipedia_tv():
-    tree = ET.parse('70th_Golden_Globe_Awards.xml')
+def parse_wikipedia_tv(xml_file):
+    tree = ET.parse(xml_file)
     root = tree.getroot()
     body = tree.find('body')
     content_div = body.findall('div')[2]
