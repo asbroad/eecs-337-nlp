@@ -58,14 +58,18 @@ def main():
 
 def bigramNameFind(tweets):
 
-    print(tweets[0][0])
+    #print(tweets[0][0])
 
-    tokenizer = RegexpTokenizer(r'\w+')
+    #tokenizer = RegexpTokenizer(r'\w+')
 
     d = defaultdict(int)
     for idx in range(0, len(tweets)):
         if findWholeWord('host')(tweets[idx][0]):
-            bigramsList = list(nltk.bigrams(tokenizer.tokenize(tweets[idx][0])))
+            tagged_tweet = pos_tag(tweets[idx][0].split())
+            proper_nouns = [pn.lower() for pn,pos in tagged_tweet if pos == 'NNP']
+            bigramsList = list(nltk.bigrams(proper_nouns))
+
+            #bigramsList = list(nltk.bigrams(tokenizer.tokenize(tweets[idx][0])))
             #add filter for bigrams that use only proper nouns
 
 
