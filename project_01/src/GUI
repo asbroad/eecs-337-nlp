@@ -12,18 +12,17 @@ Label(top,text="Letter:").grid(row=2,sticky=W)
 Entry(top).grid(row=2,column=1,sticky=E)
 def printOption(event):
 	print(v1.get())
-def wait(event):
-	s=Label(top,text="Please Wait for A Moment")
-	s.grid(row=2,column=0,sticky=W)
+def start():
+	print'Please Wait for A Moment......'
 v1 = StringVar(top)
 v1.set('GoldenGlobe')
-om1 = OptionMenu(top,v1,'Hosts','Winners','Awards','Preseners','Nominees')
+om1 = OptionMenu(top,v1,'Hosts','Winners','Awards','Preseners','Nominees','Awards to Winners','Awards to Preseners','Awards to Nominees')
 om1.bind("Button-1>",printOption)
 om1.grid(row=0,sticky=E + W + N + S)
 quit = Button(top,text='QUIT',command=top.quit,activeforeground='white',activebackground='red')
 quit.grid(row=6,column=1,stick = E + W+ N + S)
-start = Button(top,text='START',command=top.quit,activeforeground='white',activebackground='red')
-start.bind("Button-1>",wait)
+start = Button(top,text='START',command=start,activeforeground='white',activebackground='red')
+start.bind("Button-1>",start)
 start.grid(row=6,stick = E + W + N + S)
 Label(top,text="Result:").grid(row=3,sticky=W)
 top.lbResults = Listbox(top)
