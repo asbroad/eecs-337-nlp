@@ -7,6 +7,7 @@ from nltk.tag import pos_tag
 from collections import defaultdict
 import datetime
 from scrape_2013_data import parse_2013_wikipedia_movies, parse_2013_wikipedia_tv
+from scrape_2015_data import parse_2015_wikipedia_movies, parse_2015_wikipedia_tv
 # json file is in utf-8 format
 import sys
 reload(sys)
@@ -39,20 +40,26 @@ ignore_list = ['will', 'ferrell', 'kristen', 'wiig', 'golden', 'globes', 'golden
 ''' main function '''
 def main():
     #print urllib.urlopen("http://en.wikipedia.org/wiki/70th_Golden_Globe_Awards").read()
-    tweet_file = open('../data/goldenglobes.json','r')
+    #tweet_file = open('../data/goldenglobes.json','r')
     #tweet_file = open('../data/gg15mini.json','r')
     # the below file doesn't work because it takes up too much memory to read in
     #tweet_file = open('/home/alex/Documents/School/Q2/NLP/data2105/goldenglobes2015.json','r')
-    tweets = read_in_tweets(tweet_file)
+    #tweets = read_in_tweets(tweet_file)
     #res = get_best_drama_actor(tweets)
     #print(res[0:25])
-    xml_file = '70th_Golden_Globe_Awards.xml'
-    movie_response = parse_2013_wikipedia_movies(xml_file)
-    for itm in movie_response:
+    #xml_file = '70th_Golden_Globe_Awards.xml'
+    #movie_response = parse_2013_wikipedia_movies(xml_file)
+    #for itm in movie_response:
+    #    print(itm)
+    #tv_response = parse_2013_wikipedia_tv(xml_file)
+    #for itm in tv_response:
+    #    print(itm)
+    xml_file_2015 = '72nd_Golden_Globe_Awards.xml'
+    movie_response_2015 = parse_2015_wikipedia_movies(xml_file_2015)
+    for itm in movie_response_2015:
         print(itm)
-
-    tv_response = parse_2013_wikipedia_tv(xml_file)
-    for itm in tv_response:
+    tv_response_2015 = parse_2015_wikipedia_tv(xml_file_2015)
+    for itm in tv_response_2015:
         print(itm)
     #vals = bigramNameFind(tweets)
     #print(vals)
