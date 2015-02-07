@@ -37,6 +37,38 @@ def main():
     # xml_file_2013 = '70th_Golden_Globe_Awards.xml'
     # xml_file_2015 = '72nd_Golden_Globe_Awards.xml'
 
+    tweet_file = open('../data/gg15mini_half.json','r')
+    tweets = read_in_tweets_2015(tweet_file)
+    academyInfo = get_academy_info()
+    truthData = academyInfo[0]
+    topic = "best movie drama"
+    res = pairThings(topic, truthData[topic], tweets)
+    print(res)
+
+def pairThings(category, listIn, tweets, qty=1):
+    d = defaultdict(int)
+    for tweet in range(0, len(tweets)):
+        for jdx in range(0, len(listIn)):
+            candidate = listIn[jdx].lower()
+            splitCandidate = candidate.split()
+            if findAllWords(splitCandidate, tweets[tweet][0].lower()) and findAllWords(category.split(), tweets[tweet][0].lower()):
+                d[candidate] += 1
+
+    for key in ignore_list:
+        for dKey in d.keys():
+            if key in dKey:
+                del d[dKey]
+
+    sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
+    return sorted_vals[0:qty]
+
+def findAllWords(listIn, strIn):
+    for idx in range(0, len(listIn)):
+        if not findWholeWord(listIn[idx])(strIn):
+            return 0
+
+    return 1
+
 def bigramNameFind(tweets):
 
     d = defaultdict(int)
