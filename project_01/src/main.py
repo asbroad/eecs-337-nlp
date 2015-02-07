@@ -6,7 +6,7 @@ import nltk
 from nltk.tag import pos_tag
 from collections import defaultdict
 import datetime
-from scrape_2013_data import parse_2013_wikipedia_movies, parse_2013_wikipedia_tv
+from scrape_2013_data import parse_2013_wikipedia_movies, parse_2013_wikipedia_tv, parse_2013_wikipedia_presenters
 from scrape_2015_data import parse_2015_wikipedia_movies, parse_2015_wikipedia_tv, parse_2015_wikipedia_presenters
 # json file is in utf-8 format
 import sys
@@ -14,19 +14,9 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 '''
-Notes for our group...
-
- - The first approach that I tried does not work well with 'nominees' because it doesn't seem like people tweet about that too much
- - Does anyone know how to make GUI's with Python?
- - Does anyone have experience scraping web-pages?
-
 Some ideas...
-1. Right now, we only look for single proper nouns, it may be good to look at pairs of them (try and get full names)
-2. Print out a visual of a timeline of the event (the 2013 data is about 4hrs of data) and print popularity of people at given time
+1. Print out a visual of a timeline of the event (the 2013 data is about 4hrs of data) and print popularity of people at given time
 points, maybe try and analyze if people's names show up as they are presenting or if the have just won or lost an award?
-3. Use ideas from Named Entity Recognition  (http://en.wikipedia.org/wiki/Named-entity_recognition)
-4. Use Golden Globes wiki page as a resource that we can scrape (http://en.wikipedia.org/wiki/70th_Golden_Globe_Awards)
-5. Maybe use other preprocessing techniques (stem words, remove punctuation, etc...)
 
 '''
 
@@ -39,30 +29,13 @@ ignore_list = ['will', 'ferrell', 'kristen', 'wiig', 'golden', 'globes', 'golden
 
 ''' main function '''
 def main():
-    #print urllib.urlopen("http://en.wikipedia.org/wiki/70th_Golden_Globe_Awards").read()
+    ''' Twitter JSON files '''
     #tweet_file = open('../data/gg15trimmed.json','r')
     #tweet_file = open('../data/gg15mini.json','r')
-    # the below file doesn't work because it takes up too much memory to read in
-    #tweets = read_in_tweets_2015(tweet_file)
-    #res = get_best_drama_actor(tweets)
-    #print(res[0:25])
-    #xml_file = '70th_Golden_Globe_Awards.xml'
-    #movie_response = parse_2013_wikipedia_movies(xml_file)
-    #for itm in movie_response:
-    #    print(itm)
-    #tv_response = parse_2013_wikipedia_tv(xml_file)
-    #for itm in tv_response:
-    #    print(itm)
-    xml_file_2015 = '72nd_Golden_Globe_Awards.xml'
-    #movie_response_2015 = parse_2015_wikipedia_movies(xml_file_2015)
-    #for itm in movie_response_2015:
-    #    print(itm)
-    #tv_response_2015 = parse_2015_wikipedia_tv(xml_file_2015)
-    #for itm in tv_response_2015:
-    #    print(itm)
-    parse_2015_wikipedia_presenters(xml_file_2015)
-    #vals = bigramNameFind(tweets)
-    #print(vals)
+    #tweets = read_in_tweets_2015(tweet_file) # this file doesn't work, because it take up too much memory to read in
+    ''' Golden Globe Wikipedia XML files '''
+    # xml_file_2013 = '70th_Golden_Globe_Awards.xml'
+    # xml_file_2015 = '72nd_Golden_Globe_Awards.xml'
 
 def bigramNameFind(tweets):
 

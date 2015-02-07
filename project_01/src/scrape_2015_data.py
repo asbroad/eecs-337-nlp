@@ -355,6 +355,8 @@ def parse_2015_wikipedia_presenters(xml_file):
     presenters_ul = presenters_div.findall('ul')[0]
     presenters_il = presenters_ul.findall('li')
 
+    full_names = []
+    full_awards = []
     for presenter in presenters_il:
         names = []
         award = []
@@ -372,5 +374,6 @@ def parse_2015_wikipedia_presenters(xml_file):
                     if 'and' in itm:
                         continue
                     names.append(itm.strip())
-        print(names)
-        print(award)
+        full_names.append(names)
+        full_awards.append(award)
+    return [full_names, full_awards]
