@@ -342,3 +342,28 @@ def parse_2015_wikipedia_tv(xml_file):
     best_actress_supporting_list,
     best_miniseries_list
     ]
+
+''' Parse wikipedia for presenters '''
+def parse_2015_wikipedia_presenters(xml_file):
+    tree = ET.parse(xml_file)
+    root = tree.getroot()
+    body = tree.find('body')
+    content_div = body.findall('div')[2]
+    body_content_div = content_div.findall('div')[2]
+    mw_content_div = body_content_div.findall('div')[3]
+    presenters_div = mw_content_div.findall('div')[12]
+    presenters_ul = presenters_div.findall('ul')[0]
+    presenters_il = presenters_ul.findall('li')
+
+    for presenter in presenters_il:
+        names = []
+        award = []
+        for itm in presenter.itertext():
+            if 'with' in itm:
+                award.append(itm.replace('with','').strip())
+            else:
+                if 'and' in itm:
+                    continue
+                names.append(itm.strip())
+        print(names)
+        print(award)
