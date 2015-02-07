@@ -40,13 +40,12 @@ ignore_list = ['will', 'ferrell', 'kristen', 'wiig', 'golden', 'globes', 'golden
 ''' main function '''
 def main():
     #print urllib.urlopen("http://en.wikipedia.org/wiki/70th_Golden_Globe_Awards").read()
-    #tweet_file = open('../data/goldenglobes.json','r')
+    tweet_file = open('../data/gg15trimmed.json','r')
     #tweet_file = open('../data/gg15mini.json','r')
     # the below file doesn't work because it takes up too much memory to read in
-    #tweet_file = open('/home/alex/Documents/School/Q2/NLP/data2105/goldenglobes2015.json','r')
-    #tweets = read_in_tweets(tweet_file)
-    #res = get_best_drama_actor(tweets)
-    #print(res[0:25])
+    tweets = read_in_tweets_2015(tweet_file)
+    res = get_best_drama_actor(tweets)
+    print(res[0:25])
     #xml_file = '70th_Golden_Globe_Awards.xml'
     #movie_response = parse_2013_wikipedia_movies(xml_file)
     #for itm in movie_response:
@@ -54,13 +53,13 @@ def main():
     #tv_response = parse_2013_wikipedia_tv(xml_file)
     #for itm in tv_response:
     #    print(itm)
-    xml_file_2015 = '72nd_Golden_Globe_Awards.xml'
-    movie_response_2015 = parse_2015_wikipedia_movies(xml_file_2015)
-    for itm in movie_response_2015:
-        print(itm)
-    tv_response_2015 = parse_2015_wikipedia_tv(xml_file_2015)
-    for itm in tv_response_2015:
-        print(itm)
+    #xml_file_2015 = '72nd_Golden_Globe_Awards.xml'
+    #movie_response_2015 = parse_2015_wikipedia_movies(xml_file_2015)
+    #for itm in movie_response_2015:
+    #    print(itm)
+    #tv_response_2015 = parse_2015_wikipedia_tv(xml_file_2015)
+    #for itm in tv_response_2015:
+    #    print(itm)
     #vals = bigramNameFind(tweets)
     #print(vals)
 
@@ -176,7 +175,6 @@ def read_in_tweets(tweet_file):
     tweets = []
     for idx in range(0,len(tweets_orig)):
         tweet = tweets_orig[idx]
-	#print(tweet["u'text"])
         row = (
             tweet['text'],
             tweet['created_at']['$date'],
@@ -188,6 +186,24 @@ def read_in_tweets(tweet_file):
         values = [(value.encode('utf8') if hasattr(value, 'encode') else value) for value in row]
         tweets.append(values)
     return tweets
+
+''' Read in all the twitter data and save in python array '''
+def read_in_tweets_2015(tweet_file):
+    tweets_orig = [json.loads(line) for line in tweet_file]
+    tweets = []
+    for idx in range(0,len(tweets_orig[0])):
+        tweet = tweets_orig[0][idx]
+        row = (
+            tweet['text'],
+            tweet['timestamp_ms'],
+            tweet['id'],
+            tweet['user']['screen_name'],
+            tweet['user']['id']
+        )
+        values = [(value.encode('utf8') if hasattr(value, 'encode') else value) for value in row]
+        tweets.append(values)
+    return tweets
+
 
 ''' Regular expression to check if full word is in sentence, not just is the word is a substring of the full sentence '''
 def findWholeWord(w):
