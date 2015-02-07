@@ -358,12 +358,19 @@ def parse_2015_wikipedia_presenters(xml_file):
     for presenter in presenters_il:
         names = []
         award = []
+        last_word_was_introduced = False
         for itm in presenter.itertext():
-            if 'with' in itm:
-                award.append(itm.replace('with','').strip())
+            if last_word_was_introduced:
+                award.append(itm.strip())
+                last_word_was_introduced = False
+            elif 'introduce' in itm:
+                last_word_was_introduced = True
             else:
-                if 'and' in itm:
-                    continue
-                names.append(itm.strip())
+                if 'with' in itm:
+                    award.append(itm.replace('with','').strip())
+                else:
+                    if 'and' in itm:
+                        continue
+                    names.append(itm.strip())
         print(names)
         print(award)

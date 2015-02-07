@@ -60,7 +60,7 @@ def main():
     #tv_response_2015 = parse_2015_wikipedia_tv(xml_file_2015)
     #for itm in tv_response_2015:
     #    print(itm)
-    #parse_2015_wikipedia_presenters(xml_file_2015)
+    parse_2015_wikipedia_presenters(xml_file_2015)
     #vals = bigramNameFind(tweets)
     #print(vals)
 
