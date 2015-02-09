@@ -1,30 +1,53 @@
-#!/usr/bin/python
-#encoding:UTF-8
-
 from Tkinter import *
-
-top=Tk()
-top.title('Golden Globes Predictor')
-top.geometry('300x310')
-Label(top,text="Number:").grid(row=1,sticky=W)
-Entry(top).grid(row=1,column=1,sticky=E)
-Label(top,text="Letter:").grid(row=2,sticky=W)
-Entry(top).grid(row=2,column=1,sticky=E)
-def printOption(event):
-	print(v1.get())
+import json
+root = Tk()
+root.title('Golden Globes Predictor')
+root.geometry('240x310')
+#Option function
+def printOption(x):
+	if x == "Hosts":
+		print(v1.get())
+	if x == "Winners":
+		print(v1.get())
+	if x == "Awards":
+		print(v1.get())
+	if x == "Presenters":
+		print(v1.get())
+	if x == "Nominees":
+		print(v1.get())
+	if x == "Awards to Winners":
+		print(v1.get())
+	if x == "Awards to Presenters":
+		print(v1.get())
+	if x == "Awards to Nominees":
+		print(v1.get())
+#Start function
 def start():
 	print'Please Wait for A Moment......'
-v1 = StringVar(top)
+#Number function
+def func(event):
+    print("You hit return.")
+#Write file function
+
+v1 = StringVar(root)
 v1.set('GoldenGlobe')
-om1 = OptionMenu(top,v1,'Hosts','Winners','Awards','Preseners','Nominees','Awards to Winners','Awards to Preseners','Awards to Nominees')
+om1 = OptionMenu(root,v1,'Hosts','Winners','Awards','Presenters','Nominees','Awards to Winners','Awards to Presenters','Awards to Nominees',command=printOption)
 om1.bind("Button-1>",printOption)
-om1.grid(row=0,sticky=E + W + N + S)
-quit = Button(top,text='QUIT',command=top.quit,activeforeground='white',activebackground='red')
-quit.grid(row=6,column=1,stick = E + W+ N + S)
-start = Button(top,text='START',command=start,activeforeground='white',activebackground='red')
+om1.grid(row=0,column=0,columnspan = 2,sticky=E + W + N + S)
+e = StringVar()
+entry = Entry(root,textvariable = e)
+e.set('2')
+entry.bind("<Return>",func)
+entry.grid(row=1,column=1)
+Label(root,text="Number:").grid(row=1,column=0,sticky=W)
+Label(root,text="Result:").grid(row=3,sticky=W)
+root.lbResults = Listbox(root)
+root.lbResults.grid(row = 4,column = 0,columnspan = 2,stick = E + W + N + S)
+json = Button(root,text='WRITE FILE',command=root.quit,activeforeground='white',activebackground='red')
+json.grid(row=6,column=1,stick =E + W+ N + S)
+quit = Button(root,text='QUIT',command=root.quit,activeforeground='white',activebackground='red')
+quit.grid(row=7,column=0,columnspan = 2,stick = E + W+ N + S)
+start = Button(root,text='START',command=start,activeforeground='white',activebackground='red')
 start.bind("Button-1>",start)
-start.grid(row=6,stick = E + W + N + S)
-Label(top,text="Result:").grid(row=3,sticky=W)
-top.lbResults = Listbox(top)
-top.lbResults.grid(row = 4,column = 0,columnspan = 2,stick = E + W + N + S)
-mainloop()
+start.grid(row=6,column=0,stick = E + W + N + S)
+root.mainloop()
