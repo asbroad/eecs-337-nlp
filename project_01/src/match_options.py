@@ -89,13 +89,13 @@ def match_a_word_lax(tweet, words_to_match):
 def findWholeWord(w):
     return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search
 
-def pairThings(category, listIn, tweets, qty=1):
+def pairThings(query, candidates, tweets, qty=1):
     d = defaultdict(int)
     for tweet in range(0, len(tweets)):
-        for jdx in range(0, len(listIn)):
-            candidate = listIn[jdx].lower()
+        for jdx in range(0, len(candidates)):
+            candidate = candidates[jdx].lower()
             splitCandidate = candidate.split()
-            if findAllWords(splitCandidate, tweets[tweet][0].lower()) and findAllWords(category.split(), tweets[tweet][0].lower()):
+            if findAllWords(splitCandidate, tweets[tweet][0].lower()) and findAllWords(query.split(), tweets[tweet][0].lower()):
                 d[candidate] += 1
 
     for key in ignore_list:
@@ -164,3 +164,16 @@ def get_unigram_list_match_tweets_either_or_lax(tweets, words_to_match, options_
             del d[key]
     sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
     return sorted_vals
+
+
+def get_best_match(query, candidates):
+    d = defaultdict(int)
+    for candidate in candidates:
+        d[candidate] = nltk.edit_distance(candidate, query)
+    
+
+    sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v)
+
+    return sorted_vals[0]
+
+
