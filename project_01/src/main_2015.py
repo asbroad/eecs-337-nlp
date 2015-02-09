@@ -4,6 +4,7 @@ from scrape_2013_data import parse_2013_wikipedia_movies, parse_2013_wikipedia_t
 from scrape_2015_data import parse_2015_wikipedia_movies, parse_2015_wikipedia_tv, parse_2015_wikipedia_presenters
 from match_options import get_bigram_list_match_tweets, get_bigram_list_match_tweets_lax, get_bigram_list_match_tweets_either_or_lax, get_unigram_list_match_tweets_lax, get_unigram_list_match_tweets_either_or_lax, pairThings
 from unused_files import get_academy_info # GET RID OF THIS BY USING SCRAPED DATA INSTEAD
+import json
 
 '''
 Some ideas...
@@ -16,8 +17,9 @@ def main():
     ''' Twitter JSON files '''
     #tweet_file = open('../data/goldenglobes.json','r')
     #tweet_file = open('../data/gg15trimmed.json','r') # this file doesn't work, because it take up too much memory to read in
-    #tweet_file = open('../data/gg15mini.json','r')
-    tweet_file = open('gg15mini_half.json','r')
+    tweet_file = open('../data/gg15mini.json','r')
+    #tweet_file = open('gg15mini_half.json','r')
+    #tweet_file = open('gg15mini_half_2.json','r')
 
     ''' Read in JSON file '''
     #tweets = read_in_tweets_2013(tweet_file)
@@ -38,22 +40,22 @@ def main():
     ''' MOVIE SECTION '''
     # BEST MOVIE, DRAMA
     # UNIGRAM
-    lot_best_drama_movie = ['best', 'picture'] # DIDN'T WORK AT ALL LIKE THIS
+    lot_best_drama_movie = ['best', 'picture'] # With full dataset, the first one that matches works
     #lot_best_drama_movie_opt = ['film', 'movie']
     # BEST MOVIE, MUS OR COM
     # BIGRAM
-    lot_best_mus_com_movie = ['best', 'picture'] # Number 3 response with this
+    lot_best_mus_com_movie = ['best', 'picture'] # Number 1 response with this
     lot_best_mus_com_movie_opt = ['com', 'mus']
     # BEST ACTOR/ACTRESS, DRAMA
     # BIGRAMS
-    lot_best_actor_drama_movie = ['best', 'drama', 'actor'] # Number 4 response with this
-    lot_best_actress_drama_movie = ['best', 'drama', 'actress'] # DIDN'T WORK AT ALL LIKE THIS
+    lot_best_actor_drama_movie = ['best', 'drama', 'actor'] # Number 1 response with this, but only second to kevin spacey who won best tv actor
+    lot_best_actress_drama_movie = ['best', 'drama', 'actress'] # Number 1 response like this
     lot_best_actress_drama_movie_opt = ['movie', 'film']
     # BEST ACTOR/ACTRESS, COMEDY OR MUSICAL
     # BIGRAMS
-    lot_best_actor_mus_com = ['best', 'actor'] # DIDN'T WORK AT ALL LIKE THIS
+    lot_best_actor_mus_com = ['best', 'actor'] # Number 1 response with this
     lot_best_actor_mus_com_opt = ['com', 'mus']
-    lot_best_actress_mus_com = ['best', 'actress'] # Number 1 response with this
+    lot_best_actress_mus_com = ['best', 'actress'] # Number 2 response, but again second only to person who won it for tv
     lot_best_actress_mus_com_opt = ['com', 'mus']
     # BEST SUPPORTING ACTOR/ACTRESS, ALL MOVIES
     # BIGRAMS
@@ -61,30 +63,30 @@ def main():
     lot_best_supporting_actress = ['best', 'support', 'actress'] # Number 1 response with this
     # BEST DIRECTOR
     #BIGRAM
-    lot_best_director = ['best', 'director'] # DOESN'T REALLY WORK AT ALL
+    lot_best_director = ['best', 'director'] # Number 1 response with this
     # BEST SCREENPLAY
     # BIGRAM
-    lot_best_screenplay = ['best', 'screenplay'] # DOESN'T REALLY WORK AT ALL
+    lot_best_screenplay = ['best', 'screenplay'] # This one is tough because of the name, we will have to look at it more
     # BEST ORIGINAL SCORE
     # BIGRAM
-    lot_best_original_score = ['best', 'original', 'score'] # Number 2 (kind of number 1) response with this
+    lot_best_original_score = ['best', 'original', 'score'] # Number 2 , number 1 is the name of the movie it was in
     # BEST ORIGINAL SONG
     # UNIGRAM
-    lot_best_original_song = ['best', 'original', 'song'] # Number 1 response with this
+    lot_best_original_song = ['best', 'original', 'song'] # Number 1 response with this, artists come later in list too
     # BEST ANIMATED FEATURE FILM
     # BIGRAM
-    lot_best_animated_film = ['best', 'animated'] # Doesn't really work
+    lot_best_animated_film = ['best', 'animated'] # Sort of works, it's a long title and the title is broken up here
     # BEST FOREIGN LANGUAGE FILM
     # UNIGRAM
-    lot_best_foreign_film = ['best', 'foreign', 'film', 'language'] # Number 8, and doesn't really work
+    lot_best_foreign_film = ['best', 'foreign', 'film', 'language'] # Number 1 response here
 
     ''' TV SECTION '''
     # BEST TV, DRAMA
     # UNIGRAM
-    lot_best_drama_tv = ['best', 'drama', 'tv'] # Number 1 response with this
+    lot_best_drama_tv = ['best', 'drama', 'tv'] # Number 2 response with this, but number 1 from list of nominees
     # BEST TV, MUS OR COM
     # UNIGRAM
-    lot_best_mus_com_tv = ['best', 'series', 'com'] # Number 8 response with this
+    lot_best_mus_com_tv = ['best', 'series', 'com'] # Number 13, 15, 17. Number 1 from list of nominees - we should get rid of all single and double quotes and periods
     # BEST ACTOR/ACTRESS, DRAMA
     # BIGRAMS - this one we may need to match up with the nominations
     lot_best_actor_drama_tv = ['best', 'drama', 'actor', 'show'] # Number 2 response with this
@@ -113,22 +115,36 @@ def main():
     res_hosts = get_bigram_list_match_tweets(tweets, lot_hosts)
 
     ''' movie awards '''
-    # res_best_drama_movie = get_unigram_list_match_tweets_lax(tweets, lot_best_drama_movie)#, lot_best_drama_movie_opt)
-    # res_best_mus_com_movie = get_bigram_list_match_tweets_either_or_lax(tweets, lot_best_mus_com_movie, lot_best_mus_com_movie_opt)
-    # res_best_drama_actor = get_bigram_list_match_tweets_lax(tweets, lot_best_actor_drama_movie)
-    # res_best_drama_actress = get_bigram_list_match_tweets_either_or_lax(tweets, lot_best_actress_drama_movie, lot_best_actress_drama_movie_opt)
-    # res_best_actor_mus_com = get_bigram_list_match_tweets_either_or_lax(tweets, lot_best_actor_mus_com, lot_best_actor_mus_com_opt)
-    # res_best_actress_mus_com = get_bigram_list_match_tweets_either_or_lax(tweets, lot_best_actress_mus_com, lot_best_actress_mus_com_opt)
-    # res_best_supporting_actor = get_bigram_list_match_tweets_lax(tweets, lot_best_supporting_actor)
-    # res_best_supporting_actress = get_bigram_list_match_tweets_lax(tweets, lot_best_supporting_actress)
-    # res_best_director = get_bigram_list_match_tweets_lax(tweets, lot_best_director)
-    # res_best_screenplay = get_bigram_list_match_tweets_lax(tweets, lot_best_screenplay)
-    # res_best_original_score = get_bigram_list_match_tweets_lax(tweets, lot_best_original_score)
-    # res_best_original_song = get_unigram_list_match_tweets_lax(tweets, lot_best_original_song)
-    # res_best_animated_film = get_unigram_list_match_tweets_lax(tweets, lot_best_animated_film)
-    # res_best_foreign_film = get_unigram_list_match_tweets_lax(tweets, lot_best_foreign_film)
-    #
-    # ''' tv awards '''
+    res_best_drama_movie = get_unigram_list_match_tweets_lax(tweets, lot_best_drama_movie)#, lot_best_drama_movie_opt)
+    print(res_best_drama_movie[0:25])
+    res_best_mus_com_movie = get_bigram_list_match_tweets_either_or_lax(tweets, lot_best_mus_com_movie, lot_best_mus_com_movie_opt)
+    print(res_best_mus_com_movie[0:25])
+    res_best_drama_actor = get_bigram_list_match_tweets_lax(tweets, lot_best_actor_drama_movie)
+    print(res_best_drama_actor[0:25])
+    res_best_drama_actress = get_bigram_list_match_tweets_either_or_lax(tweets, lot_best_actress_drama_movie, lot_best_actress_drama_movie_opt)
+    print(res_best_drama_actress[0:25])
+    res_best_actor_mus_com = get_bigram_list_match_tweets_either_or_lax(tweets, lot_best_actor_mus_com, lot_best_actor_mus_com_opt)
+    print(res_best_actor_mus_com[0:25])
+    res_best_actress_mus_com = get_bigram_list_match_tweets_either_or_lax(tweets, lot_best_actress_mus_com, lot_best_actress_mus_com_opt)
+    print(res_best_actress_mus_com[0:25])
+    res_best_supporting_actor = get_bigram_list_match_tweets_lax(tweets, lot_best_supporting_actor)
+    print(res_best_supporting_actor[0:25])
+    res_best_supporting_actress = get_bigram_list_match_tweets_lax(tweets, lot_best_supporting_actress)
+    print(res_best_supporting_actress[0:25])
+    res_best_director = get_bigram_list_match_tweets_lax(tweets, lot_best_director)
+    print(res_best_director[0:25])
+    res_best_screenplay = get_bigram_list_match_tweets_lax(tweets, lot_best_screenplay)
+    print(res_best_screenplay[0:25])
+    res_best_original_score = get_bigram_list_match_tweets_lax(tweets, lot_best_original_score)
+    print(res_best_original_score[0:25])
+    res_best_original_song = get_unigram_list_match_tweets_lax(tweets, lot_best_original_song)
+    print(res_best_original_song[0:25])
+    res_best_animated_film = get_unigram_list_match_tweets_lax(tweets, lot_best_animated_film)
+    print(res_best_animated_film[0:25])
+    res_best_foreign_film = get_unigram_list_match_tweets_lax(tweets, lot_best_foreign_film)
+    print(res_best_foreign_film[0:25])
+
+    ''' tv awards '''
     res_best_drama_tv = get_unigram_list_match_tweets_lax(tweets, lot_best_drama_tv)
     print(res_best_drama_tv[0:25])
     res_best_mus_com_tv = get_unigram_list_match_tweets_lax(tweets, lot_best_mus_com_tv)#, lot_best_mus_com_tv_opt)
