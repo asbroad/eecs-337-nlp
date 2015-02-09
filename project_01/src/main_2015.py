@@ -89,14 +89,14 @@ def main():
     lot_best_mus_com_tv = ['best', 'series', 'com'] # Number 13, 15, 17. Number 1 from list of nominees - we should get rid of all single and double quotes and periods
     # BEST ACTOR/ACTRESS, DRAMA
     # BIGRAMS - this one we may need to match up with the nominations
-    lot_best_actor_drama_tv = ['best', 'drama', 'actor', 'show'] # Number 2 response with this
+    lot_best_actor_drama_tv = ['best', 'drama', 'actor', 'show'] # Number 3, but also kind of number 1 if we recognized twitter handles. first on fromt he list of nominees
     # lot_best_actor_drama_tv = ['best', 'drama', 'actor'] # Number 3 response with this
-    lot_best_actress_drama_tv = ['best', 'drama', 'actress'] # DOESN'T WORK AT ALL LIKE THIS
+    lot_best_actress_drama_tv = ['best', 'drama', 'actress'] # Number 2 response, second only to the woman who won in the movies. 1st from our nominees
     # BEST ACTOR/ACTRESS, COMEDY OR MUSICAL
     # BIGRAMS
-    lot_best_actor_tv_mus_com = ['best', 'actor', 'tv'] # DOESN'T WORK AT ALL LIKE THIS
+    lot_best_actor_tv_mus_com = ['best', 'actor', 'tv'] # Number 1 response like this
     lot_best_actor_tv_mus_com_opt = ['com', 'mus']
-    lot_best_actress_tv_mus_com = ['best', 'actress', 'tv'] # Number 2 response with this, but it's weak
+    lot_best_actress_tv_mus_com = ['best', 'actress', 'tv'] # Number 1 response like this
     lot_best_actress_tv_mus_com_opt = ['com', 'mus']
     # BEST ACTOR/ACTRESS, MINISERIES/TV FILM
     lot_best_actor_miniseries = ['best', 'actor', 'miniseries'] # Number 1 response with this

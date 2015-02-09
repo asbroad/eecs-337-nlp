@@ -209,22 +209,23 @@ def parse_2013_wikipedia_movies(xml_file):
         foreign_title = val_split[0].strip()
         best_foreign_list.append(foreign_title)
 
-    return [
-    best_movies_drama_list,
-    best_movies_mus_or_com_list,
-    best_actor_drama_list,
-    best_actress_drama_list,
-    best_actor_com_mus_list,
-    best_actress_com_mus_list,
-    best_actor_supporting_list,
-    best_actress_supporting_list,
-    best_director_list,
-    best_screenplay_list,
-    best_score_list,
-    best_song_list,
-    best_animated_list,
-    best_foreign_list
-    ]
+    scraped_data = {}
+    scraped_data['best movie drama'] = best_movies_drama_list
+    scraped_data['best actress drama'] = best_actress_drama_list
+    scraped_data['best actor drama']  = best_actor_drama_list
+    scraped_data['best movie musical or comedy'] = best_movies_mus_or_com_list
+    scraped_data['best actress musical or comedy'] = best_actress_com_mus_list
+    scraped_data['best actor musical or comedy'] = best_actor_com_mus_list
+    scraped_data['best animated movie'] = best_animated_list
+    scraped_data['best foreign movie'] =best_foreign_list
+    scraped_data['best supporting actress'] = best_actress_supporting_list
+    scraped_data['best supporting actor'] = best_actor_supporting_list
+    scraped_data['best director'] = best_director_list
+    scraped_data['best screenplay'] = best_screenplay_list
+    scraped_data['best original score'] = best_score_list
+    scraped_data['best original song'] = best_song_list
+
+    return scraped_data
 
 ''' Parse wikipedia for tv '''
 def parse_2013_wikipedia_tv(xml_file):
@@ -393,19 +394,20 @@ def parse_2013_wikipedia_tv(xml_file):
         miniseries_title = val_split[0].strip()
         best_miniseries_list.append(miniseries_title)
 
-    return [
-    best_tv_drama_list,
-    best_tv_mus_or_com_list,
-    best_actor_drama_list,
-    best_actress_drama_list,
-    best_actor_com_mus_list,
-    best_actress_com_mus_list,
-    best_actor_miniseries_list,
-    best_actress_miniseries_list,
-    best_actor_supporting_list,
-    best_actress_supporting_list,
-    best_miniseries_list
-    ]
+    scraped_data = {}
+    scraped_data['best tv series drama'] = best_tv_drama_list
+    scraped_data['best actress tv drama'] = best_actress_drama_list
+    scraped_data['best actor tv drama'] = best_actor_drama_list
+    scraped_data['best tv musical or comedy'] = best_tv_mus_or_com_list
+    scraped_data['best actress tv musical or comedy'] = best_actress_com_mus_list
+    scraped_data['best actor tv musical or comedy'] = best_actor_com_mus_list
+    scraped_data['best tv movie'] = best_miniseries_list
+    scraped_data['best actress tv movie'] = best_actress_miniseries_list
+    scraped_data['best actor tv movie'] = best_actor_miniseries_list
+    scraped_data['best supporting actress tv movie'] = best_actress_supporting_list
+    scraped_data['best supporting actor tv movie'] = best_actor_supporting_list
+
+    return scraped_data
 
 ''' Parse wikipedia for presenters '''
 def parse_2013_wikipedia_presenters(xml_file):
