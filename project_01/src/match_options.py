@@ -10,7 +10,6 @@ as suggestions of hosts for the following years golden globes.
 '''
 ignore_list = ['will', 'ferrell', 'kristen', 'wiig', 'golden', 'globes', 'globe', 'goldenglobes', '#goldenglobes', 'oscars']
 
-
 ''' Read in all twitter data and sort data by co-appearance of bigrams with list of tags'''
 def get_bigram_list_match_tweets(tweets, words_to_match):
     d = defaultdict(int)
