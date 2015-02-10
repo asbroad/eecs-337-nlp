@@ -365,7 +365,7 @@ def parse_2015_wikipedia_presenters(xml_file):
         last_word_was_introduced = False
         for itm in presenter.itertext():
             if last_word_was_introduced:
-                award.append(itm.strip().encode("ascii"))
+                award.append(itm.strip().encode("utf-8"))
                 last_word_was_introduced = False
             elif 'introduce' in itm:
                 last_word_was_introduced = True
@@ -375,7 +375,7 @@ def parse_2015_wikipedia_presenters(xml_file):
                 else:
                     if 'and' in itm:
                         continue
-                    names.append(itm.strip().encode("ascii"))
+                    names.append(itm.strip().encode("utf-8"))
         full_names.append(names)
         full_awards.append(award)
     return [full_names, full_awards]
