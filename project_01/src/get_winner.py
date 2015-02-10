@@ -4,11 +4,12 @@ from scrape_2013_data import *
 from scrape_2015_data import *
 from match_options import *
 
-def get_winner(category, tweets, parsed_list, qty = 1):  
+def get_winner(category, tweets, parsed_list, qty = 1):
 
     if category == 'host':
         lot_hosts = ['host']
         res = get_bigram_list_match_tweets(tweets, lot_hosts)
+        return res[0:2]
 
     if category == 'best movie drama':
         lot_best_drama_movie = ['best', 'picture'] # Number 3 response with this
@@ -28,12 +29,12 @@ def get_winner(category, tweets, parsed_list, qty = 1):
         lot_best_mus_com_movie_opt = ['com', 'mus']
         res = get_bigram_list_match_tweets_either_or_lax(tweets, lot_best_mus_com_movie, lot_best_mus_com_movie_opt)
 
-    if category == 'best actress musical or comedy_best_actress':
+    if category == 'best actress musical or comedy':
         lot_best_actress_mus_com = ['best', 'actress'] # Number 1 response with this
         lot_best_actress_mus_com_opt = ['com', 'mus']
         res = get_bigram_list_match_tweets_either_or_lax(tweets, lot_best_actress_mus_com, lot_best_actress_mus_com_opt)
 
-    if category == 'best actor musical or comedy_best_actor':
+    if category == 'best actor musical or comedy':
         lot_best_actor_mus_com = ['best', 'actor'] # Number 1 response with this
         lot_best_actor_mus_com_opt = ['com', 'mus']
         res = get_bigram_list_match_tweets_either_or_lax(tweets, lot_best_actor_mus_com, lot_best_actor_mus_com_opt)
@@ -79,6 +80,7 @@ def get_winner(category, tweets, parsed_list, qty = 1):
         res = get_bigram_list_match_tweets_lax(tweets, lot_best_actress_drama_tv)
 
     if category == 'best actor tv drama':
+        lot_best_actor_drama_tv = ['best', 'drama', 'actor', 'show']
         res = get_bigram_list_match_tweets_lax(tweets, lot_best_actor_drama_tv)
 
     if category == 'best tv musical or comedy':
@@ -105,7 +107,7 @@ def get_winner(category, tweets, parsed_list, qty = 1):
 
     if category == 'best actor tv movie':
         lot_best_actor_miniseries = ['best', 'actor', 'miniseries'] # Number 1 response with this
-        res = get_bigram_list_match_tweets_lax(tweets, lot_best_actress_miniseries)
+        res = get_bigram_list_match_tweets_lax(tweets, lot_best_actor_miniseries)
 
     if category == 'best supporting actress tv movie':
         lot_best_supporting_actress_tv = ['best', 'support', 'actress', 'series'] # Tied for first like this
@@ -114,6 +116,5 @@ def get_winner(category, tweets, parsed_list, qty = 1):
     if category == 'best supporting actor tv movie':
         lot_best_supporting_actor_tv = ['best', 'support', 'actor', 'series'] # Number 1 response with this
         res = get_bigram_list_match_tweets_lax(tweets, lot_best_supporting_actor_tv)
-    
-    return get_best_match(res[0], parsed_list[category][:])[0:qty]
 
+    return get_best_match(res[0], parsed_list[category][:])[0:qty]

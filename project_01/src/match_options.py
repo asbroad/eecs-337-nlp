@@ -165,15 +165,14 @@ def get_unigram_list_match_tweets_either_or_lax(tweets, words_to_match, options_
     sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
     return sorted_vals
 
-
+'''
+WE DON'T JUST WANT THE BEST MATCH, WE WANT THE BEST MATCH THAT IS HIGHEST IN OUR LIST
+'''
 def get_best_match(query, candidates):
     d = defaultdict(int)
     for candidate in candidates:
         d[candidate] = nltk.edit_distance(candidate, query)
-    
 
     sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v)
 
     return sorted_vals[0]
-
-
