@@ -14,7 +14,7 @@ points, maybe try and analyze if people's names show up as they are presenting o
 ''' main function '''
 def main():
 
-    year = '2015'
+    year = '2013'
 
     if year == '2013':
         ''' Twitter JSON files '''
@@ -79,7 +79,7 @@ def main():
 
     for cat in catagories:
         winner = get_winner(cat, tweets, parsed_list)
-        print(winner)
+        print(cat, ' : ', winner)
 
 
     #Pair award does not work yet, the function definition is commented out

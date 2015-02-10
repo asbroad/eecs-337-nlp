@@ -8,7 +8,7 @@ The 'ignore_list' is a list of words and names to ignore when analyzing the twit
 of note, will ferrell and kristen wiig became a trending topic on google and yahoo during the 2013 golden globes
 as suggestions of hosts for the following years golden globes.
 '''
-ignore_list = ['will', 'ferrell', 'kristen', 'wiig', 'golden', 'globes', 'globe', 'goldenglobes', '#goldenglobes', 'oscars']
+ignore_list = ['will', 'ferrell', 'kristen', 'wiig', 'bill', 'hader', 'golden', 'globes', 'globe', 'goldenglobes', '#goldenglobes', 'oscars']
 
 ''' Read in all twitter data and sort data by co-appearance of bigrams with list of tags'''
 def get_bigram_list_match_tweets(tweets, words_to_match):
@@ -225,8 +225,10 @@ def get_best_match(queries, candidates, thresh=0.75):
     d = defaultdict(int)
     for query in queries:
         for candidate in candidates:
-            match_percent = (len(query[0]) - nltk.edit_distance(candidate, query[0]))/float(len(query[0]))
+            match_percent = (len(query[0]) - nltk.edit_distance(candidate.lower(), query[0]))/float(len(query[0]))
             #print(match_percent)
             if match_percent > thresh:
                 return candidate
+    print(candidates)
+    print(queries)
     return 'Not able to find a suitable response'

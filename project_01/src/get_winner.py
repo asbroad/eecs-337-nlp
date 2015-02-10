@@ -99,7 +99,7 @@ def get_winner(category, tweets, parsed_list, qty = 1):
 
     if category == 'best tv movie':
         lot_best_miniseries = ['best', 'miniseries'] # Number 3 response with this
-        res = get_bigram_list_match_tweets_lax(tweets, lot_best_miniseries)
+        res = get_unigram_list_match_tweets_lax(tweets, lot_best_miniseries)
 
     if category == 'best actress tv movie':
         lot_best_actress_miniseries = ['best', 'actress', 'miniseries'] # Number 1 response with this
