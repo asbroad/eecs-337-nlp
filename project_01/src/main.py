@@ -14,7 +14,6 @@ points, maybe try and analyze if people's names show up as they are presenting o
 ''' main function '''
 def main():
 
-<<<<<<< HEAD
     year = '2013'
 
     if year == '2013':
@@ -81,50 +80,19 @@ def main():
         winner = get_winner(cat, tweets, parsed_list)
         print(winner)
 
-    # winner = get_winner('best movie drama', tweets, parsed_list)
-    # print(winner)
-=======
-    ''' Read in JSON file '''
-    #tweets = read_in_tweets_2013(tweet_file)
-    tweets = read_in_tweets_2015(tweet_file)
-    print("Tweets Loaded")
-
-    ''' Golden Globe Wikipedia XML files '''
-    xml_file_2013 = '70th_Golden_Globe_Awards.xml'
-    xml_file_2015 = '72nd_Golden_Globe_Awards.xml'
-
-    ''' Parse Wiki Pages '''
-    #parse_2013_wikipedia_movies(xml_file_2013)
-    #parse_2013_wikipedia_tv(xml_file_2013)
-    #parse_2013_wikipedia_presenters(xml_file_2013)
-
-    parsed_movie_list = parse_2015_wikipedia_movies(xml_file_2015)
-    parsed_tv_list = parse_2015_wikipedia_tv(xml_file_2015)
-    parsed_presenter_list = parse_2015_wikipedia_presenters(xml_file_2015)
-    parsed_presenter_list = process_presenters(parsed_presenter_list)
-
-    parsed_list = dict(parsed_movie_list.items() + parsed_tv_list.items())# + parsed_presenter_list.items())
-
-    print("XML Parsed")
-
 
     #Pair award does not work yet, the function definition is commented out
     #res = pairAward('best movie drama', parsed_presenter_list[0], tweets)
     #print(res)
 
-
-
-
-
     #winner = get_winner('best movie drama', tweets, parsed_list)
     #print(winner)
 
     #print(parsed_presenter_list.items)
- 
+
 
     #pairWinner(winner, parsed_presenter_list['best movie drama'])
 
->>>>>>> 5efba5ebedaef3cf38b0671a149b4afede52ffb1
 
     # ''' Testing Matching Code '''
     # tweet_file = open('gg15mini_half.json','r')
@@ -134,21 +102,6 @@ def main():
     # topic = "best movie drama"
     # res = pairThings(topic, truthData[topic], tweets)
     # print(res)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ''' Read in all twitter data and sort by number of tweets per user '''

@@ -131,10 +131,6 @@ def pairAward(award, candidates, tweets, qty=1, parsed_list=[]):
 '''
 
 
-
-
-
-
 def pairWinner(query, candidates, tweets, qty=1):
     d = defaultdict(int)
     for tweet in range(0, len(tweets)):
@@ -226,10 +222,3 @@ def get_best_match(query, candidates):
     sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v)
 
     return sorted_vals[0]
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> 5efba5ebedaef3cf38b0671a149b4afede52ffb1
