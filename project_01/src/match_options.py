@@ -89,6 +89,52 @@ def match_a_word_lax(tweet, words_to_match):
 def findWholeWord(w):
     return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search
 
+'''
+def pairAward(award, candidates, tweets, qty=1, parsed_list=[]):
+    d = defaultdict(int)
+
+    print(candidates)
+
+    if parsed_list:
+        print("Using Augmented Search")
+        winner = get_winner(award, tweets, parsed_list)
+        for tweet in range(0, len(tweets)):
+            for jdx in range(0, len(candidates)):
+                candidate = candidates[jdx].lower()
+                for element in candidate:
+                    splitCandidate = element.split()
+                    splitWinner = winner.split()
+                    if findAllWords(splitCandidate, tweets[tweet][0].lower()) and findAllWords(award.split(), tweets[tweet][0].lower()):
+                        d[element] += 1
+                    if findAllWords(splitWinner, tweets[tweet][0].lower()) and findAllWords(award.split(), tweets[tweet][0].lower()):
+                        d[element] += 1
+    else:
+        print("Not using Augmented Search")
+        for tweet in range(0, len(tweets)):
+            for jdx in range(0, len(candidates)):
+                candidate = candidates[jdx].lower()
+                for element in candidate:
+                    splitCandidate = element.split()
+                    if findAllWords(splitCandidate, tweets[tweet][0].lower()) and findAllWords(award.split(), tweets[tweet][0].lower()):
+                        d[element] += 1
+    
+    for key in ignore_list:
+        for dKey in d.keys():
+            if key in dKey:
+                del d[dKey]
+
+    sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
+    if qty < 0:
+        return sorted_vals
+    else:  
+        return sorted_vals[0:qty]
+'''
+
+
+
+
+
+
 def pairWinner(query, candidates, tweets, qty=1):
     d = defaultdict(int)
     for tweet in range(0, len(tweets)):
@@ -104,7 +150,11 @@ def pairWinner(query, candidates, tweets, qty=1):
                 del d[dKey]
 
     sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
-    return sorted_vals[0:qty]
+    if qty < 0:
+        return sorted_vals
+    else:  
+        return sorted_vals[0:qty]
+
 
 def findAllWords(listIn, strIn):
     for idx in range(0, len(listIn)):
@@ -175,5 +225,7 @@ def get_best_match(query, candidates):
     sorted_vals = sorted(d.iteritems(), key =lambda (k,v): v)
 
     return sorted_vals[0]
+
+
 
 
