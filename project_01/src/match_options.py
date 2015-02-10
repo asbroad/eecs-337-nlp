@@ -89,7 +89,7 @@ def match_a_word_lax(tweet, words_to_match):
 def findWholeWord(w):
     return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search
 
-def pairThings(query, candidates, tweets, qty=1):
+def pairWinner(query, candidates, tweets, qty=1):
     d = defaultdict(int)
     for tweet in range(0, len(tweets)):
         for jdx in range(0, len(candidates)):

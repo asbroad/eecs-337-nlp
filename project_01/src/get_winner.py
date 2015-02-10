@@ -1,13 +1,10 @@
 #! /usr/bin/python
-from read_tweets import *# read_in_tweets_2013, read_in_tweets_2015
-from scrape_2013_data import *# parse_2013_wikipedia_movies, parse_2013_wikipedia_tv, parse_2013_wikipedia_presenters
-from scrape_2015_data import *# parse_2015_wikipedia_movies, parse_2015_wikipedia_tv, parse_2015_wikipedia_presenters
-from match_options import *#get_best_match, get_bigram_list_match_tweets, get_bigram_list_match_tweets_lax, get_bigram_list_match_tweets_either_or_lax, get_unigram_list_match_tweets_lax, get_unigram_list_match_tweets_either_or_lax, pairThings
+from read_tweets import *
+from scrape_2013_data import *
+from scrape_2015_data import *
+from match_options import *
 
-def get_winner(category, tweets, parsed_list):
-            # HOSTS
-    # BIGRAMS
-    
+def get_winner(category, tweets, parsed_list, qty = 1):  
 
     if category == 'host':
         lot_hosts = ['host']
@@ -118,5 +115,5 @@ def get_winner(category, tweets, parsed_list):
         lot_best_supporting_actor_tv = ['best', 'support', 'actor', 'series'] # Number 1 response with this
         res = get_bigram_list_match_tweets_lax(tweets, lot_best_supporting_actor_tv)
     
-    return get_best_match(res[0], parsed_list[category][:])
+    return get_best_match(res[0], parsed_list[category][:])[0:qty]
 

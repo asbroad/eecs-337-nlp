@@ -1,8 +1,8 @@
 #! /usr/bin/python
-from read_tweets import *# read_in_tweets_2013, read_in_tweets_2015
-from scrape_2013_data import *# parse_2013_wikipedia_movies, parse_2013_wikipedia_tv, parse_2013_wikipedia_presenters
-from scrape_2015_data import *# parse_2015_wikipedia_movies, parse_2015_wikipedia_tv, parse_2015_wikipedia_presenters
-from match_options import *#get_best_match, get_bigram_list_match_tweets, get_bigram_list_match_tweets_lax, get_bigram_list_match_tweets_either_or_lax, get_unigram_list_match_tweets_lax, get_unigram_list_match_tweets_either_or_lax, pairThings
+from read_tweets import *
+from scrape_2013_data import *
+from scrape_2015_data import *
+from match_options import *
 from get_winner import*
 '''
 Some ideas...
@@ -42,7 +42,7 @@ def main():
 
 
     winner = get_winner('best movie drama', tweets, parsed_list)
-    print(winner[0])
+    print(winner)
 
     # ''' Testing Matching Code '''
     # tweet_file = open('gg15mini_half.json','r')
