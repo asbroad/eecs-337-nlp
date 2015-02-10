@@ -379,3 +379,37 @@ def parse_2015_wikipedia_presenters(xml_file):
         full_names.append(names)
         full_awards.append(award)
     return [full_names, full_awards]
+
+
+def process_presenters(presenter_list):
+
+    final_presenter_list = []
+    final_award_list = []
+
+    for presenters in presenter_list[0]:
+        processed_presenter = ""
+        for element in presenters:
+            processed_presenter = processed_presenter + element + " "
+        final_presenter = ""
+        split_presenter = processed_presenter.split()
+        for item in split_presenter:
+            if 64 < ord(item[0]) < 91 or 96 < ord(item[0]) < 123:
+                final_presenter = final_presenter + " " + item
+        final_presenter_list = final_presenter_list + [final_presenter[1:]]
+
+    for awards in presenter_list[1]:
+        processed_award = ""
+        for element in awards:
+            processed_award = processed_award + element + " "
+        final_award = ""
+        split_award = processed_award.split()
+        for item in split_award:
+            if 64 < ord(item[0]) < 91 or 96 < ord(item[0]) < 123:
+                final_award = final_award + " " + item
+        final_award_list = final_award_list + [final_award[1:]]
+    return [final_presenter_list, final_award_list]
+
+
+
+
+
