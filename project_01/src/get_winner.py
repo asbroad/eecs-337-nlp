@@ -9,7 +9,8 @@ def get_winner(category, tweets, parsed_list, qty = 1):
     if category == 'host':
         lot_hosts = ['host']
         res = get_bigram_list_match_tweets(tweets, lot_hosts)
-        return res[0:2]
+        hs = res[0:2]
+        return [name[0] for name in hs]
 
     if category == 'best movie drama':
         lot_best_drama_movie = ['best', 'picture'] # Number 3 response with this

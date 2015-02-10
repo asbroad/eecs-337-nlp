@@ -15,39 +15,8 @@ points, maybe try and analyze if people's names show up as they are presenting o
 def main():
 
     year = '2013'
+    [tweets, parsed_list] = load_data(year)
 
-    if year == '2013':
-        ''' Twitter JSON files '''
-        tweet_file = open('../data/goldenglobes.json','r')
-        ''' Read in JSON file '''
-        tweets = read_in_tweets_2013(tweet_file)
-        print("Tweets Loaded")
-        ''' Golden Globe Wikipedia XML files '''
-        xml_file_2013 = '70th_Golden_Globe_Awards.xml'
-        ''' Parse Wiki Pages '''
-        parsed_movie_list = parse_2013_wikipedia_movies(xml_file_2013)
-        parsed_tv_list = parse_2013_wikipedia_tv(xml_file_2013)
-        parsed_presenter_list = parse_2013_wikipedia_presenters(xml_file_2013)
-        parsed_list = dict(parsed_movie_list.items() + parsed_tv_list.items())
-        print("XML Parsed")
-    elif year == '2015':
-        ''' Twitter JSON files '''
-        #tweet_file = open('../data/gg15trimmed.json','r') # this file doesn't work, because it take up too much memory to read in
-        tweet_file = open('../data/gg15mini.json','r')
-        #tweet_file = open('gg15mini_half.json','r')
-        ''' Read in JSON file '''
-        tweets = read_in_tweets_2015(tweet_file)
-        print("Tweets Loaded")
-        ''' Golden Globe Wikipedia XML files '''
-        xml_file_2015 = '72nd_Golden_Globe_Awards.xml'
-        ''' Parse Wiki Pages '''
-        parsed_movie_list = parse_2015_wikipedia_movies(xml_file_2015)
-        parsed_tv_list = parse_2015_wikipedia_tv(xml_file_2015)
-        parsed_presenter_list = parse_2015_wikipedia_presenters(xml_file_2015)
-        parsed_list = dict(parsed_movie_list.items() + parsed_tv_list.items())
-        print("XML Parsed")
-
-    # WE NEED TO FIX HOW HOSTS GET HANDLED
     catagories = [
         'host',
         'best movie drama',
@@ -79,8 +48,7 @@ def main():
 
     for cat in catagories:
         winner = get_winner(cat, tweets, parsed_list)
-        print(cat, ' : ', winner)
-
+        print(cat, ':', winner)
 
     #Pair award does not work yet, the function definition is commented out
     #res = pairAward('best movie drama', parsed_presenter_list[0], tweets)
@@ -102,6 +70,39 @@ def main():
     # res = pairThings(topic, truthData[topic], tweets)
     # print(res)
 
+
+def load_data(year='2013'):
+    if year == '2013':
+        ''' Twitter JSON files '''
+        tweet_file = open('../data/goldenglobes.json','r')
+        ''' Read in JSON file '''
+        tweets = read_in_tweets_2013(tweet_file)
+        print("Tweets Loaded")
+        ''' Golden Globe Wikipedia XML files '''
+        xml_file_2013 = '70th_Golden_Globe_Awards.xml'
+        ''' Parse Wiki Pages '''
+        parsed_movie_list = parse_2013_wikipedia_movies(xml_file_2013)
+        parsed_tv_list = parse_2013_wikipedia_tv(xml_file_2013)
+        parsed_presenter_list = parse_2013_wikipedia_presenters(xml_file_2013)
+        parsed_list = dict(parsed_movie_list.items() + parsed_tv_list.items())
+        print("XML Parsed")
+    elif year == '2015':
+        ''' Twitter JSON files '''
+        #tweet_file = open('../data/gg15trimmed.json','r') # this file doesn't work, because it take up too much memory to read in
+        tweet_file = open('../data/gg15mini.json','r')
+        #tweet_file = open('gg15mini_half.json','r')
+        ''' Read in JSON file '''
+        tweets = read_in_tweets_2015(tweet_file)
+        print("Tweets Loaded")
+        ''' Golden Globe Wikipedia XML files '''
+        xml_file_2015 = '72nd_Golden_Globe_Awards.xml'
+        ''' Parse Wiki Pages '''
+        parsed_movie_list = parse_2015_wikipedia_movies(xml_file_2015)
+        parsed_tv_list = parse_2015_wikipedia_tv(xml_file_2015)
+        parsed_presenter_list = parse_2015_wikipedia_presenters(xml_file_2015)
+        parsed_list = dict(parsed_movie_list.items() + parsed_tv_list.items())
+        print("XML Parsed")
+    return [tweets, parsed_list]
 
 ''' Read in all twitter data and sort by number of tweets per user '''
 def get_user_tweet_counts(tweets):

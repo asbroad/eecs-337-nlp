@@ -226,8 +226,8 @@ def get_best_match(queries, candidates, thresh=0.75):
     for query in queries:
         for candidate in candidates:
             match_percent = (len(query[0]) - nltk.edit_distance(candidate.lower(), query[0]))/float(len(query[0]))
-            #print(match_percent)
             if match_percent > thresh:
+                #print('Found match', candidate, ' percent = ', match_percent)
                 return candidate
     print(candidates)
     print(queries)
