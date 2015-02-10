@@ -117,4 +117,5 @@ def get_winner(category, tweets, parsed_list, qty = 1):
         lot_best_supporting_actor_tv = ['best', 'support', 'actor', 'series'] # Number 1 response with this
         res = get_bigram_list_match_tweets_lax(tweets, lot_best_supporting_actor_tv)
 
-    return get_best_match(res[0], parsed_list[category][:])[0:qty]
+    # return get_best_match(res[0], parsed_list[category][:])[0:qty]
+    return get_best_match(res, parsed_list[category][:])#[0:qty]

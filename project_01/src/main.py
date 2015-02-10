@@ -14,7 +14,7 @@ points, maybe try and analyze if people's names show up as they are presenting o
 ''' main function '''
 def main():
 
-    year = '2013'
+    year = '2015'
 
     if year == '2013':
         ''' Twitter JSON files '''
@@ -49,7 +49,7 @@ def main():
 
     # WE NEED TO FIX HOW HOSTS GET HANDLED
     catagories = [
-        'host'
+        'host',
         'best movie drama',
         'best actress drama',
         'best actor drama',
