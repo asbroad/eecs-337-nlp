@@ -47,33 +47,34 @@ def main():
         parsed_list = dict(parsed_movie_list.items() + parsed_tv_list.items())
         print("XML Parsed")
 
-    # 'hosts need to be put back in'
+    # WE NEED TO FIX HOW HOSTS GET HANDLED
     catagories = [
+        'host'
         'best movie drama',
         'best actress drama',
-        'best actor drama'
-        # 'best movie musical or comedy',
-        # 'best actress musical or comedy',
-        # 'best actor musical or comedy',
-        # 'best animated movie',
-        # 'best foreign movie',
-        # 'best supporting actress',
-        # 'best supporting actor',
-        # 'best director',
-        # 'best screenplay',
-        # 'best original score',
-        # 'best original song',
-        # 'best tv series drama',
-        # 'best actress tv drama',
-        # 'best actor tv drama',
-        # 'best tv musical or comedy',
-        # 'best actress tv musical or comedy',
-        # 'best actor tv musical or comedy',
-        # 'best tv movie',
-        # 'best actress tv movie',
-        # 'best actor tv movie',
-        # 'best supporting actress tv movie',
-        # 'best supporting actor tv movie'
+        'best actor drama',
+        'best movie musical or comedy',
+        'best actress musical or comedy',
+        'best actor musical or comedy',
+        'best animated movie',
+        'best foreign movie',
+        'best supporting actress',
+        'best supporting actor',
+        'best director',
+        'best screenplay',
+        'best original score',
+        'best original song',
+        'best tv series drama',
+        'best actress tv drama',
+        'best actor tv drama',
+        'best tv musical or comedy',
+        'best actress tv musical or comedy',
+        'best actor tv musical or comedy',
+        'best tv movie',
+        'best actress tv movie',
+        'best actor tv movie',
+        'best supporting actress tv movie',
+        'best supporting actor tv movie'
     ]
 
     for cat in catagories:
@@ -90,9 +91,7 @@ def main():
 
     #print(parsed_presenter_list.items)
 
-
     #pairWinner(winner, parsed_presenter_list['best movie drama'])
-
 
     # ''' Testing Matching Code '''
     # tweet_file = open('gg15mini_half.json','r')
