@@ -1,6 +1,6 @@
 import json
 
-def save_output(output_filename):
+def save_output(hosts_in, all_winners_in, all_awards_in, all_presenters_in, all_nominees_in, output_filename):
 
     formatted_results = {}
 
@@ -34,11 +34,11 @@ def save_output(output_filename):
     data = {}
 
     unstructured = {}
-    unstructured['hosts'] = 'test'# hosts
-    unstructured['winners'] = 'test'# winners
-    unstructured['awards'] = 'test'# awards
-    unstructured['presenters'] = 'test'# presenters
-    unstructured['nominees'] = 'test'# nominees
+    unstructured['hosts'] = hosts_in
+    unstructured['winners'] = all_winners_in
+    unstructured['awards'] = all_awards_in
+    unstructured['presenters'] = all_presenters_in
+    unstructured['nominees'] = all_nominees_in
 
     structured = {}
     award1 = {}

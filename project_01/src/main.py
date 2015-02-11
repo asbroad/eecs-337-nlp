@@ -5,6 +5,7 @@ from scrape_2015_data import *
 from match_options import *
 from get_winner import*
 from save_output import *
+
 '''
 Some ideas...
 1. Print out a visual of a timeline of the event (the 2013 data is about 4hrs of data) and print popularity of people at given time
@@ -20,35 +21,41 @@ def main():
     catagories = [
         'host',
         'best movie drama',
-        'best actress drama',
-        'best actor drama',
         'best movie musical or comedy',
-        'best actress musical or comedy',
+        'best actor drama',
+        'best actress drama',
         'best actor musical or comedy',
-        'best animated movie',
-        'best foreign movie',
-        'best supporting actress',
+        'best actress musical or comedy',
         'best supporting actor',
+        'best supporting actress',
         'best director',
         'best screenplay',
         'best original score',
         'best original song',
+        'best animated movie',
+        'best foreign movie',
         'best tv series drama',
-        'best actress tv drama',
-        'best actor tv drama',
         'best tv musical or comedy',
-        'best actress tv musical or comedy',
+        'best actor tv drama',
+        'best actress tv drama',
         'best actor tv musical or comedy',
-        'best tv movie',
-        'best actress tv movie',
+        'best actress tv musical or comedy',
         'best actor tv movie',
+        'best actress tv movie',
+        'best supporting actor tv movie',
         'best supporting actress tv movie',
-        'best supporting actor tv movie'
+        'best tv movie'
     ]
+
+    ''' Separate winners here so that we can put them in catagories'''
+    #hosts = get_winner('host', tweets, parsed_list)
+    #save_output()
+    #save_output(hosts_in, all_winners_in, all_awards_in, all_presenters_in, all_nominees_in, output_filename)
 
     for cat in catagories:
         winner = get_winner(cat, tweets, parsed_list)
         print(cat, ':', winner)
+
 
     #Pair award does not work yet, the function definition is commented out
     #res = pairAward('best movie drama', parsed_presenter_list[0], tweets)
