@@ -1,3 +1,32 @@
+catagories = [
+    'host',
+    'best movie drama',
+    'best movie musical or comedy',
+    'best actor drama',
+    'best actress drama',
+    'best actor musical or comedy',
+    'best actress musical or comedy',
+    'best supporting actor',
+    'best supporting actress',
+    'best director',
+    'best screenplay',
+    'best original score',
+    'best original song',
+    'best animated movie',
+    'best foreign movie',
+    'best tv series drama',
+    'best tv musical or comedy',
+    'best actor tv drama',
+    'best actress tv drama',
+    'best actor tv musical or comedy',
+    'best actress tv musical or comedy',
+    'best actor tv movie',
+    'best actress tv movie',
+    'best supporting actor tv movie',
+    'best supporting actress tv movie',
+    'best tv movie'
+]
+
 ''' Hand coded 2015 data, the first value in each array is the winner '''
 def get_academy_info():
     truth_data = {}
