@@ -1,15 +1,3 @@
 *.pyc
 *.py~
 *.gz
-
-project_01/src/unused_files.py
-
-project_01/data/awards.txt
-
-project_01/src/unused_files.py
-
-project_01/src/test1.py
-
-project_01/src/unused_files.py
-
-project_01/data/gg15mini_half.json
