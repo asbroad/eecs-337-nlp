@@ -12,7 +12,7 @@ from get_winner import*
 from save_output import *
 root = Tk()
 root.title('Golden Globes Predictor')
-root.geometry('300x110')
+root.geometry('600x500')
 v1 = StringVar(root)
 v1.set('GoldenGlobe')
 v2 = StringVar(root)
@@ -41,7 +41,7 @@ def printYear(yr):
 		parsed_tv_list = parse_2013_wikipedia_tv(xml_file_2013)
 		parsed_presenter_list = parse_2013_wikipedia_presenters(xml_file_2013)
 		parsed_list = dict(parsed_movie_list.items() + parsed_tv_list.items())
-		[tweets, parsed_list] = load_data(yr)
+		#[tweets, parsed_list] = load_data(yr)
 		om1 = OptionMenu(root,v1,'Hosts','Best movie drama','Best actress drama','Best actor drama','Best movie musical or comedy','Best actress musical or comedy','Best actor musical or comedy','Best animated movie','Best foreign movie','Best supporting actress','Best supporting actor','Best director','Best screenplay','Best original score','Best original song','Best tv series drama','Best actress tv drama','Best actor tv drama','Best tv musical or comedy','Best actor tv musical or comedy','Best tv movie','Best actress tv movie','Best actor tv movie','Best supporting actress tv movie','Best supporting actor tv movie','Winners','Awards','Presenters','Nominees','Awards to Winners','Awards to Presenters','Awards to Nominees',command=printOption)
 		om1.bind("Button-1>",printOption)
 		om1.grid(row=0,column=1,columnspan = 1,stick = E + W+ N + S)
@@ -61,7 +61,7 @@ def printYear(yr):
 		parsed_tv_list = parse_2015_wikipedia_tv(xml_file_2015)
 		parsed_presenter_list = parse_2015_wikipedia_presenters(xml_file_2015)
 		parsed_list = dict(parsed_movie_list.items() + parsed_tv_list.items())
-		[tweets, parsed_list] = load_data(yr)
+		#[tweets, parsed_list] = load_data(yr)
 		om1 = OptionMenu(root,v1,'Hosts','Best movie drama','Best actress drama','Best actor drama','Best movie musical or comedy','Best actress musical or comedy','Best actor musical or comedy','Best animated movie','Best foreign movie','Best supporting actress','Best supporting actor','Best director','Best screenplay','Best original score','Best original song','Best tv series drama','Best actress tv drama','Best actor tv drama','Best tv musical or comedy','Best actor tv musical or comedy','Best tv movie','Best actress tv movie','Best actor tv movie','Best supporting actress tv movie','Best supporting actor tv movie','Winners','Awards','Presenters','Nominees','Awards to Winners','Awards to Presenters','Awards to Nominees',command=printOption)
 		om1.bind("Button-1>",printOption)
 		om1.grid(row=0,column=1,columnspan = 1,stick = E + W+ N + S)
@@ -73,6 +73,60 @@ year.grid(row=0,column=0,columnspan = 1,stick = E + W+ N + S)
 #Option function
 def printOption(x):
 	#tweets,parsed_list=printYear(yr)
+	if x == "Hosts":
+		print(v1.get())
+	if x == "Best movie drama":
+		print(v1.get())
+	if x == "Best actress drama":
+		print(v1.get())
+	if x == "Best actor drama":
+		print(v1.get())
+	if x == "Best movie musical or comedy":
+		print(v1.get())
+	if x == "Best actress musical or comedy":
+		print(v1.get())
+	if x == "Best actor musical or comedy":
+		print(v1.get())
+	if x == "Best animated movie":
+		print(v1.get())
+	if x == "Best foreign movie":
+		print(v1.get())
+	if x == "Best supporting actress":
+		print(v1.get())
+	if x == "Best supporting actor":
+		print(v1.get())
+	if x == "Best director":
+		print(v1.get())
+	if x == "Best screenplay":
+		print(v1.get())
+	if x == "Best original score":
+		print(v1.get())
+	if x == "Best original song":
+		print(v1.get())
+	if x == "Best tv series drama":
+		print(v1.get())
+	if x == "Best actress tv drama":
+		print(v1.get())
+	if x == "Best actor tv drama":
+		print(v1.get())
+	if x == "Best tv musical or comedy":
+		print(v1.get())
+	if x == "Best actor tv musical or comedy":
+		print(v1.get())
+	if x == "Best tv movie":
+		print(v1.get())
+	if x == "Best actress tv movie":
+		print(v1.get())
+	if x == "Best actor tv movie":
+		print(v1.get())
+	if x == "Best supporting actress tv movie":
+		print(v1.get())
+	if x == "Best supporting actor tv movie":
+		print(v1.get())
+
+#Start function
+def run():
+	x=v1.get()
 	if x == "Hosts":
 		print(get_winner('host', tweets, parsed_list))
 	if x == "Best movie drama":
@@ -123,76 +177,6 @@ def printOption(x):
 		print(get_winner('best supporting actress tv movie', tweets, parsed_list))
 	if x == "Best supporting actor tv movie":
 		print(get_winner('best supporting actor tv movie', tweets, parsed_list))
-json = Button(root,text='WRITE FILE',activeforeground='white',activebackground='red')
-json.grid(row=6,column=0,columnspan=2,stick =E + W+ N + S)
-quit = Button(root,text='QUIT',command=root.quit,activeforeground='white',activebackground='red')
-quit.grid(row=7,column=0,columnspan = 2,stick = E + W+ N + S)
-#start = Button(root,text='START',command=run,activeforeground='white',activebackground='red')
-#start.bind("Button-1>",start)
-#start.grid(row=6,column=0,stick = E + W + N + S)
-root.mainloop()
-#tweets = []
-#parsed_list = []
-
-#Write file function
-#os.system('python save_output.py')
-
-#Start function
-'''def run():
-	print'Please Wait for A Moment......'
-	x=v1.get()
-	if x == "Hosts":
-		print(v1.get())
-	if x == "Best movie drama":
-		print(v1.get())
-		#winner = get_winner('best movie drama', tweets, parsed_list)
-        print(winner)
-	if x == "Best actress drama":
-		print(v1.get())
-	if x == "Best actor drama":
-		print(v1.get())
-	if x == "Best movie musical or comedy":
-		print(v1.get())
-	if x == "Best actress musical or comedy":
-		print(v1.get())
-	if x == "Best actor musical or comedy":
-		print(v1.get())
-	if x == "Best animated movie":
-		print(v1.get())
-	if x == "Best foreign movie":
-		print(v1.get())
-	if x == "Best supporting actress":
-		print(v1.get())
-	if x == "Best supporting actor":
-		print(v1.get())
-	if x == "Best director":
-		print(v1.get())
-	if x == "Best screenplay":
-		print(v1.get())
-	if x == "Best original score":
-		print(v1.get())
-	if x == "Best original song":
-		print(v1.get())
-	if x == "Best tv series drama":
-		print(v1.get())
-	if x == "Best actress tv drama":
-		print(v1.get())
-	if x == "Best actor tv drama":
-		print(v1.get())
-	if x == "Best tv musical or comedy":
-		print(v1.get())
-	if x == "Best actor tv musical or comedy":
-		print(v1.get())
-	if x == "Best tv movie":
-		print(v1.get())
-	if x == "Best actress tv movie":
-		print(v1.get())
-	if x == "Best actor tv movie":
-		print(v1.get())
-	if x == "Best supporting actress tv movie":
-		print(v1.get())
-	if x == "Best supporting actor tv movie":
-		print(v1.get())
 	if x == "Winners":
 		print("This year's Golden Globe Winners are")
 	if x == "Awards":
@@ -219,6 +203,32 @@ root.mainloop()
 		print(v1.get())
 	if x == "Awards to Nominees'":
 		print(v1.get())
-	os.system('python main.py')'''
+json = Button(root,text='WRITE FILE',activeforeground='white',activebackground='red')
+json.grid(row=6,column=1,columnspan=1,stick =E + W+ N + S)
+quit = Button(root,text='QUIT',command=root.quit,activeforeground='white',activebackground='red')
+quit.grid(row=7,column=0,columnspan = 2,stick = E + W+ N + S)
+start = Button(root,text='GO',command=run,activeforeground='white',activebackground='red')
+start.bind("Button-1>",start)
+start.grid(row=6,column=0,stick = E + W + N + S)
+Label(root,text="Result:").grid(row=4,sticky=W)
+t1 = Text(root) 
+t1.grid(row=5,column=0,columnspan = 2,stick = E + W+ N + S)
 
+class PrintToT1(object): 
+     def write(self, s): 
+         t1.insert(END, s) 
+
+sys.stdout = PrintToT1() 
+x=v1.get()
+#if x == "Hosts":
+#	print(get_winner('host', tweets, parsed_list))
+
+
+mainloop() 
+root.mainloop()
+#tweets = []
+#parsed_list = []
+
+#Write file function
+#os.system('python save_output.py')
 
