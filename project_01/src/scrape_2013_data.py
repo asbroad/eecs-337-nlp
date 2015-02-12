@@ -210,20 +210,20 @@ def parse_2013_wikipedia_movies(xml_file):
         best_foreign_list.append(foreign_title)
 
     scraped_data = {}
-    scraped_data['best movie drama'] = best_movies_drama_list
-    scraped_data['best actress drama'] = best_actress_drama_list
-    scraped_data['best actor drama']  = best_actor_drama_list
-    scraped_data['best movie musical or comedy'] = best_movies_mus_or_com_list
-    scraped_data['best actress musical or comedy'] = best_actress_com_mus_list
-    scraped_data['best actor musical or comedy'] = best_actor_com_mus_list
-    scraped_data['best animated movie'] = best_animated_list
-    scraped_data['best foreign movie'] =best_foreign_list
-    scraped_data['best supporting actress'] = best_actress_supporting_list
-    scraped_data['best supporting actor'] = best_actor_supporting_list
-    scraped_data['best director'] = best_director_list
-    scraped_data['best screenplay'] = best_screenplay_list
-    scraped_data['best original score'] = best_score_list
-    scraped_data['best original song'] = best_song_list
+    scraped_data['Best Motion Picture - Drama'] = best_movies_drama_list
+    scraped_data['Best Performance by an Actress in a Motion Picture - Drama'] = best_actress_drama_list
+    scraped_data['Best Performance by an Actor in a Motion Picture - Drama']  = best_actor_drama_list
+    scraped_data['Best Motion Picture - Comedy Or Musical'] = best_movies_mus_or_com_list
+    scraped_data['Best Performance by an Actress in a Motion Picture - Comedy Or Musical'] = best_actress_com_mus_list
+    scraped_data['Best Performance by an Actor in a Motion Picture - Comedy Or Musical'] = best_actor_com_mus_list
+    scraped_data['Best Animated Feature Film'] = best_animated_list
+    scraped_data['Best Foreign Language Film'] =best_foreign_list
+    scraped_data['Best Performance by an Actress In A Supporting Role in a Motion Picture'] = best_actress_supporting_list
+    scraped_data['Best Performance by an Actor In A Supporting Role in a Motion Picture'] = best_actor_supporting_list
+    scraped_data['Best Director - Motion Picture'] = best_director_list
+    scraped_data['Best Screenplay - Motion Picture'] = best_screenplay_list
+    scraped_data['Best Original Score - Motion Picture'] = best_score_list
+    scraped_data['Best Original Song - Motion Picture'] = best_song_list
 
     return scraped_data
 
@@ -395,17 +395,17 @@ def parse_2013_wikipedia_tv(xml_file):
         best_miniseries_list.append(miniseries_title)
 
     scraped_data = {}
-    scraped_data['best tv series drama'] = best_tv_drama_list
-    scraped_data['best actress tv drama'] = best_actress_drama_list
-    scraped_data['best actor tv drama'] = best_actor_drama_list
-    scraped_data['best tv musical or comedy'] = best_tv_mus_or_com_list
-    scraped_data['best actress tv musical or comedy'] = best_actress_com_mus_list
-    scraped_data['best actor tv musical or comedy'] = best_actor_com_mus_list
-    scraped_data['best tv movie'] = best_miniseries_list
-    scraped_data['best actress tv movie'] = best_actress_miniseries_list
-    scraped_data['best actor tv movie'] = best_actor_miniseries_list
-    scraped_data['best supporting actress tv movie'] = best_actress_supporting_list
-    scraped_data['best supporting actor tv movie'] = best_actor_supporting_list
+    scraped_data['Best Television Series - Drama'] = best_tv_drama_list
+    scraped_data['Best Performance by an Actress In A Television Series - Drama'] = best_actress_drama_list
+    scraped_data['Best Performance by an Actor In A Television Series - Drama'] = best_actor_drama_list
+    scraped_data['Best Television Series - Comedy Or Musical'] = best_tv_mus_or_com_list
+    scraped_data['Best Performance by an Actress In A Television Series - Comedy Or Musical'] = best_actress_com_mus_list
+    scraped_data['Best Performance by an Actor In A Television Series - Comedy Or Musical'] = best_actor_com_mus_list
+    scraped_data['Best Mini-Series Or Motion Picture Made for Television'] = best_miniseries_list
+    scraped_data['Best Performance by an Actress In A Mini-series or Motion Picture Made for Television'] = best_actress_miniseries_list
+    scraped_data['Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television'] = best_actor_miniseries_list
+    scraped_data['Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television'] = best_actress_supporting_list
+    scraped_data['Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television'] = best_actor_supporting_list
 
     return scraped_data
 

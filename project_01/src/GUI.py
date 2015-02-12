@@ -42,10 +42,10 @@ def printYear(yr):
 		parsed_presenter_list = parse_2013_wikipedia_presenters(xml_file_2013)
 		parsed_list = dict(parsed_movie_list.items() + parsed_tv_list.items())
 		[tweets, parsed_list] = load_data(yr)
-		om1 = OptionMenu(root,v1,'Hosts','Best movie drama','Best actress drama','Best actor drama','Best movie musical or comedy','Best actress musical or comedy','Best actor musical or comedy','Best animated movie','Best foreign movie','Best supporting actress','Best supporting actor','Best director','Best screenplay','Best original score','Best original song','Best tv series drama','Best actress tv drama','Best actor tv drama','Best tv musical or comedy','Best actor tv musical or comedy','Best tv movie','Best actress tv movie','Best actor tv movie','Best supporting actress tv movie','Best supporting actor tv movie','Winners','Awards','Presenters','Nominees','Awards to Winners','Awards to Presenters','Awards to Nominees',command=printOption)
+		om1 = OptionMenu(root,v1,'Hosts','Best Motion Picture - Drama','Best Performance by an Actress in a Motion Picture - Drama','Best Performance by an Actor in a Motion Picture - Drama','Best Motion Picture - Comedy Or Musical','Best Performance by an Actress in a Motion Picture - Comedy Or Musical','Best Performance by an Actor in a Motion Picture - Comedy Or Musical','Best Animated Feature Film','Best Foreign Language Film','Best Performance by an Actress In A Supporting Role in a Motion Picture','Best Performance by an Actor In A Supporting Role in a Motion Picture','Best Director - Motion Picture','Best Screenplay - Motion Picture','Best Original Score - Motion Picture','Best Original Song - Motion Picture','Best Television Series - Drama','Best Performance by an Actress In A Television Series - Drama','Best Performance by an Actor In A Television Series - Drama','Best Television Series - Comedy Or Musical','Best Performance by an Actor In A Television Series - Comedy Or Musical','Best Mini-Series Or Motion Picture Made for Television','Best Performance by an Actress In A Mini-series or Motion Picture Made for Television','Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television','Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television','Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television','Winners','Awards','Presenters','Nominees','Awards to Winners','Awards to Presenters','Awards to Nominees',command=printOption)
 		om1.bind("Button-1>",printOption)
 		om1.grid(row=0,column=1,columnspan = 1,stick = E + W+ N + S)
-		
+
 	elif yr=="2015":
 		global tweets
 		global parsed_list
@@ -62,7 +62,7 @@ def printYear(yr):
 		parsed_presenter_list = parse_2015_wikipedia_presenters(xml_file_2015)
 		parsed_list = dict(parsed_movie_list.items() + parsed_tv_list.items())
 		[tweets, parsed_list] = load_data(yr)
-		om1 = OptionMenu(root,v1,'Hosts','Best movie drama','Best actress drama','Best actor drama','Best movie musical or comedy','Best actress musical or comedy','Best actor musical or comedy','Best animated movie','Best foreign movie','Best supporting actress','Best supporting actor','Best director','Best screenplay','Best original score','Best original song','Best tv series drama','Best actress tv drama','Best actor tv drama','Best tv musical or comedy','Best actor tv musical or comedy','Best tv movie','Best actress tv movie','Best actor tv movie','Best supporting actress tv movie','Best supporting actor tv movie','Winners','Awards','Presenters','Nominees','Awards to Winners','Awards to Presenters','Awards to Nominees',command=printOption)
+		om1 = OptionMenu(root,v1,'Hosts','Best Motion Picture - Drama','Best Performance by an Actress in a Motion Picture - Drama','Best Performance by an Actor in a Motion Picture - Drama','Best Motion Picture - Comedy Or Musical','Best Performance by an Actress in a Motion Picture - Comedy Or Musical','Best Performance by an Actor in a Motion Picture - Comedy Or Musical','Best Animated Feature Film','Best Foreign Language Film','Best Performance by an Actress In A Supporting Role in a Motion Picture','Best Performance by an Actor In A Supporting Role in a Motion Picture','Best Director - Motion Picture','Best Screenplay - Motion Picture','Best Original Score - Motion Picture','Best Original Song - Motion Picture','Best Television Series - Drama','Best Performance by an Actress In A Television Series - Drama','Best Performance by an Actor In A Television Series - Drama','Best Television Series - Comedy Or Musical','Best Performance by an Actor In A Television Series - Comedy Or Musical','Best Mini-Series Or Motion Picture Made for Television','Best Performance by an Actress In A Mini-series or Motion Picture Made for Television','Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television','Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television','Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television','Winners','Awards','Presenters','Nominees','Awards to Winners','Awards to Presenters','Awards to Nominees',command=printOption)
 		om1.bind("Button-1>",printOption)
 		om1.grid(row=0,column=1,columnspan = 1,stick = E + W+ N + S)
 	#return (tweets,parsed_list)
@@ -75,54 +75,54 @@ def printOption(x):
 	#tweets,parsed_list=printYear(yr)
 	if x == "Hosts":
 		print(get_winner('host', tweets, parsed_list))
-	if x == "Best movie drama":
-		print(get_winner('best movie drama', tweets, parsed_list))
-	if x == "Best actress drama":
-		print(get_winner('best actress drama', tweets, parsed_list))
-	if x == "Best actor drama":
-		print(get_winner('best actor drama', tweets, parsed_list))
-	if x == "Best movie musical or comedy":
-		print(get_winner('best movie musical or comedy', tweets, parsed_list))
-	if x == "Best actress musical or comedy":
-		print(get_winner('best actress musical or comedy', tweets, parsed_list))
-	if x == "Best actor musical or comedy":
-		print(get_winner('best actor musical or comedy', tweets, parsed_list))
-	if x == "Best animated movie":
-		print(get_winner('best animated movie', tweets, parsed_list))
-	if x == "Best foreign movie":
-		print(get_winner('best foreign movie', tweets, parsed_list))
-	if x == "Best supporting actress":
-		print(get_winner('best supporting actress', tweets, parsed_list))
-	if x == "Best supporting actor":
-		print(get_winner('best supporting actor', tweets, parsed_list))
-	if x == "Best director":
-		print(get_winner('best director', tweets, parsed_list))
-	if x == "Best screenplay":
-		print(get_winner('best screenplay', tweets, parsed_list))
-	if x == "Best original score":
-		print(get_winner('best original score', tweets, parsed_list))
-	if x == "Best original song":
-		print(get_winner('best original song', tweets, parsed_list))
-	if x == "Best tv series drama":
-		print(get_winner('best tv series drama', tweets, parsed_list))
-	if x == "Best actress tv drama":
-		print(get_winner('best actress tv drama', tweets, parsed_list))
-	if x == "Best actor tv drama":
-		print(get_winner('best actor tv drama', tweets, parsed_list))
-	if x == "Best tv musical or comedy":
-		print(get_winner('best tv musical or comedy', tweets, parsed_list))
-	if x == "Best actor tv musical or comedy":
-		print(get_winner('best actor tv musical or comedy', tweets, parsed_list))
-	if x == "Best tv movie":
-		print(get_winner('best tv movie', tweets, parsed_list))
-	if x == "Best actress tv movie":
-		print(get_winner('best actress tv movie', tweets, parsed_list))
-	if x == "Best actor tv movie":
-		print(get_winner('best actor tv movie', tweets, parsed_list))
-	if x == "Best supporting actress tv movie":
-		print(get_winner('best supporting actress tv movie', tweets, parsed_list))
-	if x == "Best supporting actor tv movie":
-		print(get_winner('best supporting actor tv movie', tweets, parsed_list))
+	if x == "Best Motion Picture - Drama":
+		print(get_winner('Best Motion Picture - Drama', tweets, parsed_list))
+	if x == "Best Performance by an Actress in a Motion Picture - Drama":
+		print(get_winner('Best Performance by an Actress in a Motion Picture - Drama', tweets, parsed_list))
+	if x == "Best Performance by an Actor in a Motion Picture - Drama":
+		print(get_winner('Best Performance by an Actor in a Motion Picture - Drama', tweets, parsed_list))
+	if x == "Best Motion Picture - Comedy Or Musical":
+		print(get_winner('Best Motion Picture - Comedy Or Musical', tweets, parsed_list))
+	if x == "Best Performance by an Actress in a Motion Picture - Comedy Or Musical":
+		print(get_winner('Best Performance by an Actress in a Motion Picture - Comedy Or Musical', tweets, parsed_list))
+	if x == "Best Performance by an Actor in a Motion Picture - Comedy Or Musical":
+		print(get_winner('Best Performance by an Actor in a Motion Picture - Comedy Or Musical', tweets, parsed_list))
+	if x == "Best Animated Feature Film":
+		print(get_winner('Best Animated Feature Film', tweets, parsed_list))
+	if x == "Best Foreign Language Film":
+		print(get_winner('Best Foreign Language Film', tweets, parsed_list))
+	if x == "Best Performance by an Actress In A Supporting Role in a Motion Picture":
+		print(get_winner('Best Performance by an Actress In A Supporting Role in a Motion Picture', tweets, parsed_list))
+	if x == "Best Performance by an Actor In A Supporting Role in a Motion Picture":
+		print(get_winner('Best Performance by an Actor In A Supporting Role in a Motion Picture', tweets, parsed_list))
+	if x == "Best Director - Motion Picture":
+		print(get_winner('Best Director - Motion Picture', tweets, parsed_list))
+	if x == "Best Screenplay - Motion Picture":
+		print(get_winner('Best Screenplay - Motion Picture', tweets, parsed_list))
+	if x == "Best Original Score - Motion Picture":
+		print(get_winner('Best Original Score - Motion Picture', tweets, parsed_list))
+	if x == "Best Original Song - Motion Picture":
+		print(get_winner('Best Original Song - Motion Picture', tweets, parsed_list))
+	if x == "Best Television Series - Drama":
+		print(get_winner('Best Television Series - Drama', tweets, parsed_list))
+	if x == "Best Performance by an Actress In A Television Series - Drama":
+		print(get_winner('Best Performance by an Actress In A Television Series - Drama', tweets, parsed_list))
+	if x == "Best Performance by an Actor In A Television Series - Drama":
+		print(get_winner('Best Performance by an Actor In A Television Series - Drama', tweets, parsed_list))
+	if x == "Best Television Series - Comedy Or Musical":
+		print(get_winner('Best Television Series - Comedy Or Musical', tweets, parsed_list))
+	if x == "Best Performance by an Actor In A Television Series - Comedy Or Musical":
+		print(get_winner('Best Performance by an Actor In A Television Series - Comedy Or Musical', tweets, parsed_list))
+	if x == "Best Mini-Series Or Motion Picture Made for Television":
+		print(get_winner('Best Mini-Series Or Motion Picture Made for Television', tweets, parsed_list))
+	if x == "Best Performance by an Actress In A Mini-series or Motion Picture Made for Television":
+		print(get_winner('Best Performance by an Actress In A Mini-series or Motion Picture Made for Television', tweets, parsed_list))
+	if x == "Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television":
+		print(get_winner('Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television', tweets, parsed_list))
+	if x == "Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television":
+		print(get_winner('Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television', tweets, parsed_list))
+	if x == "Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television":
+		print(get_winner('Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television', tweets, parsed_list))
 json = Button(root,text='WRITE FILE',activeforeground='white',activebackground='red')
 json.grid(row=6,column=0,columnspan=2,stick =E + W+ N + S)
 quit = Button(root,text='QUIT',command=root.quit,activeforeground='white',activebackground='red')
@@ -143,55 +143,55 @@ root.mainloop()
 	x=v1.get()
 	if x == "Hosts":
 		print(v1.get())
-	if x == "Best movie drama":
+	if x == "Best Motion Picture - Drama":
 		print(v1.get())
-		#winner = get_winner('best movie drama', tweets, parsed_list)
+		#winner = get_winner('Best Motion Picture - Drama', tweets, parsed_list)
         print(winner)
-	if x == "Best actress drama":
+	if x == "Best Performance by an Actress in a Motion Picture - Drama":
 		print(v1.get())
-	if x == "Best actor drama":
+	if x == "Best Performance by an Actor in a Motion Picture - Drama":
 		print(v1.get())
-	if x == "Best movie musical or comedy":
+	if x == "Best Motion Picture - Comedy Or Musical":
 		print(v1.get())
-	if x == "Best actress musical or comedy":
+	if x == "Best Performance by an Actress in a Motion Picture - Comedy Or Musical":
 		print(v1.get())
-	if x == "Best actor musical or comedy":
+	if x == "Best Performance by an Actor in a Motion Picture - Comedy Or Musical":
 		print(v1.get())
-	if x == "Best animated movie":
+	if x == "Best Animated Feature Film":
 		print(v1.get())
-	if x == "Best foreign movie":
+	if x == "Best Foreign Language Film":
 		print(v1.get())
-	if x == "Best supporting actress":
+	if x == "Best Performance by an Actress In A Supporting Role in a Motion Picture":
 		print(v1.get())
-	if x == "Best supporting actor":
+	if x == "Best Performance by an Actor In A Supporting Role in a Motion Picture":
 		print(v1.get())
-	if x == "Best director":
+	if x == "Best Director - Motion Picture":
 		print(v1.get())
-	if x == "Best screenplay":
+	if x == "Best Screenplay - Motion Picture":
 		print(v1.get())
-	if x == "Best original score":
+	if x == "Best Original Score - Motion Picture":
 		print(v1.get())
-	if x == "Best original song":
+	if x == "Best Original Song - Motion Picture":
 		print(v1.get())
-	if x == "Best tv series drama":
+	if x == "Best Television Series - Drama":
 		print(v1.get())
-	if x == "Best actress tv drama":
+	if x == "Best Performance by an Actress In A Television Series - Drama":
 		print(v1.get())
-	if x == "Best actor tv drama":
+	if x == "Best Performance by an Actor In A Television Series - Drama":
 		print(v1.get())
-	if x == "Best tv musical or comedy":
+	if x == "Best Television Series - Comedy Or Musical":
 		print(v1.get())
-	if x == "Best actor tv musical or comedy":
+	if x == "Best Performance by an Actor In A Television Series - Comedy Or Musical":
 		print(v1.get())
-	if x == "Best tv movie":
+	if x == "Best Mini-Series Or Motion Picture Made for Television":
 		print(v1.get())
-	if x == "Best actress tv movie":
+	if x == "Best Performance by an Actress In A Mini-series or Motion Picture Made for Television":
 		print(v1.get())
-	if x == "Best actor tv movie":
+	if x == "Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television":
 		print(v1.get())
-	if x == "Best supporting actress tv movie":
+	if x == "Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television":
 		print(v1.get())
-	if x == "Best supporting actor tv movie":
+	if x == "Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television":
 		print(v1.get())
 	if x == "Winners":
 		print("This year's Golden Globe Winners are")
@@ -220,5 +220,3 @@ root.mainloop()
 	if x == "Awards to Nominees'":
 		print(v1.get())
 	os.system('python main.py')'''
-
-

@@ -26,127 +26,127 @@ def main():
 
     all_winners = []
 
-    award_title ='best movie drama'
+    award_title = 'Best Motion Picture - Drama'
     best_movie_drama = get_winner(award_title, tweets, parsed_list)
     best_movie_drama_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best movie musical or comedy'
+    award_title = 'Best Motion Picture - Comedy Or Musical'
     best_movie_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_movie_musical_or_comedy_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best actor drama'
+    award_title = 'Best Performance by an Actor in a Motion Picture - Drama'
     best_actor_drama = get_winner(award_title, tweets, parsed_list)
     best_actor_drama_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best actress drama'
+    award_title = 'Best Performance by an Actress in a Motion Picture - Drama'
     best_actress_drama = get_winner(award_title, tweets, parsed_list)
     best_actress_drama_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best actor musical or comedy'
+    award_title = 'Best Performance by an Actor in a Motion Picture - Comedy Or Musical'
     best_actor_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_actor_musical_or_comedy_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best actress musical or comedy'
+    award_title = 'Best Performance by an Actress in a Motion Picture - Comedy Or Musical'
     best_actress_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_actress_musical_or_comedy_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best supporting actor'
+    award_title = 'Best Performance by an Actor In A Supporting Role in a Motion Picture'
     best_supporting_actor = get_winner(award_title, tweets, parsed_list)
     best_supporting_actor_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best supporting actress'
+    award_title = 'Best Performance by an Actress In A Supporting Role in a Motion Picture'
     best_supporting_actress = get_winner(award_title, tweets, parsed_list)
     best_supporting_actress_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best director'
+    award_title = 'Best Director - Motion Picture'
     best_director = get_winner(award_title, tweets, parsed_list)
     best_director_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best screenplay'
+    award_title = 'Best Screenplay - Motion Picture'
     best_screenplay = get_winner(award_title, tweets, parsed_list)
     best_screenplay_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best original score'
+    award_title = 'Best Original Score - Motion Picture'
     best_original_score = get_winner(award_title, tweets, parsed_list)
     best_original_score_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best original song'
+    award_title = 'Best Original Song - Motion Picture'
     best_original_song = get_winner(award_title, tweets, parsed_list)
     best_original_song_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best animated movie'
+    award_title = 'Best Animated Feature Film'
     best_animated_movie = get_winner(award_title, tweets, parsed_list)
     best_animated_movie_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best foreign movie'
+    award_title = 'Best Foreign Language Film'
     best_foreign_movie = get_winner(award_title, tweets, parsed_list)
     best_foreign_movie_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best tv series drama'
+    award_title = 'Best Television Series - Drama'
     best_tv_series_drama = get_winner(award_title, tweets, parsed_list)
     best_tv_series_drama_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best tv musical or comedy'
+    award_title = 'Best Television Series - Comedy Or Musical'
     best_tv_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_tv_musical_or_comedy_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best actor tv drama'
+    award_title = 'Best Performance by an Actor In A Television Series - Drama'
     best_actor_tv_drama = get_winner(award_title, tweets, parsed_list)
     best_actor_tv_drama_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best actress tv drama'
+    award_title = 'Best Performance by an Actress In A Television Series - Drama'
     best_actress_tv_drama = get_winner(award_title, tweets, parsed_list)
     best_actress_tv_drama_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best actor tv musical or comedy'
+    award_title = 'Best Performance by an Actor In A Television Series - Comedy Or Musical'
     best_actor_tv_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_actor_tv_musical_or_comedy_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best actress tv musical or comedy'
+    award_title = 'Best Performance by an Actress In A Television Series - Comedy Or Musical'
     best_actress_tv_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_actress_tv_musical_or_comedy_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best actor tv movie'
+    award_title = 'Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television'
     best_actor_tv_movie = get_winner(award_title, tweets, parsed_list)
     best_actor_tv_movie_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best actress tv movie'
+    award_title = 'Best Performance by an Actress In A Mini-series or Motion Picture Made for Television'
     best_actress_tv_movie = get_winner(award_title, tweets, parsed_list)
     best_actress_tv_movie_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best supporting actor tv movie'
+    award_title = 'Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television'
     best_supporting_actor_tv_movie = get_winner(award_title, tweets, parsed_list)
     best_supporting_actor_tv_movie_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best supporting actress tv movie'
+    award_title = 'Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television'
     best_supporting_actress_tv_movie = get_winner(award_title, tweets, parsed_list)
     best_supporting_actress_tv_movie_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)
 
-    award_title = 'best tv movie'
+    award_title = 'Best Mini-Series Or Motion Picture Made for Television'
     best_tv_movie = get_winner(award_title, tweets, parsed_list)
     best_tv_movie_noms = parsed_list.get(award_title)
     all_winners.append(best_movie_drama)

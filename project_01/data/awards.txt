@@ -1,25 +1,47 @@
 Best Motion Picture - Drama
-Best Performance by an Actress in a Motion Picture - Drama
-Best Performance by an Actor in a Motion Picture - Drama
 Best Motion Picture - Comedy Or Musical
+Best Performance by an Actor in a Motion Picture - Drama
+Best Performance by an Actress in a Motion Picture - Drama
 Best Performance by an Actress in a Motion Picture - Comedy Or Musical
-Best Performance by an Actor in a Motion Picture - Comedy Or Musical
-Best Animated Feature Film
-Best Foreign Language Film
-Best Performance by an Actress In A Supporting Role in a Motion Picture
 Best Performance by an Actor In A Supporting Role in a Motion Picture
+Best Performance by an Actress In A Supporting Role in a Motion Picture
 Best Director - Motion Picture
 Best Screenplay - Motion Picture
 Best Original Score - Motion Picture
 Best Original Song - Motion Picture
+Best Animated Feature Film
+Best Foreign Language Film
 Best Television Series - Drama
 Best Performance by an Actress In A Television Series - Drama
-Best Performance by an Actor In A Television Series - Drama
 Best Television Series - Comedy Or Musical
-Best Performance by an Actress In A Television Series - Comedy Or Musical
+Best Performance by an Actor In A Television Series - Drama
+
+
 Best Performance by an Actor In A Television Series - Comedy Or Musical
-Best Mini-Series Or Motion Picture Made for Television
-Best Performance by an Actress In A Mini-series or Motion Picture Made for Television
+
+Best Performance by an Actress In A Television Series - Comedy Or Musical
+
 Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television
-Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television
+
+Best Performance by an Actress In A Mini-series or Motion Picture Made for Television
+
 Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television
+
+Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or 
+Motion Picture Made for Television
+
+Best Mini-Series Or Motion Picture Made for Television
+
+
+
+
+
+
+
+THIS NEEDS TO BE CHANGED IN
+
+main.py
+get winner
+scrape 2015
+scrape 2013
+gui
