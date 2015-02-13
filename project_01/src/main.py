@@ -5,6 +5,7 @@ from scrape_2015_data import *
 from match_options import *
 from get_winner import*
 from save_output import *
+import operator
 
 ''' main function '''
 def main():
@@ -423,8 +424,11 @@ def main():
 
     ##########################################################
 
-    save_output(year, hosts, all_winners, parsed_list.keys(), parsed_presenter_list[0], parsed_list.values(), all_structured_awards, save_filename)
-    #save_output(hosts_in, all_winners_in, all_awards_in, all_presenters_in, all_nominees_in, output_filename)
+    parsed_presenter_list_joined = reduce(operator.add, parsed_presenter_list[0])
+    parsed_nominee_list_joined =  reduce(operator.add, parsed_list.values())
+
+    save_output(year, hosts, all_winners, parsed_list.keys(), parsed_presenter_list_joined, parsed_nominee_list_joined, all_structured_awards, save_filename)
+    #save_output(year, hosts_in, all_winners_in, all_awards_in, all_presenters_in, all_nominees_in, all_structured_awards_in, output_filename)
 
 
 def load_data(year='2013'):
