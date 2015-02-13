@@ -77,6 +77,14 @@ def main():
     best_actress_drama_presenter = 'value '# TEMP
     all_winners.append(best_actress_drama)
 
+    temp_dict = {}
+    temp_dict['nominees'] = best_actress_drama_noms
+    temp_dict['winner'] = best_actress_drama
+    temp_dict['presenters'] = best_actress_drama_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
+
     ##########################################################
 
     award_title = 'Best Performance by an Actor in a Motion Picture - Comedy Or Musical'
@@ -84,6 +92,14 @@ def main():
     best_actor_musical_or_comedy_noms = parsed_list.get(award_title)
     best_actor_musical_or_comedy_presenter = 'value '# TEMP
     all_winners.append(best_actor_musical_or_comedy)
+
+    temp_dict = {}
+    temp_dict['nominees'] = best_actor_musical_or_comedy_noms
+    temp_dict['winner'] = best_actor_musical_or_comedy
+    temp_dict['presenters'] = best_actor_musical_or_comedy_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
 
     ##########################################################
 
@@ -93,6 +109,14 @@ def main():
     best_actress_musical_or_comedy_presenter = 'value '# TEMP
     all_winners.append(best_actress_musical_or_comedy)
 
+    temp_dict = {}
+    temp_dict['nominees'] = best_actress_musical_or_comedy_noms
+    temp_dict['winner'] = best_actress_musical_or_comedy
+    temp_dict['presenters'] = best_actress_musical_or_comedy_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
+
     ##########################################################
 
     award_title = 'Best Performance by an Actor In A Supporting Role in a Motion Picture'
@@ -100,6 +124,14 @@ def main():
     best_supporting_actor_noms = parsed_list.get(award_title)
     best_supporting_actor_presenter = 'value '# TEMP
     all_winners.append(best_supporting_actor)
+
+    temp_dict = {}
+    temp_dict['nominees'] = best_supporting_actor_noms
+    temp_dict['winner'] = best_supporting_actor
+    temp_dict['presenters'] = best_supporting_actor_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
 
     ##########################################################
 
@@ -109,6 +141,14 @@ def main():
     best_supporting_actress_presenter = 'value '# TEMP
     all_winners.append(best_supporting_actress)
 
+    temp_dict = {}
+    temp_dict['nominees'] = best_supporting_actress_noms
+    temp_dict['winner'] = best_supporting_actress
+    temp_dict['presenters'] = best_supporting_actress_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
+
     ##########################################################
 
     award_title = 'Best Director - Motion Picture'
@@ -116,6 +156,14 @@ def main():
     best_director_noms = parsed_list.get(award_title)
     best_director_presenter = 'value '# TEMP
     all_winners.append(best_director)
+
+    temp_dict = {}
+    temp_dict['nominees'] = best_director_noms
+    temp_dict['winner'] = best_director
+    temp_dict['presenters'] = best_director_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
 
     ##########################################################
 
@@ -125,6 +173,14 @@ def main():
     best_screenplay_presenter = 'value '# TEMP
     all_winners.append(best_screenplay)
 
+    temp_dict = {}
+    temp_dict['nominees'] = best_screenplay_noms
+    temp_dict['winner'] = best_screenplay
+    temp_dict['presenters'] = best_screenplay_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
+
     ##########################################################
 
     award_title = 'Best Original Score - Motion Picture'
@@ -132,6 +188,14 @@ def main():
     best_original_score_noms = parsed_list.get(award_title)
     best_original_score_presenter = 'value '# TEMP
     all_winners.append(best_original_score)
+
+    temp_dict = {}
+    temp_dict['nominees'] = best_original_score_noms
+    temp_dict['winner'] = best_original_score
+    temp_dict['presenters'] = best_original_score_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
 
     ##########################################################
 
@@ -141,6 +205,14 @@ def main():
     best_original_song_presenter = 'value '# TEMP
     all_winners.append(best_original_song)
 
+    temp_dict = {}
+    temp_dict['nominees'] = best_original_song_noms
+    temp_dict['winner'] = best_original_song
+    temp_dict['presenters'] = best_original_song_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
+
     ##########################################################
 
     award_title = 'Best Animated Feature Film'
@@ -148,6 +220,14 @@ def main():
     best_animated_movie_noms = parsed_list.get(award_title)
     best_animated_movie_presenter = 'value '# TEMP
     all_winners.append(best_animated_movie)
+
+    temp_dict = {}
+    temp_dict['nominees'] = best_animated_movie_noms
+    temp_dict['winner'] = best_animated_movie
+    temp_dict['presenters'] = best_animated_movie_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
 
     ##########################################################
 
@@ -157,6 +237,14 @@ def main():
     best_foreign_movie_presenter = 'value '# TEMP
     all_winners.append(best_foreign_movie)
 
+    temp_dict = {}
+    temp_dict['nominees'] = best_foreign_movie_noms
+    temp_dict['winner'] = best_foreign_movie
+    temp_dict['presenters'] = best_foreign_movie_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
+
     ##########################################################
 
     award_title = 'Best Television Series - Drama'
@@ -164,6 +252,14 @@ def main():
     best_tv_series_drama_noms = parsed_list.get(award_title)
     best_tv_series_drama_presenter = 'value '# TEMP
     all_winners.append(best_tv_series_drama)
+
+    temp_dict = {}
+    temp_dict['nominees'] = best_tv_series_drama_noms
+    temp_dict['winner'] = best_tv_series_drama
+    temp_dict['presenters'] = best_tv_series_drama_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
 
     ##########################################################
 
@@ -173,6 +269,14 @@ def main():
     best_tv_musical_or_comedy_presenter = 'value '# TEMP
     all_winners.append(best_tv_musical_or_comedy)
 
+    temp_dict = {}
+    temp_dict['nominees'] = best_tv_musical_or_comedy_noms
+    temp_dict['winner'] = best_tv_musical_or_comedy
+    temp_dict['presenters'] = best_tv_musical_or_comedy_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
+
     ##########################################################
 
     award_title = 'Best Performance by an Actor In A Television Series - Drama'
@@ -180,6 +284,14 @@ def main():
     best_actor_tv_drama_noms = parsed_list.get(award_title)
     best_actor_tv_drama_presenter = 'value '# TEMP
     all_winners.append(best_actor_tv_drama)
+
+    temp_dict = {}
+    temp_dict['nominees'] = best_actor_tv_drama_noms
+    temp_dict['winner'] = best_actor_tv_drama
+    temp_dict['presenters'] = best_actor_tv_drama_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
 
     ##########################################################
 
@@ -189,6 +301,14 @@ def main():
     best_actress_tv_drama_presenter = 'value '# TEMP
     all_winners.append(best_actress_tv_drama)
 
+    temp_dict = {}
+    temp_dict['nominees'] = best_actress_tv_drama_noms
+    temp_dict['winner'] = best_actress_tv_drama
+    temp_dict['presenters'] = best_actress_tv_drama_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
+
     ##########################################################
 
     award_title = 'Best Performance by an Actor In A Television Series - Comedy Or Musical'
@@ -196,6 +316,14 @@ def main():
     best_actor_tv_musical_or_comedy_noms = parsed_list.get(award_title)
     best_actor_tv_musical_or_comedy_presenter = 'value '# TEMP
     all_winners.append(best_actor_tv_musical_or_comedy)
+
+    temp_dict = {}
+    temp_dict['nominees'] = best_actor_tv_musical_or_comedy_noms
+    temp_dict['winner'] = best_actor_tv_musical_or_comedy
+    temp_dict['presenters'] = best_actor_tv_musical_or_comedy_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
 
     ##########################################################
 
@@ -205,6 +333,14 @@ def main():
     best_actress_tv_musical_or_comedy_presenter = 'value '# TEMP
     all_winners.append(best_actress_tv_musical_or_comedy)
 
+    temp_dict = {}
+    temp_dict['nominees'] = best_actress_tv_musical_or_comedy_noms
+    temp_dict['winner'] = best_actress_tv_musical_or_comedy
+    temp_dict['presenters'] = best_actress_tv_musical_or_comedy_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
+
     ##########################################################
 
     award_title = 'Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television'
@@ -212,6 +348,14 @@ def main():
     best_actor_tv_movie_noms = parsed_list.get(award_title)
     best_actor_tv_movie_presenter = 'value '# TEMP
     all_winners.append(best_actor_tv_movie)
+
+    temp_dict = {}
+    temp_dict['nominees'] = best_actor_tv_movie_noms
+    temp_dict['winner'] = best_actor_tv_movie
+    temp_dict['presenters'] = best_actor_tv_movie_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
 
     ##########################################################
 
@@ -221,6 +365,14 @@ def main():
     best_actress_tv_movie_presenter = 'value '# TEMP
     all_winners.append(best_actress_tv_movie)
 
+    temp_dict = {}
+    temp_dict['nominees'] = best_actress_tv_movie_noms
+    temp_dict['winner'] = best_actress_tv_movie
+    temp_dict['presenters'] = best_actress_tv_movie_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
+
     ##########################################################
 
     award_title = 'Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television'
@@ -228,6 +380,14 @@ def main():
     best_supporting_actor_tv_movie_noms = parsed_list.get(award_title)
     best_supporting_actor_tv_movie_presenter = 'value '# TEMP
     all_winners.append(best_supporting_actor_tv_movie)
+
+    temp_dict = {}
+    temp_dict['nominees'] = best_supporting_actor_tv_movie_noms
+    temp_dict['winner'] = best_supporting_actor_tv_movie
+    temp_dict['presenters'] = best_supporting_actor_tv_movie_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
 
     ##########################################################
 
@@ -237,6 +397,14 @@ def main():
     best_supporting_actress_tv_movie_presenter = 'value '# TEMP
     all_winners.append(best_supporting_actress_tv_movie)
 
+    temp_dict = {}
+    temp_dict['nominees'] = best_supporting_actress_tv_movie_noms
+    temp_dict['winner'] = best_supporting_actress_tv_movie
+    temp_dict['presenters'] = best_supporting_actress_tv_movie_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
+
     ##########################################################
 
     award_title = 'Best Mini-Series Or Motion Picture Made for Television'
@@ -244,6 +412,14 @@ def main():
     best_tv_movie_noms = parsed_list.get(award_title)
     best_tv_movie_presenter = 'value '# TEMP
     all_winners.append(best_tv_movie)
+
+    temp_dict = {}
+    temp_dict['nominees'] = best_tv_movie_noms
+    temp_dict['winner'] = best_tv_movie
+    temp_dict['presenters'] = best_tv_movie_presenter
+
+    structured_award = {award_title: temp_dict}
+    all_structured_awards.append(structured_award)
 
     ##########################################################
 
