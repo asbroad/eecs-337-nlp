@@ -1,6 +1,6 @@
 import json
 
-def save_output(hosts_in, all_winners_in, all_awards_in, all_presenters_in, all_nominees_in, output_filename):
+def save_output(year, hosts_in, all_winners_in, all_awards_in, all_presenters_in, all_nominees_in, all_structured_awards, output_filename):
 
     formatted_results = {}
 
@@ -25,7 +25,7 @@ def save_output(hosts_in, all_winners_in, all_awards_in, all_presenters_in, all_
         'method_description': 'scraped from wikipedia'
     }
 
-    metadata['year'] = 'test'# year
+    metadata['year'] = year
     metadata['hosts'] = hosts
     metadata['nominees'] = nominees
     metadata['awards'] = awards
@@ -41,12 +41,10 @@ def save_output(hosts_in, all_winners_in, all_awards_in, all_presenters_in, all_
     unstructured['nominees'] = all_nominees_in
 
     structured = {}
-    award1 = {}
-    award1['nominees'] = 'test'# nominees
-    award1['winner'] = 'test'# winner
-    award1['presenters'] = 'test'# presenters
 
-    structured['award1'] = award1
+    for structured_award in all_structured_awards:
+        for key, value in structured_award.iteritems():
+            structured[key] = value
 
     data['unstructured'] = unstructured
     data['structured'] = structured
