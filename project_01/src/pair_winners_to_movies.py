@@ -63,7 +63,6 @@ def fix_names_to_movie(year, award, old_nominees, old_winner):
         best_match_perc = 0
         for key in fixing_dict.keys():
             match_percent = (len(name) - nltk.edit_distance(name.lower(), key.lower()))/float(len(name))
-            print(name, key, match_percent)
             if match_percent > best_match_perc:
                 best_match_perc = match_percent
                 best_match = fixing_dict.get(key)
