@@ -6,12 +6,13 @@ from match_options import *
 from get_winner import*
 from save_output import *
 import operator
+import nltk
 
 ''' main function '''
 def main():
 
     year = '2013'
-    save_filename = 'output.json'
+    save_filename = 'output_2013.json'
 
     [tweets, parsed_list, parsed_presenter_list] = load_data(year)
 
