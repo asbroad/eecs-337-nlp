@@ -5,13 +5,15 @@ from scrape_2015_data import *
 from match_options import *
 from get_winner import*
 from save_output import *
+from pair_winners_to_movies import *
 import operator
+import nltk
 
 ''' main function '''
 def main():
 
     year = '2015'
-    save_filename = 'output.json'
+    save_filename = 'test.json'
 
     [tweets, parsed_list, parsed_presenter_list] = load_data(year)
 
@@ -20,6 +22,7 @@ def main():
     hosts = get_winner('host', tweets, parsed_list)
 
     all_winners = []
+    all_nominees = []
     all_structured_awards = []
 
     ##########################################################
@@ -29,6 +32,7 @@ def main():
     best_movie_drama_noms = parsed_list.get(award_title)
     best_movie_drama_presenter = 'value '# TEMP
     all_winners.append(best_movie_drama)
+    all_nominees.append(best_movie_drama_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_movie_drama_noms
@@ -45,6 +49,7 @@ def main():
     best_movie_musical_or_comedy_noms = parsed_list.get(award_title)
     best_movie_musical_or_comedy_presenter = 'value '# TEMP
     all_winners.append(best_movie_musical_or_comedy)
+    all_nominees.append(best_movie_musical_or_comedy_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_movie_musical_or_comedy_noms
@@ -61,6 +66,7 @@ def main():
     best_actor_drama_noms = parsed_list.get(award_title)
     best_actor_drama_presenter = 'value '# TEMP
     all_winners.append(best_actor_drama)
+    all_nominees.append(best_actor_drama_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_actor_drama_noms
@@ -77,6 +83,7 @@ def main():
     best_actress_drama_noms = parsed_list.get(award_title)
     best_actress_drama_presenter = 'value '# TEMP
     all_winners.append(best_actress_drama)
+    all_nominees.append(best_actress_drama_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_actress_drama_noms
@@ -93,6 +100,7 @@ def main():
     best_actor_musical_or_comedy_noms = parsed_list.get(award_title)
     best_actor_musical_or_comedy_presenter = 'value '# TEMP
     all_winners.append(best_actor_musical_or_comedy)
+    all_nominees.append(best_actor_musical_or_comedy_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_actor_musical_or_comedy_noms
@@ -109,6 +117,7 @@ def main():
     best_actress_musical_or_comedy_noms = parsed_list.get(award_title)
     best_actress_musical_or_comedy_presenter = 'value '# TEMP
     all_winners.append(best_actress_musical_or_comedy)
+    all_nominees.append(best_actress_musical_or_comedy_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_actress_musical_or_comedy_noms
@@ -125,6 +134,7 @@ def main():
     best_supporting_actor_noms = parsed_list.get(award_title)
     best_supporting_actor_presenter = 'value '# TEMP
     all_winners.append(best_supporting_actor)
+    all_nominees.append(best_supporting_actor_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_supporting_actor_noms
@@ -141,6 +151,7 @@ def main():
     best_supporting_actress_noms = parsed_list.get(award_title)
     best_supporting_actress_presenter = 'value '# TEMP
     all_winners.append(best_supporting_actress)
+    all_nominees.append(best_supporting_actress_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_supporting_actress_noms
@@ -157,6 +168,7 @@ def main():
     best_director_noms = parsed_list.get(award_title)
     best_director_presenter = 'value '# TEMP
     all_winners.append(best_director)
+    all_nominees.append(best_director_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_director_noms
@@ -172,7 +184,11 @@ def main():
     best_screenplay = get_winner(award_title, tweets, parsed_list)
     best_screenplay_noms = parsed_list.get(award_title)
     best_screenplay_presenter = 'value '# TEMP
+
+    [best_screenplay, best_screenplay_noms] = fix_names_to_movie(year, award_title, best_screenplay_noms, best_screenplay)
+
     all_winners.append(best_screenplay)
+    all_nominees.append(best_screenplay_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_screenplay_noms
@@ -188,7 +204,11 @@ def main():
     best_original_score = get_winner(award_title, tweets, parsed_list)
     best_original_score_noms = parsed_list.get(award_title)
     best_original_score_presenter = 'value '# TEMP
+
+    [best_original_score, best_original_score_noms] = fix_names_to_movie(year, award_title, best_original_score_noms, best_original_score)
+
     all_winners.append(best_original_score)
+    all_nominees.append(best_original_score_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_original_score_noms
@@ -204,7 +224,11 @@ def main():
     best_original_song = get_winner(award_title, tweets, parsed_list)
     best_original_song_noms = parsed_list.get(award_title)
     best_original_song_presenter = 'value '# TEMP
+
+    [best_original_song, best_original_song_noms] = fix_names_to_movie(year, award_title, best_original_song_noms, best_original_song)
+
     all_winners.append(best_original_song)
+    all_nominees.append(best_original_song_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_original_song_noms
@@ -221,6 +245,7 @@ def main():
     best_animated_movie_noms = parsed_list.get(award_title)
     best_animated_movie_presenter = 'value '# TEMP
     all_winners.append(best_animated_movie)
+    all_nominees.append(best_animated_movie_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_animated_movie_noms
@@ -237,6 +262,7 @@ def main():
     best_foreign_movie_noms = parsed_list.get(award_title)
     best_foreign_movie_presenter = 'value '# TEMP
     all_winners.append(best_foreign_movie)
+    all_nominees.append(best_foreign_movie_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_foreign_movie_noms
@@ -253,6 +279,7 @@ def main():
     best_tv_series_drama_noms = parsed_list.get(award_title)
     best_tv_series_drama_presenter = 'value '# TEMP
     all_winners.append(best_tv_series_drama)
+    all_nominees.append(best_tv_series_drama_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_tv_series_drama_noms
@@ -269,6 +296,7 @@ def main():
     best_tv_musical_or_comedy_noms = parsed_list.get(award_title)
     best_tv_musical_or_comedy_presenter = 'value '# TEMP
     all_winners.append(best_tv_musical_or_comedy)
+    all_nominees.append(best_tv_musical_or_comedy_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_tv_musical_or_comedy_noms
@@ -285,6 +313,7 @@ def main():
     best_actor_tv_drama_noms = parsed_list.get(award_title)
     best_actor_tv_drama_presenter = 'value '# TEMP
     all_winners.append(best_actor_tv_drama)
+    all_nominees.append(best_actor_tv_drama_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_actor_tv_drama_noms
@@ -301,6 +330,7 @@ def main():
     best_actress_tv_drama_noms = parsed_list.get(award_title)
     best_actress_tv_drama_presenter = 'value '# TEMP
     all_winners.append(best_actress_tv_drama)
+    all_nominees.append(best_actress_tv_drama_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_actress_tv_drama_noms
@@ -317,6 +347,7 @@ def main():
     best_actor_tv_musical_or_comedy_noms = parsed_list.get(award_title)
     best_actor_tv_musical_or_comedy_presenter = 'value '# TEMP
     all_winners.append(best_actor_tv_musical_or_comedy)
+    all_nominees.append(best_actor_tv_musical_or_comedy_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_actor_tv_musical_or_comedy_noms
@@ -333,6 +364,7 @@ def main():
     best_actress_tv_musical_or_comedy_noms = parsed_list.get(award_title)
     best_actress_tv_musical_or_comedy_presenter = 'value '# TEMP
     all_winners.append(best_actress_tv_musical_or_comedy)
+    all_nominees.append(best_actress_tv_musical_or_comedy_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_actress_tv_musical_or_comedy_noms
@@ -349,6 +381,7 @@ def main():
     best_actor_tv_movie_noms = parsed_list.get(award_title)
     best_actor_tv_movie_presenter = 'value '# TEMP
     all_winners.append(best_actor_tv_movie)
+    all_nominees.append(best_actor_tv_movie_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_actor_tv_movie_noms
@@ -365,6 +398,7 @@ def main():
     best_actress_tv_movie_noms = parsed_list.get(award_title)
     best_actress_tv_movie_presenter = 'value '# TEMP
     all_winners.append(best_actress_tv_movie)
+    all_nominees.append(best_actress_tv_movie_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_actress_tv_movie_noms
@@ -381,6 +415,7 @@ def main():
     best_supporting_actor_tv_movie_noms = parsed_list.get(award_title)
     best_supporting_actor_tv_movie_presenter = 'value '# TEMP
     all_winners.append(best_supporting_actor_tv_movie)
+    all_nominees.append(best_supporting_actor_tv_movie_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_supporting_actor_tv_movie_noms
@@ -397,6 +432,7 @@ def main():
     best_supporting_actress_tv_movie_noms = parsed_list.get(award_title)
     best_supporting_actress_tv_movie_presenter = 'value '# TEMP
     all_winners.append(best_supporting_actress_tv_movie)
+    all_nominees.append(best_supporting_actress_tv_movie_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_supporting_actress_tv_movie_noms
@@ -413,6 +449,7 @@ def main():
     best_tv_movie_noms = parsed_list.get(award_title)
     best_tv_movie_presenter = 'value '# TEMP
     all_winners.append(best_tv_movie)
+    all_nominees.append(best_tv_movie_noms)
 
     temp_dict = {}
     temp_dict['nominees'] = best_tv_movie_noms
@@ -425,7 +462,8 @@ def main():
     ##########################################################
 
     parsed_presenter_list_joined = reduce(operator.add, parsed_presenter_list[0])
-    parsed_nominee_list_joined =  reduce(operator.add, parsed_list.values())
+    #parsed_nominee_list_joined =  reduce(operator.add, parsed_list.values())
+    parsed_nominee_list_joined = reduce(operator.add, all_nominees)
 
     save_output(year, hosts, all_winners, parsed_list.keys(), parsed_presenter_list_joined, parsed_nominee_list_joined, all_structured_awards, save_filename)
     #save_output(year, hosts_in, all_winners_in, all_awards_in, all_presenters_in, all_nominees_in, all_structured_awards_in, output_filename)
@@ -449,7 +487,7 @@ def load_data(year='2013'):
     elif year == '2015':
         ''' Twitter JSON files '''
         #tweet_file = open('../data/gg15trimmed.json','r') # this file doesn't work, because it take up too much memory to read in
-        tweet_file = open('../data/gg15mini_half.json','r')
+        tweet_file = open('../data/gg15mini.json','r')
         #tweet_file = open('gg15mini_half.json','r')
         ''' Read in JSON file '''
         tweets = read_in_tweets_2015(tweet_file)
