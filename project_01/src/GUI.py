@@ -197,15 +197,26 @@ def run():
 		print(get_winner('Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television', tweets, parsed_list))
 	if x == "Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television":
 		print(get_winner('Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television', tweets, parsed_list))
+#Write file function
+def save():
+	yr=v2.get()
+	if yr == "2013":
+		os.system('python main.py')
+	elif yr=='2015':
+		os.system('python main2015.py')
+Label(root,text="Our Fun Goal( Input People's Names Here):").grid(row=6,sticky=W)
+e = StringVar()
+e.set('input your text here')
+entry = Entry(root,textvariable = e)
 
-
-json = Button(root,text='WRITE FILE',activeforeground='white',activebackground='red')
-json.grid(row=6,column=1,columnspan=1,stick =E + W+ N + S)
+Entry(root).grid(row=6,column=1,stick =E + W+ N + S)
+json = Button(root,text='WRITE FILE',command=save,activeforeground='white',activebackground='red')
+json.grid(row=7,column=1,columnspan=1,stick =E + W+ N + S)
 quit = Button(root,text='QUIT',command=root.quit,activeforeground='white',activebackground='red')
-quit.grid(row=7,column=0,columnspan = 2,stick = E + W+ N + S)
+quit.grid(row=8,column=0,columnspan = 2,stick = E + W+ N + S)
 start = Button(root,text='GO',command=run,activeforeground='white',activebackground='red')
 start.bind("Button-1>",start)
-start.grid(row=6,column=0,stick = E + W + N + S)
+start.grid(row=7,column=0,stick = E + W + N + S)
 Label(root,text="Result:").grid(row=4,sticky=W)
 t1 = Text(root) 
 t1.grid(row=5,column=0,columnspan = 2,stick = E + W+ N + S)
@@ -218,4 +229,8 @@ sys.stdout = PrintToT1()
 mainloop() 
 root.mainloop()
 	
+
 #os.system('python main.py')'''
+
+#os.system('python main.py')'''
+
