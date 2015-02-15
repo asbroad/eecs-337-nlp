@@ -5,14 +5,15 @@ from scrape_2015_data import *
 from match_options import *
 from get_winner import*
 from save_output import *
+from pair_winners_to_movies import *
 import operator
 import nltk
 
 ''' main function '''
 def main():
 
-    year = '2013'
-    save_filename = 'output_2013.json'
+    year = '2015'
+    save_filename = 'test.json'
 
     [tweets, parsed_list, parsed_presenter_list] = load_data(year)
 
@@ -173,6 +174,9 @@ def main():
     best_screenplay = get_winner(award_title, tweets, parsed_list)
     best_screenplay_noms = parsed_list.get(award_title)
     best_screenplay_presenter = 'value '# TEMP
+
+    [best_screenplay, best_screenplay_noms] = fix_names_to_movie(year, award_title, best_screenplay_noms, best_screenplay)
+
     all_winners.append(best_screenplay)
 
     temp_dict = {}
@@ -189,6 +193,9 @@ def main():
     best_original_score = get_winner(award_title, tweets, parsed_list)
     best_original_score_noms = parsed_list.get(award_title)
     best_original_score_presenter = 'value '# TEMP
+
+    [best_original_score, best_original_score_noms] = fix_names_to_movie(year, award_title, best_original_score_noms, best_original_score)
+
     all_winners.append(best_original_score)
 
     temp_dict = {}
@@ -205,6 +212,9 @@ def main():
     best_original_song = get_winner(award_title, tweets, parsed_list)
     best_original_song_noms = parsed_list.get(award_title)
     best_original_song_presenter = 'value '# TEMP
+
+    [best_original_song, best_original_song_noms] = fix_names_to_movie(year, award_title, best_original_song_noms, best_original_song)
+
     all_winners.append(best_original_song)
 
     temp_dict = {}
@@ -422,7 +432,7 @@ def main():
 
     structured_award = {award_title: temp_dict}
     all_structured_awards.append(structured_award)
-
+    
     ##########################################################
 
     parsed_presenter_list_joined = reduce(operator.add, parsed_presenter_list[0])

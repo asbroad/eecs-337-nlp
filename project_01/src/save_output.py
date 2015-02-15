@@ -7,22 +7,22 @@ def save_output(year, hosts_in, all_winners_in, all_awards_in, all_presenters_in
     metadata = {}
     hosts = {
         'method':  'detected',
-        'method_description': 'searched for names that co-occured with the word host'
+        'method_description': 'We searched over the entire tweet dataset, and returned an ordered list based on a count of the co-occurance of the word *host* and bi-gram proper nouns.  We then return the top two results as there are two hosts.  The number of hosts is a parameter that can be set for each year.'
     }
 
     nominees = {
         'method':  'scraped',
-        'method_description': 'scraped from wikipedia'
+        'method_description': 'We scrapped the nominees for each award from Wikipedia.  Wikipedia follows the same format for both the table they produce in both 2013 and 2015.'
     }
 
     awards = {
         'method':  'scraped',
-        'method_description': 'scraped from wikipedia'
+        'method_description': 'Again, we scrapped the award titles from Wikipedia.'
     }
 
     presenters = {
         'method':  'scraped',
-        'method_description': 'scraped from wikipedia'
+        'method_description': 'And again, we scrapped the presenters from a list currated on Wikipedia'
     }
 
     metadata['year'] = year
