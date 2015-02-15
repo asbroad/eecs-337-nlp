@@ -5,24 +5,68 @@ from match_options import *
 from get_winner import*
 from save_output import *
 from datetime import *
+import random
 
 #What's the buzz?
 #show starts at 5pm pacific time
 #red carpet starts at 3ish?
-#=datetime(2015, 1, 11, 16, 0 ,0)
-def gg_hist(name, tweets, max_bins = 20, start_time = datetime(2015, 1, 11, 16, 0 ,0)):
+
+ignore_list = ['will', 'ferrell', 'kristen', 'wiig', 'bill', 'hader', 'golden', 'globes', 'globe', 'goldenglobes', '#goldenglobes', 'oscars']
+
+
+def find_subset(name, tweets):
 	subSet = []
-	bins = [list() for _ in xrange(max_bins)]
 	for tweet in tweets:
 		tweetText = tweet[0].lower()
 		if match_all_words(tweetText, name.lower().split()):
 			subSet.append(tweet)
+	print("subSet Generated")
+	return subSet
+
+
+def gg_typical_tweet(name, tweets):
+	subSet = find_subset(name, tweets)
+	random.shuffle(subSet)
+	subSet = subSet[0:1000]
+	print("sampled")
+	top_hashtags = find_hashtag(subSet)
+	other = get_bigram_list_match_tweets(subSet, name.split())[1][0]
+	hashtags = random.sample(set(top_hashtags[0:10]), 3)
+
+	myTweet = "{} at the #goldenglobes2015 is amazing.  Looking forward to {}! {} {} {}".format(name, other, hashtags[0][0], hashtags[1][0], hashtags[2][0])
+	print(myTweet)
+
+
+
+def find_hashtag(tweets):
+	d = defaultdict(int)
+	for tweet in tweets:
+		tweetText = tweet[0].lower().split()
+		for token in tweetText:
+			#print(token)
+			if token[0] == "#":
+				d[token] += 1
+
+	for key in ignore_list:
+		for dKey in d.keys():
+			if key in dKey:
+				del d[dKey]
+
+	pos_hosts = sorted(d.iteritems(), key =lambda (k,v): v, reverse=True)
+
+	return pos_hosts
+
+
+
+def gg_hist(name, tweets, max_bins = 20, start_time = datetime(2015, 1, 11, 16, 0 ,0)):
+	subSet = find_subset(name, tweets)
+	bins = [list() for _ in xrange(max_bins)]
+
 	for tweet in subSet:
 		bin = classifyTimeStamp(tweet, max_bins, start_time)
 		bins[bin].append(tweet)
 
 	return bins
-
 
 def classifyTimeStamp(tweet, num_bins, start_time):
 	val = tweet[1][0:-3]
@@ -45,7 +89,7 @@ def classifyTimeStamp(tweet, num_bins, start_time):
 
 	return res
 
-def printHist(histogram, start_time, bin_size = timedelta(minutes = 15)):
+def printHist(histogram, start_time = datetime(2015, 1, 11, 16, 0 ,0), bin_size = timedelta(minutes = 15)):
 	for idx in range(0, len(histogram)):
 		bin_time = start_time + idx * bin_size
 		pretty = "{} - {}".format(bin_time, len(histogram[idx]))
@@ -56,12 +100,14 @@ def main():
 	year = '2015'
 	[tweets, parsed_list, parsed_presenter_list] = load_data(year)
 
+
+	#res = find_hashtag(tweets)
+	#print(res[0:5])
+	#gg_typical_tweet("Tina Fey", tweets)
 	#bin = classifyTimeStamp(tweets[0])
 	#print(bin)
-
-	res = gg_hist("Tina Fey", tweets)
-	start_time = datetime(2015, 1, 11, 16, 0 ,0)
-	printHist(res, start_time)
+	hist = gg_hist("Tina Fey", tweets)
+	printHist(hist)
 
 def load_data(year='2013'):
     if year == '2013':
