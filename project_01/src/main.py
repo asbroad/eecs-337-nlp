@@ -10,16 +10,12 @@ import operator
 import nltk
 
 ''' main function '''
-
-
 def main():
 
     year = '2013'
     save_filename = 'test.json'
 
     [tweets, parsed_list, parsed_presenter_list] = load_data(year)
-    #for award in parsed_presenter_list[1]:
-        #print(award)
 
     ''' Analysis '''
 
@@ -187,14 +183,8 @@ def main():
     award_title = 'Best Screenplay - Motion Picture'
     best_screenplay = get_winner(award_title, tweets, parsed_list)
     best_screenplay_noms = parsed_list.get(award_title)
-<<<<<<< HEAD
-    best_screenplay_presenter = 'value '# TEMP
-
     [best_screenplay, best_screenplay_noms] = fix_names_to_movie(year, award_title, best_screenplay_noms, best_screenplay)
-
-=======
     best_screenplay_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
->>>>>>> 0c1f124baf850aae113a62b2b414de01c4fe61d3
     all_winners.append(best_screenplay)
     all_nominees.append(best_screenplay_noms)
 
@@ -211,14 +201,8 @@ def main():
     award_title = 'Best Original Score - Motion Picture'
     best_original_score = get_winner(award_title, tweets, parsed_list)
     best_original_score_noms = parsed_list.get(award_title)
-<<<<<<< HEAD
-    best_original_score_presenter = 'value '# TEMP
-
     [best_original_score, best_original_score_noms] = fix_names_to_movie(year, award_title, best_original_score_noms, best_original_score)
-
-=======
     best_original_score_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
->>>>>>> 0c1f124baf850aae113a62b2b414de01c4fe61d3
     all_winners.append(best_original_score)
     all_nominees.append(best_original_score_noms)
 
@@ -235,14 +219,8 @@ def main():
     award_title = 'Best Original Song - Motion Picture'
     best_original_song = get_winner(award_title, tweets, parsed_list)
     best_original_song_noms = parsed_list.get(award_title)
-<<<<<<< HEAD
-    best_original_song_presenter = 'value '# TEMP
-
     [best_original_song, best_original_song_noms] = fix_names_to_movie(year, award_title, best_original_song_noms, best_original_song)
-
-=======
     best_original_song_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
->>>>>>> 0c1f124baf850aae113a62b2b414de01c4fe61d3
     all_winners.append(best_original_song)
     all_nominees.append(best_original_song_noms)
 
