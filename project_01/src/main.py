@@ -8,12 +8,16 @@ from save_output import *
 import operator
 
 ''' main function '''
+
+
 def main():
 
     year = '2013'
     save_filename = 'output.json'
 
     [tweets, parsed_list, parsed_presenter_list] = load_data(year)
+    #for award in parsed_presenter_list[1]:
+        #print(award)
 
     ''' Analysis '''
 
@@ -27,7 +31,7 @@ def main():
     award_title = 'Best Motion Picture - Drama'
     best_movie_drama = get_winner(award_title, tweets, parsed_list)
     best_movie_drama_noms = parsed_list.get(award_title)
-    best_movie_drama_presenter = 'value '# TEMP
+    best_movie_drama_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_movie_drama)
 
     temp_dict = {}
@@ -43,7 +47,7 @@ def main():
     award_title = 'Best Motion Picture - Comedy Or Musical'
     best_movie_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_movie_musical_or_comedy_noms = parsed_list.get(award_title)
-    best_movie_musical_or_comedy_presenter = 'value '# TEMP
+    best_movie_musical_or_comedy_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_movie_musical_or_comedy)
 
     temp_dict = {}
@@ -59,7 +63,7 @@ def main():
     award_title = 'Best Performance by an Actor in a Motion Picture - Drama'
     best_actor_drama = get_winner(award_title, tweets, parsed_list)
     best_actor_drama_noms = parsed_list.get(award_title)
-    best_actor_drama_presenter = 'value '# TEMP
+    best_actor_drama_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_actor_drama)
 
     temp_dict = {}
@@ -75,7 +79,7 @@ def main():
     award_title = 'Best Performance by an Actress in a Motion Picture - Drama'
     best_actress_drama = get_winner(award_title, tweets, parsed_list)
     best_actress_drama_noms = parsed_list.get(award_title)
-    best_actress_drama_presenter = 'value '# TEMP
+    best_actress_drama_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_actress_drama)
 
     temp_dict = {}
@@ -91,7 +95,7 @@ def main():
     award_title = 'Best Performance by an Actor in a Motion Picture - Comedy Or Musical'
     best_actor_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_actor_musical_or_comedy_noms = parsed_list.get(award_title)
-    best_actor_musical_or_comedy_presenter = 'value '# TEMP
+    best_actor_musical_or_comedy_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_actor_musical_or_comedy)
 
     temp_dict = {}
@@ -107,7 +111,7 @@ def main():
     award_title = 'Best Performance by an Actress in a Motion Picture - Comedy Or Musical'
     best_actress_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_actress_musical_or_comedy_noms = parsed_list.get(award_title)
-    best_actress_musical_or_comedy_presenter = 'value '# TEMP
+    best_actress_musical_or_comedy_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_actress_musical_or_comedy)
 
     temp_dict = {}
@@ -123,7 +127,7 @@ def main():
     award_title = 'Best Performance by an Actor In A Supporting Role in a Motion Picture'
     best_supporting_actor = get_winner(award_title, tweets, parsed_list)
     best_supporting_actor_noms = parsed_list.get(award_title)
-    best_supporting_actor_presenter = 'value '# TEMP
+    best_supporting_actor_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_supporting_actor)
 
     temp_dict = {}
@@ -139,7 +143,7 @@ def main():
     award_title = 'Best Performance by an Actress In A Supporting Role in a Motion Picture'
     best_supporting_actress = get_winner(award_title, tweets, parsed_list)
     best_supporting_actress_noms = parsed_list.get(award_title)
-    best_supporting_actress_presenter = 'value '# TEMP
+    best_supporting_actress_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_supporting_actress)
 
     temp_dict = {}
@@ -155,7 +159,7 @@ def main():
     award_title = 'Best Director - Motion Picture'
     best_director = get_winner(award_title, tweets, parsed_list)
     best_director_noms = parsed_list.get(award_title)
-    best_director_presenter = 'value '# TEMP
+    best_director_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_director)
 
     temp_dict = {}
@@ -171,7 +175,7 @@ def main():
     award_title = 'Best Screenplay - Motion Picture'
     best_screenplay = get_winner(award_title, tweets, parsed_list)
     best_screenplay_noms = parsed_list.get(award_title)
-    best_screenplay_presenter = 'value '# TEMP
+    best_screenplay_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_screenplay)
 
     temp_dict = {}
@@ -187,7 +191,7 @@ def main():
     award_title = 'Best Original Score - Motion Picture'
     best_original_score = get_winner(award_title, tweets, parsed_list)
     best_original_score_noms = parsed_list.get(award_title)
-    best_original_score_presenter = 'value '# TEMP
+    best_original_score_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_original_score)
 
     temp_dict = {}
@@ -203,7 +207,7 @@ def main():
     award_title = 'Best Original Song - Motion Picture'
     best_original_song = get_winner(award_title, tweets, parsed_list)
     best_original_song_noms = parsed_list.get(award_title)
-    best_original_song_presenter = 'value '# TEMP
+    best_original_song_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_original_song)
 
     temp_dict = {}
@@ -219,7 +223,7 @@ def main():
     award_title = 'Best Animated Feature Film'
     best_animated_movie = get_winner(award_title, tweets, parsed_list)
     best_animated_movie_noms = parsed_list.get(award_title)
-    best_animated_movie_presenter = 'value '# TEMP
+    best_animated_movie_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_animated_movie)
 
     temp_dict = {}
@@ -235,7 +239,7 @@ def main():
     award_title = 'Best Foreign Language Film'
     best_foreign_movie = get_winner(award_title, tweets, parsed_list)
     best_foreign_movie_noms = parsed_list.get(award_title)
-    best_foreign_movie_presenter = 'value '# TEMP
+    best_foreign_movie_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_foreign_movie)
 
     temp_dict = {}
@@ -251,7 +255,7 @@ def main():
     award_title = 'Best Television Series - Drama'
     best_tv_series_drama = get_winner(award_title, tweets, parsed_list)
     best_tv_series_drama_noms = parsed_list.get(award_title)
-    best_tv_series_drama_presenter = 'value '# TEMP
+    best_tv_series_drama_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_tv_series_drama)
 
     temp_dict = {}
@@ -267,7 +271,7 @@ def main():
     award_title = 'Best Television Series - Comedy Or Musical'
     best_tv_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_tv_musical_or_comedy_noms = parsed_list.get(award_title)
-    best_tv_musical_or_comedy_presenter = 'value '# TEMP
+    best_tv_musical_or_comedy_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_tv_musical_or_comedy)
 
     temp_dict = {}
@@ -283,7 +287,7 @@ def main():
     award_title = 'Best Performance by an Actor In A Television Series - Drama'
     best_actor_tv_drama = get_winner(award_title, tweets, parsed_list)
     best_actor_tv_drama_noms = parsed_list.get(award_title)
-    best_actor_tv_drama_presenter = 'value '# TEMP
+    best_actor_tv_drama_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_actor_tv_drama)
 
     temp_dict = {}
@@ -299,7 +303,7 @@ def main():
     award_title = 'Best Performance by an Actress In A Television Series - Drama'
     best_actress_tv_drama = get_winner(award_title, tweets, parsed_list)
     best_actress_tv_drama_noms = parsed_list.get(award_title)
-    best_actress_tv_drama_presenter = 'value '# TEMP
+    best_actress_tv_drama_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_actress_tv_drama)
 
     temp_dict = {}
@@ -315,7 +319,7 @@ def main():
     award_title = 'Best Performance by an Actor In A Television Series - Comedy Or Musical'
     best_actor_tv_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_actor_tv_musical_or_comedy_noms = parsed_list.get(award_title)
-    best_actor_tv_musical_or_comedy_presenter = 'value '# TEMP
+    best_actor_tv_musical_or_comedy_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_actor_tv_musical_or_comedy)
 
     temp_dict = {}
@@ -331,7 +335,7 @@ def main():
     award_title = 'Best Performance by an Actress In A Television Series - Comedy Or Musical'
     best_actress_tv_musical_or_comedy = get_winner(award_title, tweets, parsed_list)
     best_actress_tv_musical_or_comedy_noms = parsed_list.get(award_title)
-    best_actress_tv_musical_or_comedy_presenter = 'value '# TEMP
+    best_actress_tv_musical_or_comedy_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_actress_tv_musical_or_comedy)
 
     temp_dict = {}
@@ -347,7 +351,7 @@ def main():
     award_title = 'Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television'
     best_actor_tv_movie = get_winner(award_title, tweets, parsed_list)
     best_actor_tv_movie_noms = parsed_list.get(award_title)
-    best_actor_tv_movie_presenter = 'value '# TEMP
+    best_actor_tv_movie_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_actor_tv_movie)
 
     temp_dict = {}
@@ -363,7 +367,7 @@ def main():
     award_title = 'Best Performance by an Actress In A Mini-series or Motion Picture Made for Television'
     best_actress_tv_movie = get_winner(award_title, tweets, parsed_list)
     best_actress_tv_movie_noms = parsed_list.get(award_title)
-    best_actress_tv_movie_presenter = 'value '# TEMP
+    best_actress_tv_movie_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_actress_tv_movie)
 
     temp_dict = {}
@@ -379,7 +383,7 @@ def main():
     award_title = 'Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television'
     best_supporting_actor_tv_movie = get_winner(award_title, tweets, parsed_list)
     best_supporting_actor_tv_movie_noms = parsed_list.get(award_title)
-    best_supporting_actor_tv_movie_presenter = 'value '# TEMP
+    best_supporting_actor_tv_movie_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_supporting_actor_tv_movie)
 
     temp_dict = {}
@@ -395,7 +399,7 @@ def main():
     award_title = 'Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television'
     best_supporting_actress_tv_movie = get_winner(award_title, tweets, parsed_list)
     best_supporting_actress_tv_movie_noms = parsed_list.get(award_title)
-    best_supporting_actress_tv_movie_presenter = 'value '# TEMP
+    best_supporting_actress_tv_movie_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_supporting_actress_tv_movie)
 
     temp_dict = {}
@@ -411,7 +415,7 @@ def main():
     award_title = 'Best Mini-Series Or Motion Picture Made for Television'
     best_tv_movie = get_winner(award_title, tweets, parsed_list)
     best_tv_movie_noms = parsed_list.get(award_title)
-    best_tv_movie_presenter = 'value '# TEMP
+    best_tv_movie_presenter = get_presenter_from_award(award_title, parsed_presenter_list)
     all_winners.append(best_tv_movie)
 
     temp_dict = {}
@@ -429,6 +433,56 @@ def main():
 
     save_output(year, hosts, all_winners, parsed_list.keys(), parsed_presenter_list_joined, parsed_nominee_list_joined, all_structured_awards, save_filename)
     #save_output(year, hosts_in, all_winners_in, all_awards_in, all_presenters_in, all_nominees_in, all_structured_awards_in, output_filename)
+
+
+def get_presenter_from_award(award, parsed_presenter_list):
+    blacklist = set(['In', 'A', 'Or', 'Made', 'Series', 'Film', 'Role', 'Performance', 'Mr.', 'Miss','Golden','Globe,','Best', 'Globe'])
+    special_list = set(['television','score','song','screenplay'])
+    split_award = award.split()
+    award = [word.lower() for word in split_award if ord(word[0]) > 0x40 and ord(word[0]) < 0x5B and word not in blacklist]
+    for idx in xrange(len(parsed_presenter_list[1])):
+        phrases = parsed_presenter_list[1][idx][0].split(' and Best ')
+        main_words = [[word.lower() for word in phrases[0].split() if ord(word[0]) > 0x40 and ord(word[0]) < 0x5B and word not in blacklist]]
+        try:
+            main_words.append([word.lower() for word in phrases[1].split() if ord(word[0]) > 0x40 and ord(word[0]) < 0x5B and word not in blacklist])
+        except IndexError:
+            pass
+        for main in main_words:
+            if main[-1] in special_list:
+                main.append('motion')
+                main.append('picture')
+            current_different = get_current_difference(award, main)
+            if current_different == 0:
+                return parsed_presenter_list[0][idx]
+
+    return 'No match found'
+
+
+
+def get_current_difference(true_award, parsed_award):
+    t_award_diff = 0
+    p_award_diff = 0
+
+    for award in true_award:
+        is_same = False
+        for paward in parsed_award:
+            if nltk.edit_distance(award, paward) <= 1:
+                is_same = True
+                break
+        if not is_same:
+            t_award_diff += 1
+
+    for award in parsed_award:
+        is_same = False
+        for taward in true_award:
+            if nltk.edit_distance(award, taward) <= 1:
+                is_same = True
+                break
+        if not is_same:
+            p_award_diff += 1
+
+    return t_award_diff + p_award_diff
+
 
 
 def load_data(year='2013'):
