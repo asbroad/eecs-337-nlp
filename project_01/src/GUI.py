@@ -38,7 +38,7 @@ def printYear(yr):
 		parsed_tv_list = parse_2013_wikipedia_tv(xml_file_2013)
 		parsed_presenter_list = parse_2013_wikipedia_presenters(xml_file_2013)
 		parsed_list = dict(parsed_movie_list.items() + parsed_tv_list.items())
-		om1 = OptionMenu(root,v1,'Hosts','Best Motion Picture - Drama','Best Performance by an Actress in a Motion Picture - Drama','Best Performance by an Actor in a Motion Picture - Drama','Best Motion Picture - Comedy Or Musical','Best Performance by an Actress in a Motion Picture - Comedy Or Musical','Best Performance by an Actor in a Motion Picture - Comedy Or Musical','Best Animated Feature Film','Best Foreign Language Film','Best Performance by an Actress In A Supporting Role in a Motion Picture','Best Performance by an Actor In A Supporting Role in a Motion Picture','Best Director - Motion Picture','Best Screenplay - Motion Picture','Best Original Score - Motion Picture','Best Original Song - Motion Picture','Best Television Series - Drama','Best Performance by an Actress In A Television Series - Drama','Best Performance by an Actor In A Television Series - Drama','Best Television Series - Comedy Or Musical','Best Performance by an Actor In A Television Series - Comedy Or Musical','Best Mini-Series Or Motion Picture Made for Television','Best Performance by an Actress In A Mini-series or Motion Picture Made for Television','Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television','Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television','Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television','Winners','Awards','Presenters','Nominees','Awards to Winners','Awards to Presenters','Awards to Nominees',command=printOption)
+		om1 = OptionMenu(root,v1,'Hosts','Best Motion Picture - Drama','Best Performance by an Actress in a Motion Picture - Drama','Best Performance by an Actor in a Motion Picture - Drama','Best Motion Picture - Comedy Or Musical','Best Performance by an Actress in a Motion Picture - Comedy Or Musical','Best Performance by an Actor in a Motion Picture - Comedy Or Musical','Best Animated Feature Film','Best Foreign Language Film','Best Performance by an Actress In A Supporting Role in a Motion Picture','Best Performance by an Actor In A Supporting Role in a Motion Picture','Best Director - Motion Picture','Best Screenplay - Motion Picture','Best Original Score - Motion Picture','Best Original Song - Motion Picture','Best Television Series - Drama','Best Performance by an Actress In A Television Series - Drama','Best Performance by an Actor In A Television Series - Drama','Best Television Series - Comedy Or Musical','Best Performance by an Actor In A Television Series - Comedy Or Musical','Best Mini-Series Or Motion Picture Made for Television','Best Performance by an Actress In A Mini-series or Motion Picture Made for Television','Best Performance by an Actor in a Mini-Series or Motion Picture Made for Television','Best Performance by an Actress in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television','Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television',command=printOption)
 		om1.bind("Button-1>",printOption)
 		om1.grid(row=0,column=1,columnspan = 1,stick = E + W+ N + S)
 
@@ -46,7 +46,7 @@ def printYear(yr):
 		global tweets
 		global parsed_list
 		print yr
-		tweet_file = open('../data/gg15mini_half.json','r')
+		tweet_file = open('../data/gg15mini.json','r')
 		#tweet_file = open('gg15mini_half.json','r')
 		''' Read in JSON file '''
 		tweets = read_in_tweets_2015(tweet_file)
@@ -118,32 +118,6 @@ def printOption(x):
 		print(v1.get())
 	if x == "Best Performance by an Actor in a Supporting Role in a Series, Mini-Series or Motion Picture Made for Television":
 		print(v1.get())
-	if x == "Winners":
-		print("This year's Golden Globe Winners are")
-	if x == "Awards":
-		print("This year's Golden Globe Awards are")
-	if x == "Presenters":
-		print("This year's Presenters in Golden Globe are:")
-	if x == "Nominees":
-		print("This year's Nominees of Golden Globe Award are:")
-	if x == "Awards to Winners":
-		print("Awards to Winners")
-	if x == "Awards to Presenters":
-		print("This year's Golden Globe Awards to Presenters are:")
-	if x == "Awards to Nominees":
-		print("This year's Golden Globe Awards to Nominees are:")
-	if x == "Awards":
-		print(v1.get())
-	if x == "Presenters":
-		print(v1.get())
-	if x == "Nominees":
-		print(v1.get())
-	if x == "Awards to Winners":
-		print(v1.get())
-	if x == "Awards to Presenters'":
-		print(v1.get())
-	if x == "Awards to Nominees'":
-		print(v1.get())
 #Go function
 def run():
 	x=v1.get()
@@ -204,12 +178,11 @@ def save():
 		os.system('python main.py')
 	elif yr=='2015':
 		os.system('python main2015.py')
-Label(root,text="Our Fun Goal( Input People's Names Here):").grid(row=6,sticky=W)
-e = StringVar()
-e.set('input your text here')
-entry = Entry(root,textvariable = e)
-
-Entry(root).grid(row=6,column=1,stick =E + W+ N + S)
+#Label(root,text="Our Fun Goal( Input People's Names Here):").grid(row=6,sticky=W)
+#e = StringVar()
+#e.set('input your text here')
+#entry = Entry(root,textvariable = e)
+#Entry(root).grid(row=6,column=1,stick =E + W+ N + S)
 json = Button(root,text='WRITE FILE',command=save,activeforeground='white',activebackground='red')
 json.grid(row=7,column=1,columnspan=1,stick =E + W+ N + S)
 quit = Button(root,text='QUIT',command=root.quit,activeforeground='white',activebackground='red')
