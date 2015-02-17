@@ -13,7 +13,7 @@ import nltk
 def main():
 
     year = '2013'
-    save_filename = 'test.json'
+    save_filename = 'gg_awards_2013.json'
 
     [tweets, parsed_list, parsed_presenter_list] = load_data(year)
 
