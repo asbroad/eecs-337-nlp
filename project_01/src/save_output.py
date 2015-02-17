@@ -4,7 +4,6 @@ def save_output(year, hosts_in, all_winners_in, all_awards_in, all_presenters_in
 
     formatted_results = {}
 
-    metadata = {}
     hosts = {
         'method':  'detected',
         'method_description': 'We searched over the entire tweet dataset, and returned an ordered list based on a count of the co-occurance of the word *host* and bi-gram proper nouns.  We then return the top two results as there are two hosts.  The number of hosts is a parameter that can be set for each year.'
@@ -25,11 +24,32 @@ def save_output(year, hosts_in, all_winners_in, all_awards_in, all_presenters_in
         'method_description': 'And again, we scrapped the presenters from a list currated on Wikipedia'
     }
 
+    names = {}
+
+    names['hosts'] = hosts
+    names['nominees'] = nominees
+    names['awards'] = awards
+    names['presenters'] = presenters
+
+    mappings = {}
+
+    nominees_map = {
+        'method':  'detected',
+        'method_description': 'We used the Levenshtein distance to calculate the difference between our detected results and the scrapped nominees'
+    }
+
+    presenters_map = {
+        'method':  'detected',
+        'method_description': 'Again, we used the Levenshtein distance to calculate the difference between our detectsion and the scrapped presenter list'
+    }
+
+    mappings['nominees'] = nominees_map
+    mappings['presenters'] = presenters_map
+
+    metadata = {}
     metadata['year'] = year
-    metadata['hosts'] = hosts
-    metadata['nominees'] = nominees
-    metadata['awards'] = awards
-    metadata['presenters'] = presenters
+    metadata['names'] = names
+    metadata['mappings'] = mappings
 
     data = {}
 
