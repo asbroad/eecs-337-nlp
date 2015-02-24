@@ -21,17 +21,34 @@ def main():
 	#f = open("../data/Stir-Fry.html")
 	#page = f.read()
 
-	regex = re.compile("<span id=\"lblIngAmount\" class=\"ingredient-amount\">(.*?)</span>")
-	amounts = re.findall(regex, page)
-	regex = re.compile("<span id=\"lblIngName\" class=\"ingredient-name\">(.*?)</span>")
-	ingredients = re.findall(regex, page)
+	ingredient_qty = getIngredients(page)
+	ingredients = ingredient_qty[0]
+	amounts = ingredient_qty[1]
+
+	directions = getDirections(page)
 
 	if len(ingredients) == 0:
 		print("Invalid URL")
 	else:
 		print(ingredients)
 		print(amounts)
+		print(directions)
 
+
+def getDirections(page):
+	regex = re.compile("<li><span class=\"plaincharacterwrap break\">(.*?)</span></li>")
+	directions = re.findall(regex, page)
+
+	return directions
+
+
+def getIngredients(page):
+	regex = re.compile("<span id=\"lblIngAmount\" class=\"ingredient-amount\">(.*?)</span>")
+	amounts = re.findall(regex, page)
+	regex = re.compile("<span id=\"lblIngName\" class=\"ingredient-name\">(.*?)</span>")
+	ingredients = re.findall(regex, page)
+
+	return [ingredients, amounts]
 
 
 
