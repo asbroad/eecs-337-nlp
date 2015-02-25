@@ -1,45 +1,42 @@
-import xml.etree.ElementTree as ET
 import urllib
 import re
-import HTMLParser
+
+
+'''
+To Do:
+Extract Cooking methods
+extract spices - perhaps use wikipedia to obtain list?
+extract tools - should be assosciated with secondary cooking methods (e.g bowl - stir)
+
+Build syntax for recipie 
+
+'''
 
 def main():
 	
 	'''User-Inputted Recipie Title'''
-	url = generateURL()
-	link = urllib.urlopen(url)
+	#url = generateURL()
+	#link = urllib.urlopen(url)
 
 
 	'''Hard Coded URLs'''
 	#link = urllib.urlopen("http://allrecipes.com/recipe/brown-rice-and-quinoa-sushi-rolls/")
-	#link = urllib.urlopen("http://allrecipes.com/recipe/Boilermaker-Tailgate-Chili/")
-	
+	#link = urllib.urlopen("http://allrecipes.com/recipe/Boilermaker-Tailgate-Chili/")	
 	#link = urllib.urlopen("http://allrecipes.com/recipe/jerk-chicken/")
-	
-	page = link.read()
+	#page = link.read()
 
-
-
-	'''Local Webpages'''
+	'''Local Cached Webpages'''
 	#f = open("../data/Burger.html")
 	#f = open("../data/Cake.html")
-	#f = open("../data/Stir-Fry.html")
-	#page = f.read()
+	f = open("../data/Stir-Fry.html")
+	page = f.read()
 
 	ingredient_list = getIngredients(page)
 	prettyPrintIngredients(ingredient_list)
-	#ingredients = ingredient_qty[0]
-	#amounts = ingredient_qty[1]
 
-	#directions = getDirections(page)
+	directions = getDirections(page)
+	prettyPrintDirections(directions)
 
-	#if len(ingredients) == 0:
-	#	print("Invalid URL")
-	#else:
-		#fancyPrintIngredients(ingredient_qty)
-		#print(ingredients)
-		#print(amounts)
-		#print(directions)
 
 
 
@@ -57,6 +54,13 @@ def getDirections(page):
 
 	return directions
 
+def prettyPrintDirections(directions):
+	idx = 1;
+	for direction in directions:
+		line = "Step {}: ".format(idx)
+		line = line + direction
+		print(line)
+		idx += 1
 
 def prettyPrintIngredients(ingredient_list):
 	for item in ingredient_list:
@@ -66,7 +70,7 @@ def prettyPrintIngredients(ingredient_list):
 def getIngredients(page):
 	regex = re.compile("<p class=\"fl-ing\" itemprop=\"ingredients\">(.*?)</p>", re.DOTALL)
 	ingredients = re.findall(regex, page)
-
+	print(ingredients)
 	ingredient_list = []
 
 	for entry in ingredients:
@@ -97,6 +101,9 @@ def getIngredients(page):
 		item = ingredient(ingredient_name, ingredient_qty, ingredient_measure)
 		ingredient_list.append(item)
 
+	if len(ingredient_list) == 0:
+		print("Unable to retreive recipie: Bad URL")
+
 	return ingredient_list
 
 
@@ -110,5 +117,12 @@ def generateURL():
 	return recipie_url
 
 
+def getCookingMethods():
+	methods = ["Grill", "Pan-Fry", "Deep Fry", "Saute", "Boil", "Roast", "Bake", "Sear", "Poach", "Simmer", "Broil", "Steam", "Blanch", "Braise", "Stew"]
+	return methods
+
+
 if __name__ == "__main__":
     main()
+
+
