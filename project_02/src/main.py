@@ -6,16 +6,19 @@ import HTMLParser
 def main():
 	
 	'''User-Inputted Recipie Title'''
-	#url = generateURL()
-	#link = urllib.urlopen(url)
+	url = generateURL()
+	link = urllib.urlopen(url)
 
 
 	'''Hard Coded URLs'''
 	#link = urllib.urlopen("http://allrecipes.com/recipe/brown-rice-and-quinoa-sushi-rolls/")
 	#link = urllib.urlopen("http://allrecipes.com/recipe/Boilermaker-Tailgate-Chili/")
-	link = urllib.urlopen("http://allrecipes.com/recipe/jerk-chicken/")
+	
+	#link = urllib.urlopen("http://allrecipes.com/recipe/jerk-chicken/")
 	
 	page = link.read()
+
+
 
 	'''Local Webpages'''
 	#f = open("../data/Burger.html")
@@ -23,7 +26,8 @@ def main():
 	#f = open("../data/Stir-Fry.html")
 	#page = f.read()
 
-	#ingredient_qty = getIngredients(page)
+	ingredient_list = getIngredients(page)
+	prettyPrintIngredients(ingredient_list)
 	#ingredients = ingredient_qty[0]
 	#amounts = ingredient_qty[1]
 
@@ -54,20 +58,43 @@ def getDirections(page):
 	return directions
 
 
+def prettyPrintIngredients(ingredient_list):
+	for item in ingredient_list:
+		line = "Name: {}:\nQty: {}\nMeasure: {}\n\n".format(item.name, item.qty, item.measure)
+		print(line)
+
 def getIngredients(page):
 	regex = re.compile("<p class=\"fl-ing\" itemprop=\"ingredients\">(.*?)</p>", re.DOTALL)
 	ingredients = re.findall(regex, page)
 
-	ingredient_dict = {}
+	ingredient_list = []
 
 	for entry in ingredients:
 		regex = "<span id=\"lblIngAmount\" class=\"ingredient-amount\">(.*?)</span>"
 		ingredient_amount = re.findall(regex, entry)
+		if len(ingredient_amount) == 0:
+			ingredient_amount = ""
+		else:
+			ingredient_amount = ingredient_amount[0]
+
 		regex = "<span id=\"lblIngName\" class=\"ingredient-name\">(.*?)</span>"
-		ingredient_name = re.findall(regex, entry)
+		ingredient_name = re.findall(regex, entry)[0]
 
-		item = ingredient(ingredient_name, 0, ingredient_amount)
+		regex = re.compile("[0-9]+\s[0-9/]+|[0-9/]+|[0-9]+")
+		ingredient_qty = re.findall(regex, ingredient_amount)
+		if len(ingredient_qty) == 0:
+			ingredient_qty = "to taste"
+		else:
+			ingredient_qty = ingredient_qty[0]
 
+		ingredient_measure = ingredient_amount.replace(ingredient_qty, "")
+		
+		if ingredient_measure == "":
+			ingredient_measure = "items"
+		if ingredient_measure[0] == " ":
+			ingredient_measure = ingredient_measure[1:]
+
+		item = ingredient(ingredient_name, ingredient_qty, ingredient_measure)
 		ingredient_list.append(item)
 
 	return ingredient_list
