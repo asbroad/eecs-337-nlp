@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="recipe_representation.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="389.44741"
+     inkscape:cy="478.75515"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3877"
+       transform="translate(84.285711,255)">
+      <rect
+         y="91.869858"
+         x="114.47179"
+         height="267.32465"
+         width="352.91064"
+         id="rect2985"
+         style="fill:none;stroke:#000000;stroke-width:1.01535022;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         y="126.48065"
+         x="122.61494"
+         height="131.9882"
+         width="333.73621"
+         id="rect2987"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         y="262.97473"
+         x="122.61494"
+         height="26.917696"
+         width="334.10004"
+         id="rect2989"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         y="294.95505"
+         x="122.61494"
+         height="23.106886"
+         width="335.55792"
+         id="rect2991"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <rect
+         y="322.62177"
+         x="122.61494"
+         height="25.09934"
+         width="336.15152"
+         id="rect2993"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2995"
+         y="114.79076"
+         x="122.85714"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:18px"
+           y="114.79076"
+           x="122.85714"
+           id="tspan2997"
+           sodipodi:role="line">RECIPE TITLE (String)</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text2999"
+         y="143.21933"
+         x="126.63895"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="143.21933"
+           x="126.63895"
+           id="tspan3001"
+           sodipodi:role="line">Ingredients (List)</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3003"
+         y="277.07648"
+         x="126.63895"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="277.07648"
+           x="126.63895"
+           id="tspan3005"
+           sodipodi:role="line">Primary Cooking Method (String)</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3007"
+         y="308.93359"
+         x="127.14285"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="308.93359"
+           x="127.14285"
+           id="tspan3009"
+           sodipodi:role="line">Cooking Methods (List of Strings)</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3011"
+         y="336.85385"
+         x="127.14285"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="336.85385"
+           x="127.14285"
+           id="tspan3013"
+           sodipodi:role="line">Cooking Tools (List of Strings)</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3785"
+         y="157.91272"
+         x="134.41121"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           style="font-size:10px"
+           y="157.91272"
+           x="134.41121"
+           id="tspan3787"
+           sodipodi:role="line">- Ingredient (Dictionary)</tspan></text>
+      <g
+         transform="translate(-6,-2)"
+         id="g3860">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.80000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           id="rect3783"
+           width="299.04358"
+           height="79.840515"
+           x="148.22066"
+           y="168.16635" />
+        <text
+           xml:space="preserve"
+           style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="156.06857"
+           y="179.59039"
+           id="text3789"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3791"
+             x="156.06857"
+             y="179.59039"
+             style="font-size:10px">Name</tspan><tspan
+             sodipodi:role="line"
+             x="156.06857"
+             y="192.09039"
+             id="tspan3793"
+             style="font-size:10px">Quantity</tspan><tspan
+             sodipodi:role="line"
+             x="156.06857"
+             y="204.59039"
+             id="tspan3795"
+             style="font-size:10px">Measurement </tspan><tspan
+             sodipodi:role="line"
+             x="156.06857"
+             y="217.09039"
+             id="tspan3797"
+             style="font-size:10px">Descriptor</tspan><tspan
+             sodipodi:role="line"
+             x="156.06857"
+             y="229.59039"
+             id="tspan3799"
+             style="font-size:10px">Preparation</tspan><tspan
+             sodipodi:role="line"
+             x="156.06857"
+             y="242.09039"
+             id="tspan3801"
+             style="font-size:10px">Prep-Description</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="249.82129"
+           y="178.81932"
+           id="text3789-0"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3791-6"
+             x="249.82129"
+             y="178.81932"
+             style="font-size:10px">(String)</tspan><tspan
+             sodipodi:role="line"
+             x="249.82129"
+             y="191.31932"
+             id="tspan3793-9"
+             style="font-size:10px">(Double)</tspan><tspan
+             sodipodi:role="line"
+             x="249.82129"
+             y="203.81932"
+             id="tspan3795-8"
+             style="font-size:10px">(String)</tspan><tspan
+             sodipodi:role="line"
+             x="249.82129"
+             y="216.31932"
+             id="tspan3797-3"
+             style="font-size:10px">(String)</tspan><tspan
+             sodipodi:role="line"
+             x="249.82129"
+             y="228.81932"
+             id="tspan3799-4"
+             style="font-size:10px">(String)</tspan><tspan
+             sodipodi:role="line"
+             x="249.82129"
+             y="241.31932"
+             id="tspan3801-2"
+             style="font-size:10px">(String)</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>
