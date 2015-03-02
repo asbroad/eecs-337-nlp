@@ -16,7 +16,6 @@ def getTools():
 	f = open("../data/tools-list.html")
 	page = f.read()
 
-
 	regex = re.compile("<section class=\"alphabetized\">(.*?)</section>", re.DOTALL)
 	tools_list = re.findall(regex, page)[0]
 
@@ -26,13 +25,13 @@ def getTools():
 	#regex = re.compile("<p>(.*?)</p>")
 	tools = re.findall(regex, tools_list)
 	#tool = re.findall(regex, tools_list)[1]
-	
+
 	for item in tools:
 		regex = re.compile("<p>(.+?)</p>")
 		res = re.findall(regex, item)
-	
+
 		#print(res)
-	
+
 		regex = re.compile("<strong>(.*?)</strong>")
 		name = re.findall(regex, res[0])[0]
 		regex = re.compile("(.*?)<.*?>(.*?)</.*?>")
@@ -41,8 +40,8 @@ def getTools():
 			use = res[1]
 		else:
 			use =  "".join(re.findall(regex, res[1])[0])
-		
-	
+
+
 		#print(name)
 		#print(use)
 
@@ -69,7 +68,7 @@ def understandTool(tool):
 	res = res + tool.name.lower().split()
 
 	tool.use = res
-	
+
 
 	#tagged_description = pos_tag(tool.description.split())
 	#print(tagged_description)
