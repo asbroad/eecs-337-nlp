@@ -2,6 +2,7 @@ import urllib
 import re
 
 from tools import *
+from save_output import *
 
 
 '''
@@ -10,30 +11,31 @@ Extract Cooking methods
 extract spices - perhaps use wikipedia to obtain list?
 extract tools - should be assosciated with secondary cooking methods (e.g bowl - stir)
 
-Build syntax for recipie 
+Build syntax for recipie
 
 '''
 
 def main():
-	
+
 	'''User-Inputted Recipie Title'''
-	#url = generateURL()
-	#link = urllib.urlopen(url)
-
-
-	'''Hard Coded URLs'''
-	#link = urllib.urlopen("http://allrecipes.com/recipe/brown-rice-and-quinoa-sushi-rolls/")
-	link = urllib.urlopen("http://allrecipes.com/recipe/Boilermaker-Tailgate-Chili/")	
-	#link = urllib.urlopen("http://allrecipes.com/recipe/jerk-chicken/")
+	url = generateURL()
+	link = urllib.urlopen(url)
 	page = link.read()
 
+	'''Hard Coded URLs'''
+	# url = "http://allrecipes.com/recipe/brown-rice-and-quinoa-sushi-rolls/"
+	# url = "http://allrecipes.com/recipe/Boilermaker-Tailgate-Chili/"
+	# url = "http://allrecipes.com/recipe/jerk-chicken/"
+	#link = urllib.urlopen(url)
+	#page = link.read()
+
 	'''Local Cached Webpages'''
-	#f = open("../data/Burger.html")
-	#f = open("../data/Cake.html")
-	#f = open("../data/Stir-Fry.html")
+	# url = "../data/Burger"
+	# url = "../data/Cake"
+	# url = "../data/Stir-Fry"
+	#f = open(url.join(".html"))
 	#page = f.read()
 
-	
 	#makeVegetarian(ingredient_list)
 	ingredient_list = getIngredients(page)
 	prettyPrintIngredients(ingredient_list)
@@ -44,9 +46,11 @@ def main():
 	meat_list = getMeats()
 	#prettyPrintMeats(meat_list)
 
-	tool_list = getTools()
+	#tool_list = getTools()
 	#prettyPrintTools(tool_list)
 	#print(tool_list)
+
+	save_output(url, [], '', [], [])
 
 
 def getMeats():
@@ -136,7 +140,7 @@ def getIngredients(page):
 			ingredient_qty = ingredient_qty[0]
 
 		ingredient_measure = ingredient_amount.replace(ingredient_qty, "")
-		
+
 		if ingredient_measure == "":
 			ingredient_measure = "items"
 		if ingredient_measure[0] == " ":
@@ -153,7 +157,7 @@ def getIngredients(page):
 
 
 def generateURL():
-	#Generates URL from recipie title.  
+	#Generates URL from recipie title.
 	#Note:Title must be exactly correct
 	recipie_name = raw_input("Enter Name of Recipie\n> ")
 	recipie_url = re.sub(" ", "-", recipie_name).lower()
@@ -169,5 +173,3 @@ def getCookingMethods():
 
 if __name__ == "__main__":
     main()
-
-
