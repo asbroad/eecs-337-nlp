@@ -23,9 +23,9 @@ def main():
 
 	'''Hard Coded URLs'''
 	#link = urllib.urlopen("http://allrecipes.com/recipe/brown-rice-and-quinoa-sushi-rolls/")
-	#link = urllib.urlopen("http://allrecipes.com/recipe/Boilermaker-Tailgate-Chili/")	
+	link = urllib.urlopen("http://allrecipes.com/recipe/Boilermaker-Tailgate-Chili/")	
 	#link = urllib.urlopen("http://allrecipes.com/recipe/jerk-chicken/")
-	#page = link.read()
+	page = link.read()
 
 	'''Local Cached Webpages'''
 	#f = open("../data/Burger.html")
@@ -36,7 +36,7 @@ def main():
 	
 	#makeVegetarian(ingredient_list)
 	ingredient_list = getIngredients(page)
-	#prettyPrintIngredients(ingredient_list)
+	prettyPrintIngredients(ingredient_list)
 
 	directions = getDirections(page)
 	#prettyPrintDirections(directions)
@@ -63,10 +63,11 @@ def getMeats():
 	return meats
 
 class ingredient:
-	def __init__ (self, name, qty, measure):
+	def __init__ (self, name, qty, measure, prep):
 		self.name = name
 		self.qty = qty
 		self.measure = measure
+		self.prep = prep
 
 
 def makeVegetarian(ingredient_list):
@@ -95,7 +96,7 @@ def prettyPrintMeats(meat_list):
 
 def prettyPrintIngredients(ingredient_list):
 	for item in ingredient_list:
-		line = "Name: {}\nQty: {}\nMeasure: {}\n\n".format(item.name, item.qty, item.measure)
+		line = "Name: {}\nQty: {}\nMeasure: {}\nPrep: {}\n\n".format(item.name, item.qty, item.measure, item.prep)
 		print(line)
 
 def prettyPrintTools(tool_list):
@@ -120,6 +121,13 @@ def getIngredients(page):
 		regex = "<span id=\"lblIngName\" class=\"ingredient-name\">(.*?)</span>"
 		ingredient_name = re.findall(regex, entry)[0]
 
+		split_name = ingredient_name.split(", ")
+		if len(split_name) > 1:
+			ingredient_style = split_name[len(split_name)-1]
+		else:
+			ingredient_style = ""
+		ingredient_name = split_name[0]
+
 		regex = re.compile("[0-9]+\s[0-9/]+|[0-9/]+|[0-9]+")
 		ingredient_qty = re.findall(regex, ingredient_amount)
 		if len(ingredient_qty) == 0:
@@ -134,7 +142,7 @@ def getIngredients(page):
 		if ingredient_measure[0] == " ":
 			ingredient_measure = ingredient_measure[1:]
 
-		item = ingredient(ingredient_name, ingredient_qty, ingredient_measure)
+		item = ingredient(ingredient_name, ingredient_qty, ingredient_measure, ingredient_style)
 		ingredient_list.append(item)
 
 	if len(ingredient_list) == 0:

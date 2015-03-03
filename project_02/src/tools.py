@@ -55,7 +55,7 @@ def getTools():
 
 
 def understandTool(tool):
-	print("Building understanding of: {}".format(tool.name))
+	#print("Building understanding of: {}".format(tool.name))
 
 	regex = re.compile("to ([a-zA-Z]+)")
 	res = re.findall(regex, tool.description)
@@ -68,10 +68,12 @@ def understandTool(tool):
 
 	res = res + tool.name.lower().split()
 
-	tool.use = res
+	
 	
 
 	#tagged_description = pos_tag(tool.description.split())
 	#print(tagged_description)
 	#keyword_list = [vb.lower() for vb,pos in tagged_description if pos in ["VB", "NNP"]]
-	#tool.use = keyword_list
+	#res = res + keyword_list
+
+	tool.use = res
