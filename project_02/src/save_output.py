@@ -25,7 +25,7 @@ def save_output(recipe_url, ingredients_list, primary_cooking_method, other_cook
         recipe_title = str(split_url[-2])
     else:
         recipe_title = str(split_url[-1])
-    output_filename = recipe_title + '.json'
+    output_filename = "../output/"+recipe_title + '.json'
 
     with open(output_filename, 'w') as outfile:
         json.dump(formatted_results, outfile)

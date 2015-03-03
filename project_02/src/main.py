@@ -19,15 +19,13 @@ def main():
 
 	'''User-Inputted Recipie Title'''
 	url = generateURL()
-	link = urllib.urlopen(url)
-	page = link.read()
 
 	'''Hard Coded URLs'''
 	# url = "http://allrecipes.com/recipe/brown-rice-and-quinoa-sushi-rolls/"
 	# url = "http://allrecipes.com/recipe/Boilermaker-Tailgate-Chili/"
 	# url = "http://allrecipes.com/recipe/jerk-chicken/"
-	#link = urllib.urlopen(url)
-	#page = link.read()
+	link = urllib.urlopen(url)
+	page = link.read()
 
 	'''Local Cached Webpages'''
 	# url = "../data/Burger"
