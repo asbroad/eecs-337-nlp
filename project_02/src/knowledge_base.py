@@ -8,7 +8,12 @@ def hc_make_protein_list():
     proteins = []
     proteins.append(['chicken', False, False, False, True, ['Italian', 'Chinese'], 'sliced'])
     proteins.append(['beef', False, False, False, False, ['Italian', 'Chinese'], 'sliced'])
-    proteins.append(['fish', False, True, False, True, ['Chinese'], 'scaled'])
+    proteins.append(['halibut', False, True, False, True, ['Chinese'], 'scaled'])
+    proteins.append(['trout', False, True, False, True, ['Chinese'], 'scaled'])
+    proteins.append(['sea bass', False, True, False, True, ['Chinese'], 'scaled'])
+    proteins.append(['salmon', False, True, False, True, ['Italian','Chinese'], 'scaled'])
+    proteins.append(['tilapia', False, True, False, True, ['Italian'], 'scaled'])
+    proteins.append(['flounder', False, True, False, True, ['Italian'], 'scaled'])
     proteins.append(['tofu', True, False, False, True, ['Chinese'], 'cubed'])
     return proteins
 
@@ -62,7 +67,27 @@ def find_replacement_itm_cuisine(itm,cuisine,input_dict):
     if len(possible_replacements) == 0:
         print('No replacement ingredients, no ingredients associated with : ' + cuisine)
         return itm
-    return possible_replacements[random.rand(0,len(possible_replacements),1)]
+    return possible_replacements[random.randint(0,len(possible_replacements)-1)]
+
+# (name, vegitarian, fish, dairy, healthy, associated_cuisine, associated_prep)
+
+def find_replacement_fish(itm,input_dict):
+    all_dict_itms = input_dict.keys()
+    if itm not in all_dict_itms:
+        print(itm, 'not in dictionary')
+        return itm
+    is_fish = input_dict[itm].fish
+    if is_fish: # the current ingredient is already fish
+        return itm
+    possible_replacements = []
+    for key in input_dict.keys():
+        cur_is_fish = input_dict[key].fish
+        if cur_is_fish:
+            possible_replacements.append(input_dict[key])
+    if len(possible_replacements) == 0:
+        print('No replacement ingredients, no fish')
+        return itm
+    return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
 
 if __name__ == "__main__":
@@ -70,5 +95,7 @@ if __name__ == "__main__":
     veggie_dict = make_dict(hc_make_vegitable_list())
     spice_dict = make_dict(hc_make_spice_list())
     sauce_dict = make_dict(hc_make_sauce_list())
-    val = find_replacement_itm_cuisine('pepper', 'Chinese', spice_dict)
-    print(val)
+    rep_cuisine = find_replacement_itm_cuisine('oregano', 'Chinese', spice_dict)
+    rep_fish = find_replacement_fish('chicken', protein_dict)
+    print(rep_cuisine)
+    print(rep_fish)
