@@ -33,6 +33,13 @@ def hc_make_spice_list():
     spices.append(['five spice', True, False, False, True, ['Chinese'], 'ground'])
     return spices
 
+def hc_make_sauce_list():
+    sauces = []
+    sauces.append(['soy sauce', True, False, False, False, ['Chinese'], ''])
+    sauces.append(['tomato sauce', True, False, False, True, ['Italian'], ''])
+    sauces.append(['marinara', True, False, False, True, ['Italian'], ''])
+    return sauces
+
 def make_dict(ingredients):
     ingredient_dict = {}
     for ingredient in ingredients:
@@ -62,5 +69,6 @@ if __name__ == "__main__":
     protein_dict = make_dict(hc_make_protein_list())
     veggie_dict = make_dict(hc_make_vegitable_list())
     spice_dict = make_dict(hc_make_spice_list())
+    sauce_dict = make_dict(hc_make_sauce_list())
     val = find_replacement_itm_cuisine('pepper', 'Chinese', spice_dict)
     print(val)

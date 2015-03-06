@@ -175,7 +175,6 @@ def str2num(strIn):
 	regex = re.compile("[0-9/]+")
 	numbers = re.findall(regex, strIn)
 	for number in numbers:
-		print(number)
 		regex = re.compile("([0-9]+)/([0-9]+)")
 		vals = re.findall(regex, number);
 		if vals:
@@ -183,7 +182,6 @@ def str2num(strIn):
 			res = res + float(val[0])/float(val[1])
 		else:
 			res = res + float(number)
-	print(numbers)
 	return res
 
 def generateURL():
