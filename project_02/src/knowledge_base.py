@@ -15,6 +15,7 @@ def hc_make_protein_list():
     proteins.append(['tilapia', False, True, False, True, ['Italian'], 'scaled'])
     proteins.append(['flounder', False, True, False, True, ['Italian'], 'scaled'])
     proteins.append(['tofu', True, False, False, True, ['Chinese'], 'cubed'])
+    proteins.append(['portobello mushroom', True, False, False, True, ['Italian','Chinese'], 'cubed'])
     return proteins
 
 def hc_make_vegitable_list():
@@ -69,8 +70,6 @@ def find_replacement_itm_cuisine(itm,cuisine,input_dict):
         return itm
     return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
-# (name, vegitarian, fish, dairy, healthy, associated_cuisine, associated_prep)
-
 def find_replacement_fish(itm,input_dict):
     all_dict_itms = input_dict.keys()
     if itm not in all_dict_itms:
@@ -89,6 +88,43 @@ def find_replacement_fish(itm,input_dict):
         return itm
     return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
+def find_replacement_vegetarian(itm,input_dict):
+    all_dict_itms = input_dict.keys()
+    if itm not in all_dict_itms:
+        print(itm, 'not in dictionary')
+        return itm
+    is_fish = input_dict[itm].vegetarian
+    if is_fish: # the current ingredient is already vegetarian
+        return itm
+    possible_replacements = []
+    for key in input_dict.keys():
+        cur_is_fish = input_dict[key].vegetarian
+        if cur_is_fish:
+            possible_replacements.append(input_dict[key])
+    if len(possible_replacements) == 0:
+        print('No replacement ingredients, no vegetarian')
+        return itm
+    return possible_replacements[random.randint(0,len(possible_replacements)-1)]
+
+
+def find_replacement_healthy(itm,input_dict):
+    all_dict_itms = input_dict.keys()
+    if itm not in all_dict_itms:
+        print(itm, 'not in dictionary')
+        return itm
+    is_fish = input_dict[itm].healthy
+    if is_fish: # the current ingredient is already healthy
+        return itm
+    possible_replacements = []
+    for key in input_dict.keys():
+        cur_is_fish = input_dict[key].healthy
+        if cur_is_fish:
+            possible_replacements.append(input_dict[key])
+    if len(possible_replacements) == 0:
+        print('No replacement ingredients, no healthy')
+        return itm
+    return possible_replacements[random.randint(0,len(possible_replacements)-1)]
+
 
 if __name__ == "__main__":
     protein_dict = make_dict(hc_make_protein_list())
@@ -97,5 +133,9 @@ if __name__ == "__main__":
     sauce_dict = make_dict(hc_make_sauce_list())
     rep_cuisine = find_replacement_itm_cuisine('oregano', 'Chinese', spice_dict)
     rep_fish = find_replacement_fish('chicken', protein_dict)
+    rep_vegetarian = find_replacement_vegetarian('chicken', protein_dict)
+    rep_healthy = find_replacement_healthy('beef', protein_dict)
     print(rep_cuisine)
     print(rep_fish)
+    print(rep_vegetarian)
+    print(rep_healthy)
