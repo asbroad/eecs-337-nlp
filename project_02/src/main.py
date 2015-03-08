@@ -45,7 +45,7 @@ def main():
 	#prettyPrintIngredients(ingredient_list)
 
 	recipe = parse_recipe(page)
-	transform_cuisine('Italian',recipe)
+	prettyPrintRecipe(recipe)
 	# print recipe
 #
 #	directions = getDirections(page)
@@ -171,6 +171,26 @@ def prettyPrintTools(tool_list):
 	for item in tool_list:
 		line = "Name: {}\nUse: {}\n\n".format(item.name, item.use)
 		print(line)
+
+
+def prettyPrintRecipe(recipe):
+	print("--------------------------------------------")
+	print(recipe.name)
+	print("--------------------------------------------")
+	print("\nIngredients:\n")
+	prettyPrintIngredients(recipe.ingredients)
+	
+	print("\nTools:\n")
+	for tool in recipe.tools:
+		print(tool.name)
+	print("\n")
+	print("Main Cooking Method: {}".format(recipe.main_method[0]))
+	for method in recipe.other_methods:
+		print("Additional Method: {}".format(method[0]))
+	print("\n")
+	print("\nDirections:\n")
+	prettyPrintDirections(recipe.directions)
+
 
 
 def getIngredients(page):
