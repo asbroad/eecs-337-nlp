@@ -191,8 +191,10 @@ start = Button(root,text='GO',command=run,activeforeground='white',activebackgro
 start.bind("Button-1>",start)
 start.grid(row=7,column=0,stick = E + W + N + S)
 Label(root,text="Result:").grid(row=4,sticky=W)
+
+
 t1 = Text(root) 
-t1.grid(row=5,column=0,columnspan = 2,stick = E + W+ N + S)
+t1.grid(row=5,column=0,columnspan = 2,stick = E + W + N + S)
 
 class PrintToT1(object): 
      def write(self, s): 
