@@ -142,14 +142,21 @@ class KnowledgeBase:
         transformed_recipe.ingredients = []
         for ingredient in recipe.ingredients:
             new_itm = False
-            if itm in self.sauce_dict:
-                new_itm = find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.sauce_dict)
-            elif itm in self.protein_dict:
-                new_itm = find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.sauce_dict)
-            elif itm in self.veggie_dict:
-                new_itm = find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.sauce_dict)
-            elif itm in self.spice_dict:
-                new_itm = find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.sauce_dict)
+            for itm in self.sauce_dict.keys():
+                if itm in ingredient.name or not new_itm:
+                    new_itm = self.find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.sauce_dict)
+            if not new_itm:
+                for itm in self.protein_dict.keys():
+                    if itm in ingredient.name or not new_itm:
+                        new_itm = self.find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.protein_dict)
+            if not new_itm:
+                for itm in self.veggie_dict.keys():
+                    if itm in ingredient.name or not new_itm:
+                        new_itm = self.find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.veggie_dict)
+            if not new_itm:
+                for itm in self.spice_dict.keys():
+                    if itm in ingredient.name or not new_itm:
+                        new_itm = self.find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.spice_dict)
 
             if new_itm:
                 new_itm.qty = ingredient.qty

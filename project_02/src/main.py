@@ -46,9 +46,9 @@ def main():
 
 	recipe = parse_recipe(page)
 	kb = KnowledgeBase()
-	prettyPrintRecipe(recipe)
+	#prettyPrintRecipe(recipe)
 	tf_recipe = kb.transform_cuisine('Italian',recipe)
-	prettyPrintRecipe(recipe)
+	prettyPrintRecipe(tf_recipe)
 	# print recipe
 #
 #	directions = getDirections(page)
