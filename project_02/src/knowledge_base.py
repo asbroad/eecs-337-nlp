@@ -17,16 +17,21 @@ class KnowledgeBase:
     def hc_make_protein_list(self):
         proteins = []
         proteins.append(['chicken', False, False, False, True, ['Italian', 'Chinese'], 'sliced'])
+        proteins.append(['duck', False, False, False, True, ['Chinese'], 'sliced'])
         proteins.append(['beef', False, False, False, False, ['Italian', 'Chinese'], 'sliced'])
         proteins.append(['pork', False, False, False, False, ['Italian', 'Chinese'], 'sliced'])
         proteins.append(['ham', False, False, False, False, ['Italian'], 'sliced'])
+        proteins.append(['sausage', False, False, False, False, ['Italian'], 'sliced'])
+        proteins.append(['prosciutto', False, False, False, False, ['Italian'], 'sliced'])
         proteins.append(['halibut', False, True, False, True, ['Chinese'], 'scaled'])
         proteins.append(['trout', False, True, False, True, ['Chinese'], 'scaled'])
         proteins.append(['sea bass', False, True, False, True, ['Chinese'], 'scaled'])
         proteins.append(['salmon', False, True, False, True, ['Italian','Chinese'], 'scaled'])
+        proteins.append(['fish', False, True, False, True, ['Italian','Chinese'], 'scaled'])
         proteins.append(['tilapia', False, True, False, True, ['Italian'], 'scaled'])
         proteins.append(['flounder', False, True, False, True, ['Italian'], 'scaled'])
         proteins.append(['tofu', True, False, False, True, ['Chinese'], 'cubed'])
+        proteins.append(['meat substitute', True, False, False, True, ['Chinese', 'Italian'], 'extruded'])
         proteins.append(['portobello mushroom', True, False, False, True, ['Italian','Chinese'], 'cubed'])
         return proteins
 
@@ -37,6 +42,8 @@ class KnowledgeBase:
         veggies.append(['mushroom', True, False, False, True, ['Italian', 'Chinese'], 'sliced'])
         veggies.append(['scallion', True, False, False, True, ['Chinese'], 'sliced'])
         veggies.append(['bell pepper', True, False, False, True, ['Chinese', "Italian"], 'sliced'])
+        veggies.append(['red pepper', True, False, False, True, ['Chinese', "Italian"], 'sliced'])
+        veggies.append(['green pepper', True, False, False, True, ['Chinese', "Italian"], 'sliced'])
         veggies.append(['lima beans', True, False, False, True, ['Italian'], 'sliced'])
         veggies.append(['celery', True, False, False, True, ['Chinese'], 'sliced'])
         veggies.append(['green onion', True, False, False, True, ['Chinese'], 'sliced'])
@@ -45,8 +52,6 @@ class KnowledgeBase:
 
     def hc_make_spice_list(self):
         spices = []
-        spices.append(['pepper', True, False, False, True, ['Italian', 'Chinese'], 'ground'])
-        spices.append(['salt', True, False, False, True, ['Italian', 'Chinese'], 'ground'])
         spices.append(['basil', True, False, False, True, ['Italian', 'Chinese'], 'sliced'])
         spices.append(['oregano', True, False, False, True, ['Italian'], 'crushed'])
         spices.append(['cilantro', True, False, False, True, ['Italian'], 'crushed'])
@@ -60,9 +65,11 @@ class KnowledgeBase:
     def hc_make_sauce_list(self):
         sauces = []
         sauces.append(['soy sauce', True, False, False, False, ['Chinese'], ''])
+        sauces.append(['hot sauce', True, False, False, False, ['Chinese'], ''])
         sauces.append(['tomato sauce', True, False, False, True, ['Italian'], ''])
         sauces.append(['marinara', True, False, False, True, ['Italian'], ''])
         sauces.append(['beef broth', False, False, False, False, ['Italian','Chinese'], ''])
+        sauces.append(['fish sauce', False, True, False, True, ['Italian','Chinese'], ''])
         sauces.append(['chicken broth', False, False, False, False, ['Italian','Chinese'], ''])
         sauces.append(['vegetable broth', True, False, False, True, ['Italian','Chinese'], ''])
         return sauces
