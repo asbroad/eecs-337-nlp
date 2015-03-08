@@ -1,4 +1,5 @@
 from ingredient import Ingredient
+from recipe import Recipe
 import random
 
 # Ingredient parameters
@@ -125,6 +126,14 @@ def find_replacement_healthy(itm,input_dict):
         return itm
     return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
+def transform_cuisine(cuisine_name, recipe):
+    return recipe
+
+def transform_diet(diet_name, recipe):
+    return recipe
+
+def transform_other(other_name, recipe):
+    return recipe
 
 if __name__ == "__main__":
     protein_dict = make_dict(hc_make_protein_list())
