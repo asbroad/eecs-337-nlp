@@ -20,9 +20,9 @@ class Ingredient:
         self.associated_cuisine = associated_cuisine
         self.qty = 0
         self.measure = ""
-        
+
 
     def __str__(self):
         return str(self.name + '\nVegetarian? ' + str(self.vegetarian) + '\nFish? ' + str(self.fish) + '\nDairy? ' +
         str(self.dairy)  + '\nHealthy? ' + str(self.healthy) + '\nAssociated Cuisine(s) : ' +
-        str(self.associated_cuisine) + '\nAssociated Prep : ' + self.associated_prep)
+        str(self.associated_cuisine) + '\nAssociated Prep : ' + self.prep)

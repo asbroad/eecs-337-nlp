@@ -127,6 +127,10 @@ def find_replacement_healthy(itm,input_dict):
     return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
 def transform_cuisine(cuisine_name, recipe):
+    for ingredient in recipe.ingredients:
+        print(ingredient)
+
+
     return recipe
 
 def transform_diet(diet_name, recipe):

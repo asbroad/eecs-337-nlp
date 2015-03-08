@@ -9,6 +9,7 @@ from save_output import *
 from nltk.tag import pos_tag
 from ingredient import Ingredient
 from collections import defaultdict
+from knowledge_base import transform_cuisine
 
 '''
 To Do:
@@ -44,7 +45,8 @@ def main():
 	#prettyPrintIngredients(ingredient_list)
 
 	recipe = parse_recipe(page)
-	print recipe
+	transform_cuisine('Italian',recipe)
+	# print recipe
 #
 #	directions = getDirections(page)
 #	prettyPrintDirections(directions)
@@ -85,9 +87,9 @@ def parse_recipe(page):
 
 	directions = getDirections(page)
 	recipe_tools = select_tools(directions, tool_list)
-	
+
 	methods = select_methods(directions, method_list)
-	
+
 	if len(methods) > 1:
 		other_methods = methods[1:]
 	else:
@@ -101,10 +103,6 @@ def parse_recipe(page):
 	res = Recipe(recipe_title, recipe_ingredients, recipe_tools, main_method, other_methods, directions)
 	return res
 
-
-
-
-	prettyPrintDirections(directions)
 def select_methods(directions, methods):
 	d = defaultdict(int)
 	for direction in directions:
