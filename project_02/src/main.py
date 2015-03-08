@@ -6,6 +6,7 @@ import re
 from tools import *
 from save_output import *
 from nltk.tag import pos_tag
+from ingredient import Ingredient
 
 
 '''
@@ -26,16 +27,16 @@ def main():
 	'''Hard Coded URLs'''
 	# url = "http://allrecipes.com/recipe/brown-rice-and-quinoa-sushi-rolls/"
 	# url = "http://allrecipes.com/recipe/Boilermaker-Tailgate-Chili/"
-	url = "http://allrecipes.com/recipe/jerk-chicken/"
-	link = urllib.urlopen(url)
-	page = link.read()
+	#url = "http://allrecipes.com/recipe/jerk-chicken/"
+	#link = urllib.urlopen(url)
+	#page = link.read()
 
 	'''Local Cached Webpages'''
 	# url = "../data/Burger"
 	# url = "../data/Cake"
-	# url = "../data/Stir-Fry"
-	#f = open(url.join(".html"))
-	#page = f.read()
+	url = "../data/Stir-Fry"
+	f = open(url + ".html")
+	page = f.read()
 
 	#makeVegetarian(ingredient_list)
 	ingredient_list = getIngredients(page)
@@ -68,13 +69,13 @@ def getMeats():
 
 	return meats
 
-class ingredient:
-	def __init__ (self, name, qty, measure, prep):
-		self.name = name
-		self.qty = qty
-		self.measure = measure
-		self.prep = prep
-
+#class ingredient:
+#	def __init__ (self, name, qty, measure, prep):
+#		self.name = name
+#		self.qty = qty
+#		self.measure = measure
+#		self.prep = prep
+#
 	#name
 	#qty
 	#measure
@@ -160,8 +161,8 @@ def getIngredients(page):
 			ingredient_measure = "items"
 		if ingredient_measure[0] == " ":
 			ingredient_measure = ingredient_measure[1:]
-
-		item = ingredient(ingredient_name, ingredient_qty, ingredient_measure, ingredient_style)
+		item = Ingredient(ingredient_name)
+		item.ingredient_from_recipie(ingredient_name, ingredient_qty, ingredient_measure, ingredient_style)
 		ingredient_list.append(item)
 
 	if len(ingredient_list) == 0:
