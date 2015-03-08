@@ -86,7 +86,7 @@ class KnowledgeBase:
             return False
         associated_cuisines = input_dict[itm].associated_cuisine
         if cuisine in associated_cuisines: # the current ingredient is already associated with the desired cuisine
-            return itm
+            return False
         possible_replacements = []
         for key in input_dict.keys():
             cur_associated_cuisines = input_dict[key].associated_cuisine
@@ -174,6 +174,9 @@ class KnowledgeBase:
                         new_itm = self.find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.spice_dict)
 
             if new_itm:
+                #print(ingredient.name)
+                #print("Trans")
+                #print(new_itm.name)
                 new_itm.qty = ingredient.qty
                 new_itm.measure = ingredient.measure
                 new_itm.prep = ingredient.prep
