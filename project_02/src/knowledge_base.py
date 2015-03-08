@@ -194,19 +194,19 @@ class KnowledgeBase:
         for ingredient in recipe.ingredients:
             new_itm = False
             for itm in self.sauce_dict.keys():
-                if itm in ingredient.name and not new_itm:
+                if itm in ingredient.name.lower() and not new_itm:
                     new_itm = self.find_replacement_diet(itm, diet_name, self.sauce_dict)
             if not new_itm:
                 for itm in self.protein_dict.keys():
-                    if itm in ingredient.name and not new_itm:
+                    if itm in ingredient.name.lower() and not new_itm:
                         new_itm = self.find_replacement_diet(itm, diet_name, self.protein_dict)
             if not new_itm:
                 for itm in self.veggie_dict.keys():
-                    if itm in ingredient.name and not new_itm:
+                    if itm in ingredient.name.lower() and not new_itm:
                         new_itm = self.find_replacement_diet(itm, diet_name, self.veggie_dict)
             if not new_itm:
                 for itm in self.spice_dict.keys():
-                    if itm in ingredient.name and not new_itm:
+                    if itm in ingredient.name.lower() and not new_itm:
                         new_itm = self.find_replacement_diet(itm, diet_name, self.spice_dict)
 
             if new_itm:
