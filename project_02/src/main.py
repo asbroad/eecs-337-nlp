@@ -9,7 +9,7 @@ from save_output import *
 from nltk.tag import pos_tag
 from ingredient import Ingredient
 from collections import defaultdict
-from knowledge_base import transform_cuisine
+from knowledge_base import KnowledgeBase
 
 '''
 To Do:
@@ -45,7 +45,10 @@ def main():
 	#prettyPrintIngredients(ingredient_list)
 
 	recipe = parse_recipe(page)
-	transform_cuisine('Italian',recipe)
+	kb = KnowledgeBase()
+	print(recipe)
+	tf_recipe = kb.transform_cuisine('Italian',recipe)
+	print(recipe)
 	# print recipe
 #
 #	directions = getDirections(page)
