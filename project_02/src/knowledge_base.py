@@ -18,6 +18,8 @@ class KnowledgeBase:
         proteins = []
         proteins.append(['chicken', False, False, False, True, ['Italian', 'Chinese'], 'sliced'])
         proteins.append(['beef', False, False, False, False, ['Italian', 'Chinese'], 'sliced'])
+        proteins.append(['pork', False, False, False, False, ['Italian', 'Chinese'], 'sliced'])
+        proteins.append(['ham', False, False, False, False, ['Italian'], 'sliced'])
         proteins.append(['halibut', False, True, False, True, ['Chinese'], 'scaled'])
         proteins.append(['trout', False, True, False, True, ['Chinese'], 'scaled'])
         proteins.append(['sea bass', False, True, False, True, ['Chinese'], 'scaled'])
@@ -34,6 +36,11 @@ class KnowledgeBase:
         veggies.append(['tomato', True, False, False, True, ['Italian'], 'sliced'])
         veggies.append(['mushroom', True, False, False, True, ['Italian', 'Chinese'], 'sliced'])
         veggies.append(['scallion', True, False, False, True, ['Chinese'], 'sliced'])
+        veggies.append(['bell pepper', True, False, False, True, ['Chinese', "Italian"], 'sliced'])
+        veggies.append(['lima beans', True, False, False, True, ['Italian'], 'sliced'])
+        veggies.append(['celery', True, False, False, True, ['Chinese'], 'sliced'])
+        veggies.append(['green onion', True, False, False, True, ['Chinese'], 'sliced'])
+        veggies.append(['artichoke', True, False, False, True, ['Italian'], 'crushed'])
         return veggies
 
     def hc_make_spice_list(self):
@@ -43,7 +50,8 @@ class KnowledgeBase:
         spices.append(['basil', True, False, False, True, ['Italian', 'Chinese'], 'sliced'])
         spices.append(['oregano', True, False, False, True, ['Italian'], 'crushed'])
         spices.append(['cilantro', True, False, False, True, ['Italian'], 'crushed'])
-        spices.append(['red pepper', True, False, False, True, ['Italian', 'Chinese'], 'crushed'])
+        spices.append(['crushed red pepper', True, False, False, True, ['Chinese'], 'crushed'])
+        spices.append(['red pepper flakes', True, False, False, True, ['Chinese'], 'crushed'])
         spices.append(['garlic', True, False, False, True, ['Italian', 'Chinese'], 'diced'])
         spices.append(['ginger', True, False, False, True, ['Chinese'], 'diced'])
         spices.append(['five spice', True, False, False, True, ['Chinese'], 'ground'])
