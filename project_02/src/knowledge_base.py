@@ -17,7 +17,7 @@ class KnowledgeBase:
     def hc_make_protein_list(self):
         proteins = []
         proteins.append(['chicken', False, False, False, True, ['Italian', 'Chinese'], 'sliced'])
-        proteins.append(['duck', False, False, False, True, ['Chinese'], 'sliced'])
+        proteins.append(['duck', False, False, False, False, ['Chinese'], 'sliced'])
         proteins.append(['beef', False, False, False, False, ['Italian', 'Chinese'], 'sliced'])
         proteins.append(['pork', False, False, False, False, ['Italian', 'Chinese'], 'sliced'])
         proteins.append(['ham', False, False, False, False, ['Italian'], 'sliced'])
@@ -97,60 +97,61 @@ class KnowledgeBase:
             return False
         return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
-    def find_replacement_fish(self,itm,input_dict):
-        all_dict_itms = input_dict.keys()
-        if itm not in all_dict_itms:
-            print(itm, 'not in dictionary')
-            return itm
-        is_fish = input_dict[itm].fish
-        if is_fish: # the current ingredient is already fish
-            return itm
-        possible_replacements = []
-        for key in input_dict.keys():
-            cur_is_fish = input_dict[key].fish
-            if cur_is_fish:
-                possible_replacements.append(input_dict[key])
-        if len(possible_replacements) == 0:
-            print('No replacement ingredients, no fish')
-            return itm
-        return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
-    def find_replacement_vegetarian(self,itm,input_dict):
-        all_dict_itms = input_dict.keys()
-        if itm not in all_dict_itms:
-            print(itm, 'not in dictionary')
-            return itm
-        is_fish = input_dict[itm].vegetarian
-        if is_fish: # the current ingredient is already vegetarian
-            return itm
-        possible_replacements = []
-        for key in input_dict.keys():
-            cur_is_fish = input_dict[key].vegetarian
-            if cur_is_fish:
-                possible_replacements.append(input_dict[key])
-        if len(possible_replacements) == 0:
-            print('No replacement ingredients, no vegetarian')
-            return itm
-        return possible_replacements[random.randint(0,len(possible_replacements)-1)]
+    def find_replacement_diet(self,itm,diet_name,input_dict):
+        if(diet_name == "vegetarian"):
+            all_dict_itms = input_dict.keys()
+            if itm not in all_dict_itms:
+                return False
+            is_veg = input_dict[itm].vegetarian
+            if is_veg: # the current ingredient is already vegetarian
+                return False
+            possible_replacements = []
+            for key in input_dict.keys():
+                cur_is_veg = input_dict[key].vegetarian
+                if cur_is_veg:
+                    possible_replacements.append(input_dict[key])
+            if len(possible_replacements) == 0:
+                print('No replacement ingredients, no vegetarian')
+                return False
+            return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
+        elif(diet_name == "pescetarian"):
+            all_dict_itms = input_dict.keys()
+            if itm not in all_dict_itms:
+                return False
+            is_fish = input_dict[itm].fish
+            if is_fish: # the current ingredient is already vegetarian
+                return False
+            possible_replacements = []
+            for key in input_dict.keys():
+                cur_is_fish = input_dict[key].fish
+                if cur_is_fish:
+                    possible_replacements.append(input_dict[key])
+            if len(possible_replacements) == 0:
+                print('No replacement ingredients, no fish')
+                return False
+            return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
-    def find_replacement_healthy(self,itm,input_dict):
-        all_dict_itms = input_dict.keys()
-        if itm not in all_dict_itms:
-            print(itm, 'not in dictionary')
-            return itm
-        is_fish = input_dict[itm].healthy
-        if is_fish: # the current ingredient is already healthy
-            return itm
-        possible_replacements = []
-        for key in input_dict.keys():
-            cur_is_fish = input_dict[key].healthy
-            if cur_is_fish:
-                possible_replacements.append(input_dict[key])
-        if len(possible_replacements) == 0:
-            print('No replacement ingredients, no healthy')
-            return itm
-        return possible_replacements[random.randint(0,len(possible_replacements)-1)]
+        elif(diet_name == "healthy"):
+            all_dict_itms = input_dict.keys()
+            if itm not in all_dict_itms:
+                return False
+            is_healthy = input_dict[itm].healthy
+            if is_healthy: # the current ingredient is already vegetarian
+                return False
+            possible_replacements = []
+            for key in input_dict.keys():
+                cur_is_healthy = input_dict[key].healthy
+                if cur_is_healthy:
+                    possible_replacements.append(input_dict[key])
+            if len(possible_replacements) == 0:
+                print('No replacement ingredients, no healthy')
+                return False
+            return possible_replacements[random.randint(0,len(possible_replacements)-1)]
+        else:
+            print("Invalid Diet")
+            return False
 
     def transform_cuisine(self,cuisine_name,recipe):
         transformed_recipe = copy(recipe)
@@ -188,7 +189,47 @@ class KnowledgeBase:
         return transformed_recipe
 
     def transform_diet(self,diet_name, recipe):
-        return recipe
+        transformed_recipe = copy(recipe)
+        transformed_recipe.ingredients = []
+        for ingredient in recipe.ingredients:
+            new_itm = False
+            for itm in self.sauce_dict.keys():
+                if itm in ingredient.name and not new_itm:
+                    new_itm = self.find_replacement_diet(itm, diet_name, self.sauce_dict)
+            if not new_itm:
+                for itm in self.protein_dict.keys():
+                    if itm in ingredient.name and not new_itm:
+                        new_itm = self.find_replacement_diet(itm, diet_name, self.protein_dict)
+            if not new_itm:
+                for itm in self.veggie_dict.keys():
+                    if itm in ingredient.name and not new_itm:
+                        new_itm = self.find_replacement_diet(itm, diet_name, self.veggie_dict)
+            if not new_itm:
+                for itm in self.spice_dict.keys():
+                    if itm in ingredient.name and not new_itm:
+                        new_itm = self.find_replacement_diet(itm, diet_name, self.spice_dict)
+
+            if new_itm:
+                print(ingredient.name)
+                print("Trans")
+                print(new_itm.name)
+                new_itm.qty = ingredient.qty
+                new_itm.measure = ingredient.measure
+                new_itm.prep = ingredient.prep
+            else:
+                new_itm = ingredient
+
+            transformed_recipe.ingredients.append(new_itm)
+
+        return transformed_recipe
+
+
+
+
+
+
+
+
 
     def transform_other(self,other_name, recipe):
         return recipe
