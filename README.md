@@ -20,3 +20,7 @@ There are 3 different aspects of this project (all run with Python 2.7 from the 
 For the second project, we used Python 2.7
 
 For non-standard packages, we only used NLTK.  There are a number of easy ways to install this package depending on your OS. [This site](http://www.nltk.org/install.html) explains the options well.
+
+To run the code, the structure of our GitHub repo is the same as Project 1.  All code should be run from the project_02/src/ directory.
+
+In addition to the code, you can find pictoral descriptions of our knowledge base and recipe representation in the main project_02/ directory.
