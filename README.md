@@ -1,9 +1,8 @@
-# EECS 337 - Project 1
-### Team 3 : Alex Broad, Seth McCammon, Zavier Henry, Taoran Yue
+# Team 3 : Alex Broad, Seth McCammon, Zavier Henry, Taoran Yue
 
+### EECS 337 - Project 1
 
 There are 3 different aspects of this project (all run with Python 2.7 from the project\_01/src/ directory)
-
 
 
  1. The main project which will run and output a .json file to be used in the autograder
@@ -15,3 +14,9 @@ There are 3 different aspects of this project (all run with Python 2.7 from the 
  3. The fun stuff
       * To run (from the src folder) : 'python fun_thing.py'
       * It will ask you for a name, enter the name of an actor/actress that you enjoy and watch it do it's magic!
+
+### EECS 337 - Project 2
+
+For the second project, we used Python 2.7
+
+For non-standard packages, we only used NLTK.  There are a number of easy ways to install this package depending on your OS. [This site](http://www.nltk.org/install.html) explains the options well.
