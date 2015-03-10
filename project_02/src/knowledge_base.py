@@ -50,7 +50,7 @@ class KnowledgeBase:
         veggies.append(['celery', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['chinese']])
         veggies.append(['green onion', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['chinese']])
         veggies.append(['artichoke', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian']])
-        eturn veggies
+        return veggies
 
     def hc_make_spice_list(self):
         spices = []
