@@ -7,22 +7,29 @@ class Ingredient:
         self.measure = measure
         self.prep = prep
 
-
-
-
-    def __init__(self, name='', vegetarian=False, fish=False, dairy=False, healthy=None, associated_cuisine=[], prep=''):
+    def __init__(self, name='', diet=[], healthy=[], associated_cuisine=[]):
         self.name = name
-        self.prep = prep
-        self.vegetarian = vegetarian
-        self.fish = fish
-        self.dairy = dairy
+        self.diet = diet
         self.healthy = healthy
         self.associated_cuisine = associated_cuisine
         self.qty = 0
         self.measure = ""
+        self.prep = ""
 
+    def isCuisine(self, cuisine_check):
+        if cuisine_check.lower() in self.associated_cuisine:
+            return True
+        else:
+            return False
 
-    def __str__(self):
-        return str(self.name + '\nVegetarian? ' + str(self.vegetarian) + '\nFish? ' + str(self.fish) + '\nDairy? ' +
-        str(self.dairy)  + '\nHealthy? ' + str(self.healthy) + '\nAssociated Cuisine(s) : ' +
-        str(self.associated_cuisine) + '\nAssociated Prep : ' + self.prep)
+    def isDiet(self, diet_check):
+        if diet_check.lower() in self.diet:
+            return True
+        else:
+            return False
+
+    def isHealthy(self, health_check):
+        if health_check.lower() in self.healthy:
+            return True
+        else:
+            return False

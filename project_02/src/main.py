@@ -47,7 +47,7 @@ def main():
 	recipe = parse_recipe(page)
 	kb = KnowledgeBase()
 	#prettyPrintRecipe(recipe)
-	tf_recipe = kb.transform_diet("healthy", recipe)
+	tf_recipe = kb.transform_diet("vegetarian", recipe)
 	#prettyPrintRecipe(tf_recipe)
 	# print recipe
 #
