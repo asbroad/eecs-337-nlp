@@ -61,7 +61,7 @@ def main():
 	#prettyPrintTools(tool_list)
 	#print(tool_list)
 
-	#save_output(url, [], '', [], [])
+	save_output(url, tf_recipe)
 
 
 

@@ -1,24 +1,24 @@
 import json
 
-def save_output(recipe_url, ingredients_list, primary_cooking_method, other_cooking_methods, cooking_tools):
+def save_output(recipe_url, recipe):
 
     formatted_results = {}
 
     ingredients = []
-    for ingredient in ingredients_list:
+    for ingredient in recipe.ingredients:
         ingredient_dict = {}
-        ingredient_dict['name'] = 'temp'
-        ingredient_dict['quantity'] = 'temp'
-        ingredient_dict['measurement'] = 'temp'
+        ingredient_dict['name'] = ingredient.name
+        ingredient_dict['quantity'] = ingredient.qty
+        ingredient_dict['measurement'] = ingredient.measure
         ingredient_dict['descriptor'] = 'temp'
-        ingredient_dict['preparation'] = 'temp'
+        ingredient_dict['preparation'] = ingredient.prep
         ingredient_dict['prep-description'] = 'temp'
         ingredients.append(ingredient_dict)
 
     formatted_results['ingredients'] = ingredients
-    formatted_results['primary cooking method'] = primary_cooking_method
-    formatted_results['cooking methods'] = other_cooking_methods
-    formatted_results['cooking tools'] = cooking_tools
+    formatted_results['primary cooking method'] = recipe.main_method
+    formatted_results['cooking methods'] = recipe.other_methods
+    formatted_results['cooking tools'] = [tool.name for tool in recipe.tools]
 
     split_url = recipe_url.split('/')
     if recipe_url.endswith('/'):

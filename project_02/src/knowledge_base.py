@@ -16,25 +16,22 @@ class KnowledgeBase:
 
     def hc_make_protein_list(self):
         proteins = []
-        #(['fake meat', ['fish', 'veg'], ['low-carb', 'low-fun'], ['fake', 'italian']])
         proteins.append(['chicken', [], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
         proteins.append(['duck', [], ['low-sodium'], ['chinese']])
         proteins.append(['beef', [], ['low-fat'], ['italian', 'chinese']])
         proteins.append(['pork', [], [], ['italian', 'chinese']])
-        proteins.append(['tofu', ['vegetarian'], ['low-sodium'], ['chinese']])
-        #proteins.append(['ham', False, False, False, False, ['italian'], 'sliced'])
-        #proteins.append(['sausage', False, False, False, False, ['italian'], 'sliced'])
-        #proteins.append(['prosciutto', False, False, False, False, ['italian'], 'sliced'])
-        #proteins.append(['halibut', False, True, False, True, ['chinese'], 'scaled'])
-        #proteins.append(['trout', False, True, False, True, ['chinese'], 'scaled'])
-        #proteins.append(['sea bass', False, True, False, True, ['chinese'], 'scaled'])
-        #proteins.append(['salmon', False, True, False, True, ['italian','chinese'], 'scaled'])
-        #proteins.append(['fish', False, True, False, True, ['italian','chinese'], 'scaled'])
-        #proteins.append(['tilapia', False, True, False, True, ['italian'], 'scaled'])
-        #proteins.append(['flounder', False, True, False, True, ['italian'], 'scaled'])
-        #proteins.append(['tofu', True, False, False, True, ['chinese'], 'cubed'])
-        #proteins.append(['meat substitute', True, False, False, True, ['chinese', 'italian'], 'extruded'])
-        #proteins.append(['portobello mushroom', True, False, False, True, ['italian','chinese'], 'cubed'])
+        proteins.append(['ham', [], [], ['italian']])
+        proteins.append(['sausage', [], [], ['italian']])
+        proteins.append(['prosciutto', [], [], ['italian']])
+        proteins.append(['halibut', ['fish'], ['low-sodium','low-fat'], ['chinese']])
+        proteins.append(['trout', ['fish'], ['low-sodium','low-fat'], ['chinese']])
+        proteins.append(['sea bass', ['fish'], ['low-sodium','low-fat'], ['chinese']])
+        proteins.append(['salmon', ['fish'], ['low-sodium','low-fat'], ['italian','chinese']])
+        proteins.append(['fish', ['fish'], ['low-sodium','low-fat'], ['italian','chinese']])
+        proteins.append(['tilapia', ['fish'], ['low-sodium','low-fat'], ['italian']])
+        proteins.append(['flounder', ['fish'], ['low-sodium','low-fat'], ['italian']])
+        proteins.append(['meat substitute', ['vegetarian'], ['low-sodium','low-fat'], ['italian','chinese']])
+        proteins.append(['portobello mushroom', ['vegetarian'], ['low-sodium','low-fat'], ['chinese']])
         return proteins
 
     def hc_make_vegitable_list(self):
