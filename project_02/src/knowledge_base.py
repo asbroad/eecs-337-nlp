@@ -171,6 +171,7 @@ class KnowledgeBase:
                 print(new_itm.name)
                 new_itm.qty = ingredient.qty
                 new_itm.measure = ingredient.measure
+                new_itm.prep_description = ingredient.prep_description
                 new_itm.prep = ingredient.prep
             else:
                 new_itm = ingredient
@@ -206,6 +207,7 @@ class KnowledgeBase:
                 print(ingredient.name)
                 print("Trans")
                 print(new_itm.name)
+                new_itm.prep_description = ingredient.prep_description
                 new_itm.qty = ingredient.qty
                 new_itm.measure = ingredient.measure
                 new_itm.prep = ingredient.prep
@@ -244,6 +246,7 @@ class KnowledgeBase:
                 new_itm.qty = ingredient.qty
                 new_itm.measure = ingredient.measure
                 new_itm.prep = ingredient.prep
+                new_itm.prep_description = ingredient.prep_description
             else:
                 new_itm = ingredient
 

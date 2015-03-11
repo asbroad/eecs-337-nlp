@@ -1,11 +1,12 @@
 
 
 class Ingredient:
-    def ingredient_from_recipie(self, name, qty, measure, prep):
+    def ingredient_from_recipie(self, name, qty, measure, prep, prep_description):
         self.name = name
         self.qty = qty
         self.measure = measure
         self.prep = prep
+        self.prep_description = prep_description
 
     def __init__(self, name='', diet=[], healthy=[], associated_cuisine=[]):
         self.name = name
@@ -15,6 +16,7 @@ class Ingredient:
         self.qty = 0
         self.measure = ""
         self.prep = ""
+        self.prep_description = ""
 
     def isCuisine(self, cuisine_check):
         if cuisine_check.lower() in self.associated_cuisine:

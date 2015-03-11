@@ -44,11 +44,12 @@ def main():
 	#ingredient_list = getIngredients(page)
 	#prettyPrintIngredients(ingredient_list)
 
+	
 	recipe = parse_recipe(page)
 	kb = KnowledgeBase()
 	#prettyPrintRecipe(recipe)
 	tf_recipe = kb.transform_diet("vegetarian", recipe)
-	#prettyPrintRecipe(tf_recipe)
+	prettyPrintRecipe(tf_recipe)
 	# print recipe
 #
 #	directions = getDirections(page)
@@ -61,7 +62,7 @@ def main():
 	#prettyPrintTools(tool_list)
 	#print(tool_list)
 
-	save_output(url, tf_recipe)
+	#save_output(url, tf_recipe)
 
 
 
@@ -167,7 +168,7 @@ def prettyPrintMeats(meat_list):
 
 def prettyPrintIngredients(ingredient_list):
 	for item in ingredient_list:
-		line = "Name: {}\nQty: {}\nMeasure: {}\nPrep: {}\n\n".format(item.name, item.qty, item.measure, item.prep)
+		line = "Name: {}\nQty: {}\nMeasure: {}\nPrep: {}\nPrep Description: {}\n".format(item.name, item.qty, item.measure, item.prep, item.prep_description)
 		print(line)
 
 def prettyPrintTools(tool_list):
@@ -211,15 +212,27 @@ def getIngredients(page):
 
 		regex = "<span id=\"lblIngName\" class=\"ingredient-name\">(.*?)</span>"
 		ingredient_name = re.findall(regex, entry)[0]
+	
+		#check for *ly *ed (e.g. thinly sliced) structure
+		regex = "([A-Za-z]+ly) ([A-Za-z]+ed)"
+		res = re.findall(regex, ingredient_name)
 
+		if res:
+			ingredient_prep_description = res[0][0]
+			ingredient_prep = res[0][1]
 
-
-		split_name = ingredient_name.split(", ")
-		if len(split_name) > 1:
-			ingredient_style = split_name[len(split_name)-1]
-		else:
-			ingredient_style = ""
-		ingredient_name = split_name[0]
+			ingredient_name = ingredient_name.replace(ingredient_prep, "")
+			ingredient_name = ingredient_name.replace(ingredient_prep_description, "")
+		else:	#if not found check for comma split
+			split_name = ingredient_name.split(", ")
+			if len(split_name) > 1:
+				ingredient_name = split_name[0]
+				ingredient_prep = split_name[len(split_name)-1]
+				ingredient_prep_description = ""
+			else:	#otherwise no description
+				ingredient_prep = ""
+				ingredient_prep_description = ""
+				ingredient_name = split_name[0]
 
 		regex = re.compile("[0-9]+\s[0-9/]+|[0-9/]+|[0-9]+")
 		ingredient_qty = re.findall(regex, ingredient_amount)
@@ -235,8 +248,10 @@ def getIngredients(page):
 			ingredient_measure = "items"
 		if ingredient_measure[0] == " ":
 			ingredient_measure = ingredient_measure[1:]
+
 		item = Ingredient(ingredient_name)
-		item.ingredient_from_recipie(ingredient_name, ingredient_qty, ingredient_measure, ingredient_style)
+
+		item.ingredient_from_recipie(ingredient_name, ingredient_qty, ingredient_measure, ingredient_prep, ingredient_prep_description)
 		ingredient_list.append(item)
 
 	if len(ingredient_list) == 0:
