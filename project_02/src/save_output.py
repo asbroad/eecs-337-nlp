@@ -16,8 +16,8 @@ def save_output(recipe_url, recipe):
         ingredients.append(ingredient_dict)
 
     formatted_results['ingredients'] = ingredients
-    formatted_results['primary cooking method'] = recipe.main_method
-    formatted_results['cooking methods'] = recipe.other_methods
+    formatted_results['primary cooking method'] = recipe.main_method[0]
+    formatted_results['cooking methods'] = [itm[0] for itm in recipe.other_methods]
     formatted_results['cooking tools'] = [tool.name for tool in recipe.tools]
 
     split_url = recipe_url.split('/')
