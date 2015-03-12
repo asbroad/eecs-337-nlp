@@ -42,6 +42,7 @@ def main():
 	#prettyPrintRecipe(recipe)
 	kb = KnowledgeBase()
 	tf_recipe = kb.transform_diet("vegetarian", recipe)
+	tf_recipe = transformQty(2, tf_recipe)
 	prettyPrintRecipe(tf_recipe)
 
 

@@ -56,6 +56,8 @@ def transformQty(multiplier, recipe):
 	for ingredient in ingredients:
 		ingredient.qty = ingredient.qty * multiplier
 
+	return recipe
+
 def str2num(strIn):
 	res = 0
 	regex = re.compile("[0-9/]+")
