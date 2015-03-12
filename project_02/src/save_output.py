@@ -31,3 +31,24 @@ def save_output(recipe_url, recipe):
         json.dump(formatted_results, outfile)
 
     print('Finished writing to file : ', output_filename)
+
+def return_ans_dict(recipe):
+    formatted_results = {}
+
+    ingredients = []
+    for ingredient in recipe.ingredients:
+        ingredient_dict = {}
+        ingredient_dict['name'] = ingredient.name
+        ingredient_dict['quantity'] = ingredient.qty
+        ingredient_dict['measurement'] = ingredient.measure
+        ingredient_dict['descriptor'] = ingredient.description
+        ingredient_dict['preparation'] = ingredient.prep
+        ingredient_dict['prep-description'] = ingredient.prep_description
+        ingredients.append(ingredient_dict)
+
+    formatted_results['ingredients'] = ingredients
+    formatted_results['primary cooking method'] = recipe.main_method[0]
+    formatted_results['cooking methods'] = [itm[0] for itm in recipe.other_methods]
+    formatted_results['cooking tools'] = [tool.name for tool in recipe.tools]
+
+    return formatted_results

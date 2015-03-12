@@ -4,7 +4,7 @@ import glob
 from pprint import pprint
 from collections import Counter
 
-from main import main
+from main import autograder_version as student
 TEAM = 3
 
 def check_tools(answer, stud):

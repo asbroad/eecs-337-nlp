@@ -1,6 +1,6 @@
 from tools import hc_make_tool_list
 from recipe import Recipe
-from save_output import *
+from save_output import save_output, return_ans_dict
 from nltk.tag import pos_tag
 from ingredient import Ingredient
 from collections import defaultdict
@@ -16,6 +16,14 @@ extract tools - should be assosciated with secondary cooking methods (e.g bowl -
 Build syntax for recipie
 
 '''
+
+def autograder_version(url):
+	link = urllib.urlopen(url)
+	page = link.read()
+	recipe = parse_recipe(page)
+	recipe = unabridgeMeasure(recipe)
+	return return_ans_dict(recipe)
+
 
 def main():
 
