@@ -34,3 +34,11 @@ To run the code, the structure of our GitHub repo is the same as Project 1.  All
       * To run the autograder (from the src folder) : 'python autograder.py'
 
 In addition to the code, you can find pictoral descriptions of our knowledge base and recipe representation in the main project_02/ directory.
+
+The transformations that are possible are:
+
+  * Transform a recipe to either 'italian' or 'chinese'
+  * Transform a recipe to either 'vegetarian' or 'pescatarian'
+  * Transform a recipe to either 'low-fat' or 'low-sodium'
+  * Transform the number of servings (1x, 2x or 3x of what the recipe calls for)
+
