@@ -5,6 +5,7 @@ from nltk.tag import pos_tag
 from ingredient import Ingredient
 from collections import defaultdict
 from knowledge_base import KnowledgeBase
+from utils import *
 
 '''
 To Do:
@@ -36,6 +37,9 @@ def main():
 	page = f.read()
 	
 	recipe = parse_recipe(page)
+	recipe = unabridgeMeasure(recipe)
+	#prettyPrintIngredients(recipe.ingredients)
+	#prettyPrintRecipe(recipe)
 	kb = KnowledgeBase()
 	tf_recipe = kb.transform_diet("vegetarian", recipe)
 	prettyPrintRecipe(tf_recipe)
