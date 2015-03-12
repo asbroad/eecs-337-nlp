@@ -35,7 +35,7 @@ class KnowledgeBase:
         return proteins
 
     def hc_make_vegitable_list(self):
-        veggies = []       
+        veggies = []
         veggies.append(['onion', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian']])
         veggies.append(['tomato', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian']])
         veggies.append(['mushroom', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
@@ -55,14 +55,15 @@ class KnowledgeBase:
         spices.append(['duck-spice', [], ['low-sodium'], ['chinese']])
         spices.append(['beef-spice', [], ['low-fat'], ['italian', 'chinese']])
         spices.append(['pork-spice', [], [], ['italian', 'chinese']])
-        #spices.append(['basil', True, False, False, True, ['italian', 'chinese'], 'sliced'])
-        #spices.append(['oregano', True, False, False, True, ['italian'], 'crushed'])
-        #spices.append(['cilantro', True, False, False, True, ['italian'], 'crushed'])
-        #spices.append(['crushed red pepper', True, False, False, True, ['chinese'], 'crushed'])
-        #spices.append(['red pepper flakes', True, False, False, True, ['chinese'], 'crushed'])
-        #spices.append(['garlic', True, False, False, True, ['italian', 'chinese'], 'diced'])
-        #spices.append(['ginger', True, False, False, True, ['chinese'], 'diced'])
-        #spices.append(['five spice', True, False, False, True, ['chinese'], 'ground'])
+        spices.append(['basil', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
+        spices.append(['oregano', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian']])
+        spices.append(['cilantro', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian']])
+        spices.append(['crushed red pepper', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['chinese']])
+        spices.append(['red pepper flakes', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['chinese']])
+        spices.append(['garlic',  ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
+        spices.append(['ginger',  ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'],  ['chinese']])
+        spices.append(['five spice',  ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'],  ['chinese']])
+        spices.append(['cinnamon', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], []])
         return spices
 
     def hc_make_sauce_list(self):
