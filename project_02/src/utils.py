@@ -240,17 +240,17 @@ def unabridgeMeasure(recipe):
 		if measure == "c" or measure == "c.":
 			ingredient.measure = "cups"
 		elif measure == "tsp":
-			ingredient.measure = "teaspoons"
+			ingredient.measure = "teaspoon"
 		elif measure == "tbsp":
-			ingredient.measure = "tablespoons"
+			ingredient.measure = "tablespoon"
 		elif measure == "oz" or measure == 'oz.':
-			ingredient.measure = "ounces"
+			ingredient.measure = "ounce"
 		elif measure == "#"  or measure == 'lbs':
-			ingredient.measure = "pounds"
+			ingredient.measure = "pound"
 		elif measure == 'qt' or measure == 'qts':
-			ingredient.measure = 'quarts'
+			ingredient.measure = 'quart'
 		elif measure == 'fl oz' or measure == 'fl. oz.':
-			ingredient.measure = "fluid ounces"
+			ingredient.measure = "fluid ounce"
 		#print(ingredient.measure)
 		unabridged_ingredients.append(ingredient)
 
