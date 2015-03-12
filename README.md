@@ -23,4 +23,14 @@ For non-standard packages, we only used NLTK.  There are a number of easy ways t
 
 To run the code, the structure of our GitHub repo is the same as Project 1.  All code should be run from the project_02/src/ directory.
 
+
+ 1. The main project which will run and output a .json file with the dishes name
+      * To run (from the src folder) : 'python main.py'.
+      * This will output a file called '[dishes_name].json'
+ 2. The GUI
+      * To run (from the src folder) : 'python gui.py'
+      * All of the parameters of the recipe transformations can be set here and run with the GO button
+ 3. The autograder
+      * To run the autograder (from the src folder) : 'python autograder.py'
+
 In addition to the code, you can find pictoral descriptions of our knowledge base and recipe representation in the main project_02/ directory.
