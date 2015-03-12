@@ -1,7 +1,8 @@
 from Tkinter import *
 #import json
 #import os
-from main import *
+
+from utils import *
 
 from knowledge_base import KnowledgeBase
 
