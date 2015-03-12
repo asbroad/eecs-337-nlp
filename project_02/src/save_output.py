@@ -10,9 +10,9 @@ def save_output(recipe_url, recipe):
         ingredient_dict['name'] = ingredient.name
         ingredient_dict['quantity'] = ingredient.qty
         ingredient_dict['measurement'] = ingredient.measure
-        ingredient_dict['descriptor'] = 'temp'
+        ingredient_dict['descriptor'] = ""  #change if we decide to do this
         ingredient_dict['preparation'] = ingredient.prep
-        ingredient_dict['prep-description'] = 'temp'
+        ingredient_dict['prep-description'] = ingredient.prep_description
         ingredients.append(ingredient_dict)
 
     formatted_results['ingredients'] = ingredients
