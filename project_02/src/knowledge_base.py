@@ -71,14 +71,14 @@ class KnowledgeBase:
         sauces.append(['duck-sauce', [], ['low-sodium'], ['chinese']])
         sauces.append(['beef-sauce', [], ['low-fat'], ['italian', 'chinese']])
         sauces.append(['pork-sauce', [], [], ['italian', 'chinese']])
-        #sauces.append(['soy sauce', True, False, False, False, ['chinese'], ''])
-        #sauces.append(['hot sauce', True, False, False, False, ['chinese'], ''])
-        #sauces.append(['tomato sauce', True, False, False, True, ['italian'], ''])
-        #sauces.append(['marinara', True, False, False, True, ['italian'], ''])
-        #sauces.append(['beef broth', False, False, False, False, ['italian','chinese'], ''])
-        #sauces.append(['fish sauce', False, True, False, True, ['italian','chinese'], ''])
-        #sauces.append(['chicken broth', False, False, False, False, ['italian','chinese'], ''])
-        #sauces.append(['vegetable broth', True, False, False, True, ['italian','chinese'], ''])
+        sauces.append(['soy sauce', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
+        sauces.append(['hot sauce', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
+        sauces.append(['tomato sauce',['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
+        sauces.append(['marinara', ['vegetarian', 'pescatarian'], ['low-sodium'],['italian']])
+        sauces.append(['beef broth',[], ['low-fat'], ['italian','chinese']])
+        sauces.append(['fish sauce', ['pescatarian'],['low-fat', 'low-sodium'],['italian','chinese']])
+        sauces.append(['chicken broth', [], ['low-fat', 'low-sodium'],['italian','chinese']])
+        sauces.append(['vegetable broth',['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'],['italian','chinese']])
         return sauces
 
     def make_dict(self,ingredients):
