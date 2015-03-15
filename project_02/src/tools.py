@@ -27,10 +27,12 @@ def hc_make_tool_list():
 	tools_list.append(tool("saucepan", ["boil", "simmer", "steam", "blanche"]))
 
 	tools_list.append(tool("baking pan", ["bake", "broil", "chop"]))
+	tools_list.append(tool("baking dish", ["bake", "broil", "chop"]))
 	tools_list.append(tool("microwave safe bowl", ["microwave"]))
 	tools_list.append(tool("microwave", ["microwave"]))
 	tools_list.append(tool("saucepan", ["boil", "simmer", "steam", "blanche"]))
 	tools_list.append(tool("baster", ["baste", "sauce"]))
+	tools_list.append(tool("skillet", ["fry", "melting"]))
 	return tools_list
 
 
