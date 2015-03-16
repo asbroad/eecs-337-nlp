@@ -116,6 +116,7 @@ def go_callback(event):
 	if "temp-name" in url:
 		print("Error: No recipe found.  Select recipe to transform.")
 	else:
+		print("Transforming Recipe")
 		link = urllib.urlopen(url)
 		page = link.read()
 		recipe = parse_recipe(page)
