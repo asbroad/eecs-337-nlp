@@ -3,6 +3,8 @@ import csv
 import glob
 from pprint import pprint
 from collections import Counter
+import requests
+import sys
 
 from main import autograder_version as student
 TEAM = 3
@@ -64,41 +66,83 @@ def get_file(fn):
         answer = json.load(f)
     return answer
 
-def main(init=False):
+def main(init=False,input_type="url",filename=None):
+    """Pass 'init' as a command line variable if this is your
+    first time running the program and you want it to print the
+    column headers to the file. 
+
+    Set input_type to 'html' if your program accepts HTML rather
+    than a URL.
+
+    If your program accepts copied and pasted text (as displayed),
+    put it in a file, set input_type to 'text', and pass the 
+    filename as another argument."""
+
+    keys = ['ingredients','primary cooking method','cooking methods','cooking tools']
+
+    if init:
+        with open('parsegrades.csv','ab') as csvfile:
+            csvwriter = csv.writer(csvfile,delimiter='\t')
+            csvwriter.writerow(keys)
+
+    scores = dict(zip(keys,[0]*len(keys)))
+    
+    tmpmeth = 0
+    tmptool = 0
+    tmping = 0
+
+    for answer in (get_file(fn) for fn in glob.iglob('../Recipes/*.json')):
+        if input_type == "url":
+            stud = student(answer['url'])
+        elif input_type == "html":
+            stud = student(requests.get(answer['url']).text)
+        elif input_type == "text" and filename:
+            with open(filename, 'r') as f:
+                stud = student(f.read())
+
+
+        if type(stud) == str:
+            stud = json.loads(stud)
+        pprint(stud)
+        if type(stud) == dict:            
+            tmptool = min([check_tools(answer['cooking tools'],stud['cooking tools']), answer['max']['cooking tools']])/float(answer['max']['cooking tools'])
+            scores['cooking tools'] += tmptool
+            tmpmeths = min([check_tools(answer['cooking methods'],stud['cooking methods']), answer['max']['cooking methods']])/float(answer['max']['cooking methods'])
+            scores['cooking methods'] += tmpmeths
+            if stud['primary cooking method'] == answer['primary cooking method']:
+                tmpmeth = 1
+                scores['primary cooking method'] += 1
+            stud = stud['ingredients']
+            tmping = check_ingredients(answer['ingredients'],stud)/float(answer['max']['ingredients'])
+            scores['ingredients'] += tmping
+            print "%.3f\t%d\t%.3f\t%.3f"%(tmping,tmpmeth,tmpmeths,tmptool)
+        else:
+            print "student answer error"
+
+    row = ["Team %d"%TEAM]
+    row.extend([scores[k] for k in keys])
+
     with open('parsegrades.csv','ab') as csvfile:
         csvwriter = csv.writer(csvfile,delimiter='\t')
-        keys = ['ingredients','primary cooking method','cooking methods','cooking tools']
-        if init:
-            csvwriter.writerow(keys)
-        scores = dict(zip(keys,[0]*len(keys)))
-        
-        tmpmeth = 0
-        tmptool = 0
-        tmping = 0
-
-        for answer in (get_file(fn) for fn in glob.iglob('../Recipes/*.json')):
-            stud = student(answer['url'])
-            if type(stud) == str:
-                stud = json.loads(stud)
-            pprint(stud)
-            if type(stud) == dict:            
-                tmptool = min([check_tools(answer['cooking tools'],stud['cooking tools']), answer['max']['cooking tools']])/float(answer['max']['cooking tools'])
-                scores['cooking tools'] += tmptool
-                tmpmeths = min([check_tools(answer['cooking methods'],stud['cooking methods']), answer['max']['cooking methods']])/float(answer['max']['cooking methods'])
-                scores['cooking methods'] += tmpmeths
-                if stud['primary cooking method'] == answer['primary cooking method']:
-                    tmpmeth = 1
-                    scores['primary cooking method'] += 1
-                stud = stud['ingredients']
-                tmping = check_ingredients(answer['ingredients'],stud)/float(answer['max']['ingredients'])
-                scores['ingredients'] += tmping
-                print "%.3f\t%d\t%.3f\t%.3f"%(tmping,tmpmeth,tmpmeths,tmptool)
-            else:
-                print "student answer error"
-        row = ["Team %d"%TEAM]
-        row.extend([scores[k] for k in keys])
         csvwriter.writerow(row)
 
-
 if __name__ == '__main__':
-    main()
+    init = False
+    input_type = False
+    filename = False
+    for arg in sys.argv[1:]:
+        if arg == "init":
+            init = True
+        elif arg in ['url','html','text']:
+            input_type = arg
+        else:
+            filename = arg
+    if not input_type:
+        main(init)
+    elif input_type == 'text':
+        if filename:
+            main(init,input_type,filename)
+        else:
+            "Error: Filename required."
+    else:
+        main(init,input_type)
