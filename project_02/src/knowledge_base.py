@@ -63,18 +63,14 @@ class KnowledgeBase:
         spices.append(['garlic',  ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
         spices.append(['ginger',  ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'],  ['chinese']])
         spices.append(['five spice',  ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'],  ['chinese']])
-        spices.append(['cinnamon', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], []])
+        spices.append(['cinnamon', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian']])
         return spices
 
     def hc_make_sauce_list(self):
         sauces = []
-        sauces.append(['chicken-sauce', [], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
-        sauces.append(['duck-sauce', [], ['low-sodium'], ['chinese']])
-        sauces.append(['beef-sauce', [], ['low-fat'], ['italian', 'chinese']])
-        sauces.append(['pork-sauce', [], [], ['italian', 'chinese']])
-        sauces.append(['soy sauce', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
+        sauces.append(['soy sauce', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['chinese']])
         sauces.append(['hot sauce', ['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
-        sauces.append(['tomato sauce',['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian', 'chinese']])
+        sauces.append(['tomato sauce',['vegetarian', 'pescatarian'], ['low-fat', 'low-sodium'], ['italian']])
         sauces.append(['marinara', ['vegetarian', 'pescatarian'], ['low-sodium'],['italian']])
         sauces.append(['beef broth',[], ['low-fat'], ['italian','chinese']])
         sauces.append(['fish sauce', ['pescatarian'],['low-fat', 'low-sodium'],['italian','chinese']])
@@ -102,7 +98,7 @@ class KnowledgeBase:
             if cur_is_cuisine:
                 possible_replacements.append(input_dict[key])
         if len(possible_replacements) == 0:
-            print('No replacement ingredients')
+            #print('No replacement ingredients')
             return False
         return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
@@ -112,16 +108,16 @@ class KnowledgeBase:
         all_dict_itms = input_dict.keys()
         if itm not in all_dict_itms:
             return False
-        is_healthy = input_dict[itm].isHealthy(cuisine_name)
+        is_healthy = input_dict[itm].isHealthy(health_name)
         if is_healthy: # the current ingredient is already in the diet
             return False
         possible_replacements = []
         for key in input_dict.keys():
-            cur_is_healthy = input_dict[key].isHealthy(cuisine_name)
+            cur_is_healthy = input_dict[key].isHealthy(health_name)
             if cur_is_healthy:
                 possible_replacements.append(input_dict[key])
         if len(possible_replacements) == 0:
-            print('No replacement ingredients')
+            #print('No replacement ingredients')
             return False
         return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
@@ -140,7 +136,7 @@ class KnowledgeBase:
             if cur_is_diet:
                 possible_replacements.append(input_dict[key])
         if len(possible_replacements) == 0:
-            print('No replacement ingredients')
+            #print('No replacement ingredients')
             return False
         return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
@@ -167,9 +163,7 @@ class KnowledgeBase:
                         new_itm = self.find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.spice_dict)
 
             if new_itm:
-                print(ingredient.name)
-                print("Trans")
-                print(new_itm.name)
+                print("Replace {} with {}".format(ingredient.name, new_itm.name))
                 new_itm.qty = ingredient.qty
                 new_itm.measure = ingredient.measure
                 new_itm.prep_description = ingredient.prep_description
@@ -205,9 +199,7 @@ class KnowledgeBase:
                         new_itm = self.find_replacement_itm_healthy(ingredient.name.lower(),health_name,self.spice_dict)
 
             if new_itm:
-                print(ingredient.name)
-                print("Trans")
-                print(new_itm.name)
+                print("Replace {} with {}".format(ingredient.name, new_itm.name))
                 new_itm.prep_description = ingredient.prep_description
                 new_itm.qty = ingredient.qty
                 new_itm.measure = ingredient.measure
@@ -241,9 +233,7 @@ class KnowledgeBase:
                         new_itm = self.find_replacement_diet(itm, diet_name, self.spice_dict)
 
             if new_itm:
-                print(ingredient.name)
-                print("Trans")
-                print(new_itm.name)
+                print("Replace {} with {}".format(ingredient.name, new_itm.name))
                 new_itm.qty = ingredient.qty
                 new_itm.measure = ingredient.measure
                 new_itm.prep = ingredient.prep

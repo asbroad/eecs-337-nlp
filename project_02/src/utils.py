@@ -78,7 +78,7 @@ def generateURL():
 	#Note:Title must be exactly correct
 	recipie_name = raw_input("Enter Name of Recipie\n> ")
 	recipie_url = re.sub(" ", "-", recipie_name).lower()
-	recipie_url = "http://allrecipes.com/recipe/" + recipie_url
+	recipie_url = "http://www.allrecipes.com/recipe/" + recipie_url
 	return recipie_url
 
 
