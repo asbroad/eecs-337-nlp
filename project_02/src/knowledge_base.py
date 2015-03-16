@@ -212,6 +212,7 @@ class KnowledgeBase:
         return transformed_recipe
 
     def transform_diet(self,diet_name, recipe):
+
         transformed_recipe = copy(recipe)
         transformed_recipe.ingredients = []
         for ingredient in recipe.ingredients:

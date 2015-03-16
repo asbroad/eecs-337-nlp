@@ -43,7 +43,7 @@ def main():
 	url = "../data/Stir-Fry"
 	f = open(url + ".html")
 	page = f.read()
-	
+
 	recipe = parse_recipe(page)
 	recipe = unabridgeMeasure(recipe)
 	#prettyPrintIngredients(recipe.ingredients)

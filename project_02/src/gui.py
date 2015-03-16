@@ -12,7 +12,7 @@ from knowledge_base import KnowledgeBase
 
 
 def runGui():
-	global root 
+	global root
 	root = Tk()
 	root.title('Recipe Transformer')
 	root.geometry('650x500')
@@ -20,12 +20,12 @@ def runGui():
 	global v0
 	v0 = StringVar(root)
 	v0.set('Cuisine')
-	
+
 	global v1
 	v1 = StringVar(root)
 	v1.set('Diet')
-	
-	global v2 
+
+	global v2
 	v2 = StringVar(root)
 	v2.set('Health')
 
@@ -46,7 +46,7 @@ def runGui():
 
 	url_entry=Entry(root,textvariable=v3)
 	url_entry.grid(row=0,column=0,columnspan=3,sticky =E + W+ N + S)
-	
+
 	cuisine_dropdown = OptionMenu(root,v0,'None','Italian','Chinese')
 	cuisine_dropdown.grid(row=2,column=0,columnspan = 1,sticky = E + W+ N + S)
 
@@ -55,7 +55,7 @@ def runGui():
 
 	health_dropdown = OptionMenu(root,v2,'None','Low Fat','Low Sodium')
 	health_dropdown.grid(row=2,column=2,columnspan = 1,sticky = E + W+ N + S)
-	
+
 	qty_dropdown = OptionMenu(root,v4,'Single Recipe','Double Recipe','Triple Recipe')
 	qty_dropdown.grid(row=2,column=3,columnspan = 1,sticky = E + W + N + S)
 
@@ -79,7 +79,7 @@ def runGui():
 	quit_button.grid(row=3,column=3,sticky = E + W+ N + S)
 	quit_button.bind("<Button-1>", quit_callback)
 
-	t1 = Text(root) 
+	t1 = Text(root)
 	t1.grid(row=4, column=0,rowspan=60,columnspan = 4,sticky = S)
 
 	sys.stdout = RedirectText(t1)
@@ -92,7 +92,7 @@ def find_callback(event):
 	global url
 	recipie_name = v3.get()
 	url = re.sub(" ", "-", recipie_name).lower()
-	if recipie_name.startswith('www'):
+	if '.com' in recipie_name:
 		url = recipie_name
 		#result=Label(root,text="Your original recipe is:")
 		#result.grid(row=4,column=0,columnspan=4,sticky =W)
@@ -163,5 +163,3 @@ class RedirectText(object):
 
 if __name__ == "__main__":
     runGui()
-
-
