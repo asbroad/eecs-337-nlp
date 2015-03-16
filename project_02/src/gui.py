@@ -1,11 +1,20 @@
 from Tkinter import *
-#import json
+import json
 #import os
 
 from utils import *
+from save_output import *
+from main import *
 
 from knowledge_base import KnowledgeBase
 
+url = "../data/Stir-Fry"
+f = open(url + ".html")
+page = f.read()
+
+kb = KnowledgeBase()
+recipe = parse_recipe(page)
+tf_recipe = kb.transform_diet("vegetarian", recipe)
 
 
 def runGui():
@@ -24,7 +33,8 @@ def runGui():
 	v3 = StringVar(root)
 	v3.set('Type the Url or Name of Recipe Here')
 
-
+	v4 = StringVar(root)
+	v4.set('Normal')
 
 
 	url_entry=Entry(root,textvariable=v3)
@@ -53,14 +63,15 @@ def runGui():
 	go_button.grid(row=3,column=0,sticky = E + W + N + S)
 
 
-	file_button = Button(root,text='Write File',command=write_file,activeforeground='white',activebackground='red')
+	file_button = Button(root,text='Write File',command=write_file(),activeforeground='white',activebackground='red')
 	file_button.bind("Button-1>")
 	file_button.grid(row=3,column=1,columnspan = 1,sticky = E + W + N + S)
 	
 
-	file = Button(root,text='Write File',command=write_file,activeforeground='white',activebackground='red')
-	file.bind("Button-1>")
-	file.grid(row=3,column=1,sticky = E + W + N + S)
+	recipe_number=OptionMenu(root,v4,'Single Recipe','Double Recipe','Triple Recipe')
+	recipe_number.bind("Button-1>")
+	recipe_number.grid(row=2,column=3,columnspan = 1,sticky = E + W + N + S)
+
 
 	restart_button = Button(root,text='Restart',command=restart,activeforeground='white',activebackground='red')
 	restart_button.grid(row=3,column=2,sticky = E + W + N + S)
@@ -71,6 +82,9 @@ def runGui():
 	t1 = Text(root) 
 	t1.grid(row=4, column=0,rowspan=60,columnspan = 4,sticky = S)
 	
+	v3 = StringVar(root)
+	global recipie_name
+	recipie_name = v3.get()
 	sys.stdout = RedirectText(t1)
 
 	mainloop() 
@@ -79,26 +93,21 @@ def runGui():
 
 #find function
 def find():
-	root = Tk()
-	v3 = StringVar(root)
 
-	recipie_name = v3.get()
-	recipie_url = re.sub(" ", "-", recipie_name).lower()
+	url = re.sub(" ", "-", recipie_name).lower()
 	if recipie_name.startswith('www'):
-		recipie_url = recipie_name
+		url = recipie_name
 		#result=Label(root,text="Your original recipe is:")
 		#result.grid(row=4,column=0,columnspan=4,sticky =W)
-		t=Label(root,text = recipie_url)
-		t.grid(row=5,column=0,columnspan=4,sticky =W)
-
 	else:
-		recipie_url = "http://allrecipes.com/recipe/" + recipie_url
+		url = "http://allrecipes.com/recipe/" + url
 		#result=Label(root,text="Your original recipe is:")
 		#result.grid(row=4,column=0,columnspan=4,sticky =W)
-		t=Label(root,text = recipie_url)
-		t.grid(row=5,column=0,columnspan=4,sticky =W)
+	f = open(url + ".html")
+	page = f.read()
+	print ('Your recipe URl is : ', url)
 
-	return recipie_url
+	return url
 
 #go function
 def go(v0, v1, v2, v3):
@@ -115,17 +124,13 @@ def go(v0, v1, v2, v3):
 
 
 
-
-
-
 #restart function
 def restart():
-	root.destroy()
-	os.system('python gui.py')
+	root.destroy
+	runGui()
 #Write file function
 def write_file():
-	result=Label(root,text="Please check the folder to see the result")
-	result.grid(row=7,column=0,columnspan=4,sticky =W)
+	save_output(url, tf_recipe)
 
 
 
