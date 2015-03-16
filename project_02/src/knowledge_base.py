@@ -2,6 +2,7 @@ from ingredient import Ingredient
 from recipe import Recipe
 from copy import copy
 import random
+import string
 
 # Ingredient parameters
 # (name, [diet], [healty], [cuisine])
@@ -149,18 +150,30 @@ class KnowledgeBase:
             for itm in self.sauce_dict.keys():
                 if itm in ingredient.name or not new_itm:
                     new_itm = self.find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.sauce_dict)
+                    if new_itm:
+                        new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                        transformed_recipe.directions = new_directions
             if not new_itm:
                 for itm in self.protein_dict.keys():
                     if itm in ingredient.name or not new_itm:
                         new_itm = self.find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.protein_dict)
+                        if new_itm:
+                            new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                            transformed_recipe.directions = new_directions
             if not new_itm:
                 for itm in self.veggie_dict.keys():
                     if itm in ingredient.name or not new_itm:
                         new_itm = self.find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.veggie_dict)
+                        if new_itm:
+                            new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                            transformed_recipe.directions = new_directions
             if not new_itm:
                 for itm in self.spice_dict.keys():
                     if itm in ingredient.name or not new_itm:
                         new_itm = self.find_replacement_itm_cuisine(ingredient.name.lower(),cuisine_name,self.spice_dict)
+                        if new_itm:
+                            new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                            transformed_recipe.directions = new_directions
 
             if new_itm:
                 print("Replace {} with {}".format(ingredient.name, new_itm.name))
@@ -185,18 +198,30 @@ class KnowledgeBase:
             for itm in self.sauce_dict.keys():
                 if itm in ingredient.name or not new_itm:
                     new_itm = self.find_replacement_itm_healthy(ingredient.name.lower(),health_name,self.sauce_dict)
+                    if new_itm:
+                        new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                        transformed_recipe.directions = new_directions
             if not new_itm:
                 for itm in self.protein_dict.keys():
                     if itm in ingredient.name or not new_itm:
                         new_itm = self.find_replacement_itm_healthy(ingredient.name.lower(),health_name,self.protein_dict)
+                        if new_itm:
+                            new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                            transformed_recipe.directions = new_directions
             if not new_itm:
                 for itm in self.veggie_dict.keys():
                     if itm in ingredient.name or not new_itm:
                         new_itm = self.find_replacement_itm_healthy(ingredient.name.lower(),health_name,self.veggie_dict)
+                        if new_itm:
+                            new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                            transformed_recipe.directions = new_directions
             if not new_itm:
                 for itm in self.spice_dict.keys():
                     if itm in ingredient.name or not new_itm:
                         new_itm = self.find_replacement_itm_healthy(ingredient.name.lower(),health_name,self.spice_dict)
+                        if new_itm:
+                            new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                            transformed_recipe.directions = new_directions
 
             if new_itm:
                 print("Replace {} with {}".format(ingredient.name, new_itm.name))
@@ -220,18 +245,30 @@ class KnowledgeBase:
             for itm in self.sauce_dict.keys():
                 if itm in ingredient.name.lower() and not new_itm:
                     new_itm = self.find_replacement_diet(itm, diet_name, self.sauce_dict)
+                    if new_itm:
+                        new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                        transformed_recipe.directions = new_directions
             if not new_itm:
                 for itm in self.protein_dict.keys():
                     if itm in ingredient.name.lower() and not new_itm:
                         new_itm = self.find_replacement_diet(itm, diet_name, self.protein_dict)
+                        if new_itm:
+                            new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                            transformed_recipe.directions = new_directions
             if not new_itm:
                 for itm in self.veggie_dict.keys():
                     if itm in ingredient.name.lower() and not new_itm:
                         new_itm = self.find_replacement_diet(itm, diet_name, self.veggie_dict)
+                        if new_itm:
+                            new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                            transformed_recipe.directions = new_directions
             if not new_itm:
                 for itm in self.spice_dict.keys():
                     if itm in ingredient.name.lower() and not new_itm:
                         new_itm = self.find_replacement_diet(itm, diet_name, self.spice_dict)
+                        if new_itm:
+                            new_directions = self.replace_directions(itm, new_itm.name, transformed_recipe.directions)
+                            transformed_recipe.directions = new_directions
 
             if new_itm:
                 print("Replace {} with {}".format(ingredient.name, new_itm.name))
@@ -247,8 +284,21 @@ class KnowledgeBase:
         return transformed_recipe
 
 
+    def replace_directions(self, old_itm, new_itm, directions):
+        new_directions = []
+        for d in directions:
+            if old_itm in d:
+                d_new = string.replace(d, old_itm, new_itm)
+                new_directions.append(d_new)
+            else:
+                new_directions.append(d)
+
+        return new_directions
+
     def transform_other(self,other_name, recipe):
         return recipe
+
+
 
 if __name__ == "__main__":
 
