@@ -86,7 +86,6 @@ class KnowledgeBase:
         return ingredient_dict
 
     def find_replacement_itm_cuisine(self,itm,cuisine_name,input_dict):
-#        if(diet_name == "vegetarian"):
         all_dict_itms = input_dict.keys()
         if itm not in all_dict_itms:
             return False
@@ -94,18 +93,18 @@ class KnowledgeBase:
         if is_cuisine: # the current ingredient is already in the diet
             return False
         possible_replacements = []
+        
         for key in input_dict.keys():
-            cur_is_cuisine = input_dict[key].isDiet(cuisine_name)
+            cur_is_cuisine = input_dict[key].isCuisine(cuisine_name)
             if cur_is_cuisine:
                 possible_replacements.append(input_dict[key])
+        #print possible_replacements
         if len(possible_replacements) == 0:
-            #print('No replacement ingredients')
             return False
         return possible_replacements[random.randint(0,len(possible_replacements)-1)]
 
 
     def find_replacement_itm_healthy(self,itm,health_name,input_dict):
-#        if(diet_name == "vegetarian"):
         all_dict_itms = input_dict.keys()
         if itm not in all_dict_itms:
             return False
@@ -124,7 +123,6 @@ class KnowledgeBase:
 
 
     def find_replacement_diet(self,itm,diet_name,input_dict):
-#        if(diet_name == "vegetarian"):
         all_dict_itms = input_dict.keys()
         if itm not in all_dict_itms:
             return False
@@ -235,6 +233,9 @@ class KnowledgeBase:
             transformed_recipe.ingredients.append(new_itm)
 
         return transformed_recipe
+
+
+
 
     def transform_diet(self,diet_name, recipe):
 

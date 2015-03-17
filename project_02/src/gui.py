@@ -50,7 +50,7 @@ def runGui():
 	cuisine_dropdown = OptionMenu(root,v0,'None','Italian','Chinese')
 	cuisine_dropdown.grid(row=2,column=0,columnspan = 1,sticky = E + W+ N + S)
 
-	diet_dropdown = OptionMenu(root,v1,'None','Vegetarian','Vegan','Pescatarian')
+	diet_dropdown = OptionMenu(root,v1,'None','Vegetarian','Pescatarian')
 	diet_dropdown.grid(row=2,column=1,columnspan = 1,sticky = E + W+ N + S)
 
 	health_dropdown = OptionMenu(root,v2,'None','Low Fat','Low Sodium')
@@ -124,6 +124,9 @@ def go_callback(event):
 		page = link.read()
 		recipe = parse_recipe(page)
 		kb = KnowledgeBase()
+		print(v0.get())
+		print(v1.get())
+		print(v2.get())
 		tf_recipe = kb.transform_cuisine(v0.get().lower(), recipe)
 		tf_recipe = kb.transform_diet(v1.get().lower(), tf_recipe)
 		tf_recipe = kb.transform_healthy(v2.get().lower(), tf_recipe)
