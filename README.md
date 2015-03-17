@@ -26,7 +26,18 @@ To run the code, the structure of our GitHub repo is the same as Project 1.  All
 
  1. The main project which will run and output a .json file with the dishes name
       * To run (from the src folder) : 'python main.py'.
+      * If you run command above with no other arguments, the program will simply parse the recipe and print the results without making and transformations.  If you would like to also apply a transformation, you can supply a second argument which maps to specific transformation, that would look as such:
+      * 'python main.py [num]', where [num] is a number from 1-8.  The transformations that are applied are defined in the following manor
+		if [num] = 1: transform the recipe to Italian
+        if [num] = 2: transform the recipe to Chinese
+        if [num] = 3: transform the recipe to Vegetarian
+        if [num] = 4: transform the recipe to Pescatarian
+        if [num] = 5: transform the recipe to Low-Fat
+        if [num] = 6: transform the recipe to Low-Sodium
+        if [num] = 7: transform the recipe to serve 2x the original number of people
+        if [num] = 8: transform the recipe to serve 3x the original number of people
       * This will output a file called '[dishes_name].json'
+      * To apply multiple transformations to the same recipe, please use the GUI. There you can apply any combination that you would like.
  2. The GUI
       * To run (from the src folder) : 'python gui.py'
       * All of the parameters of the recipe transformations can be set here and run with the GO button
