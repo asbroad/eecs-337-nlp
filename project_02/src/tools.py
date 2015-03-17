@@ -18,12 +18,12 @@ def hc_make_tool_list():
 	tools_list = []
 	tools_list.append(tool("knife", ["slice", "cut", "chop"]))
 	tools_list.append(tool("wooden spoon", ["stir", "mix"]))
-	tools_list.append(tool("bowl", ["mix", "stir"]))
+	tools_list.append(tool("bowl", ["mix", "stir", "whisk"]))
 	tools_list.append(tool("baking sheet", ["bake", "broil", "chop"]))
 	tools_list.append(tool("frying pan", ["fry", "saute", "sear"]))
 	tools_list.append(tool("deep frier", ["deep-fry", "deep fry"]))
 	tools_list.append(tool("wok", ["stir-fry", "stir fry"]))
-	tools_list.append(tool("grill", ["grill", "roast"]))
+	tools_list.append(tool("grill", ["grill", "roast", "sear"]))
 	tools_list.append(tool("saucepan", ["boil", "simmer", "steam", "blanche"]))
 
 	tools_list.append(tool("baking pan", ["bake", "broil", "chop"]))
@@ -33,6 +33,12 @@ def hc_make_tool_list():
 	tools_list.append(tool("saucepan", ["boil", "simmer", "steam", "blanche"]))
 	tools_list.append(tool("baster", ["baste", "sauce"]))
 	tools_list.append(tool("skillet", ["fry", "melting"]))
+	tools_list.append(tool("whisk", ["whisk"]))
+	tools_list.append(tool("roasting pan", ["roast"]))
+	tools_list.append(tool("stock pot", ["simmer"]))
+	tools_list.append(tool("loaf pan", ["bake"]))
+	
+	
 	return tools_list
 
 
