@@ -6,16 +6,7 @@ from ingredient import Ingredient
 from collections import defaultdict
 from knowledge_base import KnowledgeBase
 from utils import *
-
-'''
-To Do:
-Extract Cooking methods
-extract spices - perhaps use wikipedia to obtain list?
-extract tools - should be assosciated with secondary cooking methods (e.g bowl - stir)
-
-Build syntax for recipie
-
-'''
+import sys
 
 def autograder_version(url):
 	link = urllib.urlopen(url)
@@ -44,17 +35,42 @@ def main():
 	f = open(url + ".html")
 	page = f.read()
 
-	recipe = parse_recipe(page)
-	recipe = unabridgeMeasure(recipe)
-	#prettyPrintIngredients(recipe.ingredients)
-	#prettyPrintRecipe(recipe)
-	kb = KnowledgeBase()
-	tf_recipe = kb.transform_diet("vegetarian", recipe)
-	tf_recipe = transformQty(1, tf_recipe)
-	prettyPrintRecipe(tf_recipe)
 
+	if len(sys.argv) < 2 :
+		recipe = parse_recipe(page)
+		recipe = unabridgeMeasure(recipe)
+		prettyPrintRecipe(recipe)
+		save_output(url, recipe)
+	elif len(sys.argv) == 2:
+		case_num = int(sys.argv[1])
+		if case_num < 1 or case_num > 8:
+			print('You can only pick from [1-8]')
+			return
+		recipe = parse_recipe(page)
+		recipe = unabridgeMeasure(recipe)
+		kb = KnowledgeBase()
+		if case_num == 1:
+			tf_recipe = kb.transform_cuisine("italian", recipe)
+		elif case_num == 2:
+			tf_recipe = kb.transform_cuisine("chinese", recipe)
+		elif case_num == 3:
+			tf_recipe = kb.transform_diet("vegetarian", recipe)
+		elif case_num == 4:
+			tf_recipe = kb.transform_diet("pescatarian", recipe)
+		elif case_num == 5:
+			tf_recipe = kb.transform_healthy("low-fat", recipe)
+		elif case_num == 6:
+			tf_recipe = kb.transform_healthy("low-sodium", recipe)
+		elif case_num == 7:
+			tf_recipe = transformQty(2, recipe)
+		elif case_num == 8:
+			tf_recipe = transformQty(3, recipe)
 
-	save_output(url, tf_recipe)
+		prettyPrintRecipe(tf_recipe)
+		save_output(url, tf_recipe)
+	else:
+		print('Too many arguments. You can either either just call main.py to see the recipe or pass in a single integer to select a transformation.')
+
 
 
 if __name__ == "__main__":
