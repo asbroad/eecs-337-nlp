@@ -79,6 +79,7 @@ def runGui():
 	quit_button.grid(row=3,column=3,sticky = E + W+ N + S)
 	quit_button.bind("<Button-1>", quit_callback)
 
+	global t1
 	t1 = Text(root)
 	t1.grid(row=4, column=0,rowspan=60,columnspan = 4,sticky = S)
 
@@ -112,10 +113,12 @@ def go_callback(event):
 	global v2
 	global v4
 	global tf_recipe
+	global t1
 
 	if "temp-name" in url:
 		print("Error: No recipe found.  Select recipe to transform.")
 	else:
+		t1.delete(1.0, END);
 		print("Transforming Recipe")
 		link = urllib.urlopen(url)
 		page = link.read()
